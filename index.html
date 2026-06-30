@@ -4,18 +4,29 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>FixSha’a | עבודה לפי שעה</title>
-  <meta name="description" content="FixSha’a - שיפוצים ותיקונים לבית לפי שעה, בשקיפות ובמקצועיות. خدمات تصليح وترميم للبيت بالدفع حسب الساعة." />
+  <!-- SEO: Replace text later if needed -->
+  <title>FixSha’a | Trusted Home Repair by the Hour</title>
+  <meta name="description" content="FixSha’a connects customers with trusted home repair and renovation professionals. Transparent hourly pricing, fast response, and clear communication in Hebrew, Arabic, and English." />
 
   <style>
+    /* =========================
+       BRAND COLORS - EDIT HERE
+       ========================= */
     :root {
-      --turquoise: #08C6C8;
       --navy: #062B4F;
-      --light: #F4F8FA;
-      --white: #FFFFFF;
-      --text: #1F2937;
+      --charcoal: #111827;
+      --accent: #F5A400;
+      --accent-dark: #d98c00;
+      --turquoise: #08C6C8;
+      --white: #ffffff;
+      --off-white: #f8fafc;
+      --soft: #eef4f6;
+      --text: #1f2937;
       --muted: #667085;
-      --shadow: 0 24px 70px rgba(6, 43, 79, 0.14);
+      --border: #e5e7eb;
+      --shadow: 0 24px 70px rgba(6, 43, 79, 0.12);
+      --radius: 24px;
+      --container: 1180px;
     }
 
     * {
@@ -35,567 +46,1879 @@
       line-height: 1.7;
     }
 
+    body[dir="ltr"] {
+      font-family: Arial, "Segoe UI", sans-serif;
+    }
+
     a {
+      color: inherit;
       text-decoration: none;
     }
 
-    .page {
-      overflow: hidden;
+    img {
+      max-width: 100%;
+      display: block;
     }
 
-    .nav {
-      width: 100%;
-      padding: 18px 7%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(255, 255, 255, 0.92);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid #edf2f7;
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
     }
 
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      color: var(--navy);
-      font-size: 22px;
+    .container {
+      width: min(var(--container), calc(100% - 40px));
+      margin: 0 auto;
     }
 
-    .nav-logo img {
-      width: 52px;
-      height: auto;
+    .section {
+      padding: 90px 0;
     }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-      font-size: 16px;
-      font-weight: 700;
-    }
-
-    .nav-links a {
-      color: var(--navy);
-    }
-
-    .nav-cta {
-      background: var(--turquoise);
-      color: white !important;
-      padding: 10px 20px;
-      border-radius: 999px;
-    }
-
-    .hero {
-      min-height: 92vh;
-      padding: 70px 7%;
-      background:
-        radial-gradient(circle at top left, rgba(8, 198, 200, 0.18), transparent 35%),
-        linear-gradient(135deg, #ffffff 0%, #f4fbfc 100%);
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 50px;
-      align-items: center;
-    }
-
-    .badge {
+    .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(8, 198, 200, 0.12);
+      background: rgba(245, 164, 0, 0.12);
       color: var(--navy);
-      padding: 9px 18px;
+      padding: 8px 16px;
       border-radius: 999px;
       font-weight: 800;
-      margin-bottom: 24px;
-      border: 1px solid rgba(8, 198, 200, 0.28);
+      font-size: 14px;
+      border: 1px solid rgba(245, 164, 0, 0.25);
+      margin-bottom: 18px;
     }
 
-    .badge span {
-      color: var(--turquoise);
-      font-size: 22px;
+    .eyebrow::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
     }
 
-    h1 {
-      font-size: clamp(38px, 6vw, 72px);
-      line-height: 1.08;
+    .section-head {
+      max-width: 780px;
+      margin: 0 auto 45px;
+      text-align: center;
+    }
+
+    .section-head h2 {
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.15;
       color: var(--navy);
-      margin-bottom: 24px;
-      letter-spacing: -1px;
+      margin-bottom: 14px;
+      letter-spacing: -0.5px;
     }
 
-    .highlight {
-      color: var(--turquoise);
-    }
-
-    .hero-text {
-      font-size: 21px;
+    .section-head p {
       color: var(--muted);
-      max-width: 690px;
-      margin-bottom: 32px;
-    }
-
-    .arabic-line {
-      direction: rtl;
-      font-weight: 700;
-      color: var(--navy);
-      margin-top: 12px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 32px;
+      font-size: 18px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 15px 28px;
+      gap: 10px;
+      min-height: 50px;
+      padding: 13px 24px;
       border-radius: 999px;
-      font-size: 18px;
-      font-weight: 800;
-      transition: 0.25s ease;
+      border: 0;
+      cursor: pointer;
+      font-weight: 900;
+      font-size: 16px;
+      transition: 0.2s ease;
+      white-space: nowrap;
     }
 
     .btn-primary {
-      background: var(--navy);
-      color: white;
-      box-shadow: 0 14px 28px rgba(6, 43, 79, 0.22);
+      background: var(--accent);
+      color: var(--charcoal);
+      box-shadow: 0 16px 30px rgba(245, 164, 0, 0.26);
     }
 
     .btn-primary:hover {
       transform: translateY(-2px);
+      background: var(--accent-dark);
+      color: white;
+    }
+
+    .btn-dark {
+      background: var(--navy);
+      color: white;
+      box-shadow: 0 16px 30px rgba(6, 43, 79, 0.18);
+    }
+
+    .btn-dark:hover {
+      transform: translateY(-2px);
       background: #031d36;
     }
 
-    .btn-secondary {
-      border: 2px solid var(--turquoise);
-      color: var(--navy);
+    .btn-outline {
       background: white;
+      color: var(--navy);
+      border: 1px solid rgba(6, 43, 79, 0.18);
     }
 
-    .btn-secondary:hover {
-      background: rgba(8, 198, 200, 0.08);
+    .btn-outline:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      background: rgba(245, 164, 0, 0.08);
     }
 
-    .trust {
+    /* =========================
+       HEADER
+       ========================= */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(229, 231, 235, 0.9);
+    }
+
+    .navbar {
+      height: 78px;
       display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 950;
       color: var(--navy);
-      font-weight: 700;
+      font-size: 23px;
+      letter-spacing: -0.4px;
     }
 
-    .trust div {
-      background: white;
-      padding: 10px 16px;
+    /* Replace logo.png with your real logo file name if needed */
+    .brand img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      color: var(--charcoal);
+      font-weight: 800;
+      font-size: 15px;
+    }
+
+    .nav-links a {
+      opacity: 0.84;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-dark);
+      opacity: 1;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .language-switcher {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      padding: 5px;
+      border-radius: 999px;
+    }
+
+    .lang-btn {
+      border: 0;
+      background: transparent;
+      padding: 8px 10px;
+      border-radius: 999px;
+      cursor: pointer;
+      color: var(--muted);
+      font-weight: 900;
+      font-size: 13px;
+    }
+
+    .lang-btn.active {
+      background: var(--navy);
+      color: white;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      border: 0;
+      background: var(--navy);
+      color: white;
+      width: 44px;
+      height: 44px;
       border-radius: 14px;
-      box-shadow: 0 8px 24px rgba(6, 43, 79, 0.07);
+      cursor: pointer;
+      font-size: 22px;
     }
 
-    .hero-card {
-      background: white;
-      border-radius: 34px;
-      padding: 38px;
-      box-shadow: var(--shadow);
-      text-align: center;
+    /* =========================
+       HERO
+       ========================= */
+    .hero {
       position: relative;
-      border: 1px solid #eef6f7;
+      overflow: hidden;
+      padding: 86px 0 70px;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(245, 164, 0, 0.16), transparent 28%),
+        radial-gradient(circle at 90% 20%, rgba(8, 198, 200, 0.14), transparent 28%),
+        linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
     }
 
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      width: 180px;
-      height: 180px;
-      background: rgba(8, 198, 200, 0.14);
-      border-radius: 50%;
-      top: -50px;
-      left: -50px;
-      z-index: 0;
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.04fr 0.96fr;
+      gap: 56px;
+      align-items: center;
     }
 
-    .hero-card > * {
-      position: relative;
-      z-index: 1;
+    .hero h1 {
+      color: var(--navy);
+      font-size: clamp(40px, 6vw, 72px);
+      line-height: 1.05;
+      letter-spacing: -1.5px;
+      margin-bottom: 22px;
     }
 
-    .hero-card img {
-      width: 100%;
-      max-width: 420px;
+    .hero h1 span {
+      color: var(--accent-dark);
+    }
+
+    .hero-subtitle {
+      font-size: 20px;
+      color: var(--muted);
+      max-width: 710px;
       margin-bottom: 28px;
     }
 
-    .coming {
-      color: var(--turquoise);
-      font-size: 28px;
-      font-weight: 900;
-      margin-bottom: 8px;
-    }
-
-    .coming-sub {
-      color: var(--navy);
-      font-weight: 800;
-      font-size: 20px;
-    }
-
-    section {
-      padding: 90px 7%;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 45px;
-    }
-
-    .section-title h2 {
-      font-size: clamp(30px, 4vw, 46px);
-      color: var(--navy);
-      margin-bottom: 12px;
-    }
-
-    .section-title p {
-      color: var(--muted);
-      font-size: 19px;
-      max-width: 780px;
-      margin: auto;
-    }
-
-    .services {
-      background: var(--light);
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .service-card {
-      background: white;
-      padding: 30px;
-      border-radius: 24px;
-      box-shadow: 0 14px 40px rgba(6, 43, 79, 0.08);
-      border: 1px solid #edf5f7;
-    }
-
-    .icon {
-      width: 54px;
-      height: 54px;
-      background: rgba(8, 198, 200, 0.13);
-      color: var(--turquoise);
-      border-radius: 16px;
+    .hero-actions {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 27px;
-      margin-bottom: 18px;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
     }
 
-    .service-card h3 {
-      color: var(--navy);
-      font-size: 23px;
-      margin-bottom: 10px;
+    .trust-badges {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(120px, 1fr));
+      gap: 12px;
     }
 
-    .service-card p {
-      color: var(--muted);
-      font-size: 17px;
-    }
-
-    .how {
+    .trust-badge {
       background: white;
+      border: 1px solid rgba(229, 231, 235, 0.9);
+      border-radius: 18px;
+      padding: 14px;
+      box-shadow: 0 12px 34px rgba(6, 43, 79, 0.07);
+      color: var(--navy);
+      font-weight: 900;
+      font-size: 14px;
     }
 
-    .steps {
+    .hero-visual {
+      background: white;
+      border: 1px solid rgba(229, 231, 235, 0.9);
+      border-radius: 34px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .hero-image-placeholder {
+      min-height: 420px;
+      border-radius: 26px;
+      background:
+        linear-gradient(rgba(6, 43, 79, 0.22), rgba(6, 43, 79, 0.32)),
+        url("https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+      overflow: hidden;
+    }
+
+    /* Replace the image URL above later with your own photo:
+       Example: background-image: url("images/worker.jpg"); */
+
+    .hero-mini-card {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.94);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: 0 16px 40px rgba(17, 24, 39, 0.18);
+    }
+
+    .hero-mini-card strong {
+      display: block;
+      color: var(--navy);
+      font-size: 20px;
+      margin-bottom: 6px;
+    }
+
+    .hero-mini-card p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    /* =========================
+       PROBLEM + SOLUTION
+       ========================= */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 26px;
+    }
+
+    .panel {
+      border-radius: var(--radius);
+      padding: 34px;
+      border: 1px solid var(--border);
+      background: white;
+      box-shadow: 0 18px 50px rgba(6, 43, 79, 0.07);
+    }
+
+    .panel.dark {
+      background: var(--navy);
+      color: white;
+      border-color: transparent;
+    }
+
+    .panel h2 {
+      font-size: 34px;
+      line-height: 1.18;
+      margin-bottom: 18px;
+      color: var(--navy);
+    }
+
+    .panel.dark h2 {
+      color: white;
+    }
+
+    .check-list {
+      list-style: none;
+      display: grid;
+      gap: 13px;
+      margin-top: 22px;
+    }
+
+    .check-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .panel.dark .check-list li {
+      color: #dbeafe;
+    }
+
+    .check-list li::before {
+      content: "✓";
+      width: 24px;
+      height: 24px;
+      flex: 0 0 24px;
+      border-radius: 50%;
+      background: rgba(245, 164, 0, 0.16);
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+      font-weight: 950;
+    }
+
+    .panel.dark .check-list li::before {
+      background: rgba(245, 164, 0, 0.22);
+    }
+
+    /* =========================
+       STEPS
+       ========================= */
+    .soft-bg {
+      background: var(--off-white);
+    }
+
+    .steps-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 20px;
     }
 
-    .step {
-      background: var(--light);
-      padding: 26px;
-      border-radius: 22px;
-      border: 1px solid #e6f4f5;
+    .step-card {
+      position: relative;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px;
+      min-height: 220px;
+      box-shadow: 0 16px 45px rgba(6, 43, 79, 0.06);
     }
 
-    .num {
-      width: 42px;
-      height: 42px;
-      background: var(--turquoise);
+    .step-number {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: var(--navy);
       color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 900;
-      margin-bottom: 16px;
-    }
-
-    .step h3 {
-      color: var(--navy);
-      margin-bottom: 8px;
-      font-size: 20px;
-    }
-
-    .step p {
-      color: var(--muted);
-      font-size: 16px;
-    }
-
-    .cta {
-      background: linear-gradient(135deg, var(--navy), #0a3c68);
-      color: white;
-      text-align: center;
-    }
-
-    .cta h2 {
-      font-size: clamp(30px, 5vw, 52px);
+      font-weight: 950;
       margin-bottom: 18px;
     }
 
-    .cta p {
+    .step-icon {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .step-card h3 {
+      color: var(--navy);
       font-size: 20px;
-      color: #d6f7f8;
-      max-width: 760px;
-      margin: 0 auto 30px;
+      margin-bottom: 8px;
     }
 
-    .cta .btn {
-      background: var(--turquoise);
-      color: white;
-    }
-
-    footer {
-      background: #031d36;
-      color: #c8d6e5;
-      padding: 28px 7%;
-      text-align: center;
+    .step-card p {
+      color: var(--muted);
       font-size: 15px;
     }
 
-    .whatsapp-float {
-      position: fixed;
-      left: 22px;
-      bottom: 22px;
-      background: #25D366;
-      color: white;
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 30px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-      z-index: 20;
+    /* =========================
+       SERVICES
+       ========================= */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
     }
 
-    @media (max-width: 950px) {
-      .hero {
+    .service-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 24px;
+      min-height: 210px;
+      box-shadow: 0 14px 38px rgba(6, 43, 79, 0.06);
+      transition: 0.2s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(245, 164, 0, 0.55);
+    }
+
+    .service-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: rgba(245, 164, 0, 0.14);
+      font-size: 26px;
+      margin-bottom: 18px;
+    }
+
+    .service-card h3 {
+      color: var(--navy);
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    /* =========================
+       PRICING
+       ========================= */
+    .pricing-box {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 24px;
+      align-items: center;
+      background: linear-gradient(135deg, var(--navy), #0b3d67);
+      color: white;
+      border-radius: 34px;
+      padding: 42px;
+      box-shadow: var(--shadow);
+    }
+
+    .pricing-box h2 {
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.12;
+      margin-bottom: 16px;
+    }
+
+    .pricing-box p {
+      color: #dbeafe;
+      font-size: 18px;
+    }
+
+    .pricing-notes {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .pricing-note {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 18px;
+      padding: 18px;
+      color: #eef6ff;
+      font-weight: 800;
+    }
+
+    /* =========================
+       GALLERY
+       ========================= */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .gallery-item {
+      border-radius: 24px;
+      min-height: 220px;
+      overflow: hidden;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 14px 40px rgba(6, 43, 79, 0.10);
+    }
+
+    /* Replace these placeholder images later */
+    .gallery-item:nth-child(1) { background-image: url("https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=900&q=80"); }
+    .gallery-item:nth-child(2) { background-image: url("https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80"); }
+    .gallery-item:nth-child(3) { background-image: url("https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=80"); }
+    .gallery-item:nth-child(4) { background-image: url("https://images.unsplash.com/photo-1581244277943-fe4a9c777189?auto=format&fit=crop&w=900&q=80"); }
+    .gallery-item:nth-child(5) { background-image: url("https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&fit=crop&w=900&q=80"); }
+    .gallery-item:nth-child(6) { background-image: url("https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=900&q=80"); }
+
+    .gallery-label {
+      position: absolute;
+      inset-inline-start: 16px;
+      bottom: 16px;
+      background: rgba(6, 43, 79, 0.88);
+      color: white;
+      padding: 9px 14px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 14px;
+    }
+
+    /* =========================
+       FORM
+       ========================= */
+    .lead-layout {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 34px;
+      align-items: start;
+    }
+
+    .lead-info {
+      background: var(--navy);
+      color: white;
+      border-radius: 30px;
+      padding: 36px;
+      position: sticky;
+      top: 105px;
+    }
+
+    .lead-info h2 {
+      font-size: 42px;
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+
+    .lead-info p {
+      color: #dbeafe;
+      font-size: 18px;
+      margin-bottom: 24px;
+    }
+
+    .lead-info ul {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .lead-info li {
+      font-weight: 800;
+      color: #eef6ff;
+    }
+
+    .form-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      color: var(--navy);
+      font-weight: 900;
+      font-size: 14px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 13px 14px;
+      background: var(--off-white);
+      color: var(--charcoal);
+      outline: none;
+      transition: 0.2s ease;
+    }
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(245, 164, 0, 0.13);
+      background: white;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .checkbox-row input {
+      width: auto;
+      margin-top: 5px;
+    }
+
+    .success-message {
+      display: none;
+      margin-top: 16px;
+      background: rgba(8, 198, 200, 0.12);
+      color: var(--navy);
+      border: 1px solid rgba(8, 198, 200, 0.3);
+      padding: 14px 16px;
+      border-radius: 16px;
+      font-weight: 900;
+    }
+
+    /* =========================
+       TESTIMONIALS + FAQ
+       ========================= */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .testimonial {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: 0 14px 40px rgba(6, 43, 79, 0.06);
+    }
+
+    .stars {
+      color: var(--accent-dark);
+      font-size: 18px;
+      margin-bottom: 14px;
+    }
+
+    .testimonial p {
+      color: var(--text);
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+
+    .testimonial strong {
+      color: var(--navy);
+    }
+
+    .faq-list {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      gap: 12px;
+    }
+
+    details {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px 22px;
+      box-shadow: 0 10px 30px rgba(6, 43, 79, 0.05);
+    }
+
+    summary {
+      cursor: pointer;
+      color: var(--navy);
+      font-weight: 950;
+      font-size: 18px;
+    }
+
+    details p {
+      margin-top: 12px;
+      color: var(--muted);
+    }
+
+    /* =========================
+       FINAL CTA + FOOTER
+       ========================= */
+    .final-cta {
+      background:
+        radial-gradient(circle at 20% 20%, rgba(245, 164, 0, 0.22), transparent 30%),
+        linear-gradient(135deg, var(--navy), #031d36);
+      color: white;
+      text-align: center;
+      border-radius: 34px;
+      padding: 56px 30px;
+    }
+
+    .final-cta h2 {
+      font-size: clamp(32px, 5vw, 56px);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .final-cta p {
+      color: #dbeafe;
+      max-width: 760px;
+      margin: 0 auto 28px;
+      font-size: 19px;
+    }
+
+    .final-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    footer {
+      background: #061a2e;
+      color: #cbd5e1;
+      padding: 48px 0 24px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr 0.9fr 0.9fr;
+      gap: 24px;
+      margin-bottom: 30px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+      font-weight: 950;
+      font-size: 22px;
+      margin-bottom: 14px;
+    }
+
+    .footer-logo img {
+      width: 42px;
+    }
+
+    .footer-col h3 {
+      color: white;
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+
+    .footer-col a,
+    .footer-col p {
+      display: block;
+      color: #cbd5e1;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 18px;
+      text-align: center;
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    .whatsapp-sticky {
+      position: fixed;
+      inset-inline-end: 22px;
+      bottom: 22px;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #25D366;
+      color: white;
+      padding: 13px 18px;
+      border-radius: 999px;
+      font-weight: 950;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.22);
+    }
+
+    .whatsapp-sticky span {
+      font-size: 22px;
+    }
+
+    /* =========================
+       RESPONSIVE
+       ========================= */
+    @media (max-width: 1080px) {
+      .nav-links,
+      .nav-actions .header-cta {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .mobile-open .nav-links {
+        position: absolute;
+        top: 78px;
+        inset-inline: 20px;
+        display: grid;
+        background: white;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+      }
+
+      .hero-grid,
+      .split,
+      .pricing-box,
+      .lead-layout {
         grid-template-columns: 1fr;
-        text-align: center;
       }
 
-      .hero-text {
-        margin-left: auto;
-        margin-right: auto;
+      .steps-grid,
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
 
-      .hero-actions, .trust {
+      .trust-badges {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .lead-info {
+        position: static;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .section {
+        padding: 65px 0;
+      }
+
+      .navbar {
+        height: auto;
+        padding: 14px 0;
+        flex-wrap: wrap;
+      }
+
+      .brand span {
+        font-size: 20px;
+      }
+
+      .language-switcher {
+        order: 3;
+        width: 100%;
         justify-content: center;
       }
 
-      .grid {
-        grid-template-columns: 1fr;
+      .hero {
+        padding: 58px 0;
       }
 
-      .steps {
-        grid-template-columns: 1fr;
-      }
-
-      .nav-links {
-        display: none;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .hero, section {
-        padding-left: 22px;
-        padding-right: 22px;
-      }
-
-      .hero-card {
-        padding: 26px 18px;
+      .hero-actions,
+      .final-actions {
+        display: grid;
       }
 
       .btn {
         width: 100%;
       }
 
-      .trust div {
-        width: 100%;
+      .trust-badges,
+      .steps-grid,
+      .services-grid,
+      .gallery-grid,
+      .testimonials-grid,
+      .pricing-notes,
+      .form-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image-placeholder {
+        min-height: 330px;
+      }
+
+      .panel,
+      .form-card,
+      .lead-info,
+      .pricing-box {
+        padding: 26px;
+      }
+
+      .whatsapp-sticky {
+        inset-inline: 18px;
+        justify-content: center;
       }
     }
   </style>
 </head>
 
-<body>
-  <div class="page">
+<body dir="rtl">
+  <!-- =========================
+       CHANGE PHONE / WHATSAPP HERE
+       Replace 972000000000 with your WhatsApp number.
+       Example: 0501234567 becomes 972501234567
+       ========================= -->
 
-    <nav class="nav">
-      <div class="nav-logo">
+  <header class="site-header">
+    <div class="container navbar" id="navbar">
+      <a class="brand" href="#top" aria-label="FixSha’a home">
+        <!-- Replace logo.png if your file name is different -->
         <img src="logo.png" alt="FixSha’a logo" />
         <span>FixSha’a</span>
-      </div>
-
-      <div class="nav-links">
-        <a href="#services">שירותים</a>
-        <a href="#how">איך זה עובד</a>
-        <a href="#contact" class="nav-cta">צור קשר</a>
-      </div>
-    </nav>
-
-    <header class="hero">
-      <div>
-        <div class="badge">
-          <span>●</span>
-          בקרוב בירושלים והסביבה
-        </div>
-
-        <h1>
-          שיפוצים ותיקונים לבית
-          <br />
-          <span class="highlight">לפי שעה</span>
-        </h1>
-
-        <p class="hero-text">
-          FixSha’a מחברת אתכם לבעלי מקצוע לעבודות תיקון, שיפוץ, ריצוף ושדרוגים לבית —
-          בצורה שקופה, נוחה וברורה.
-          <br />
-          <span class="arabic-line">
-            خدمات تصليح وترميم للبيت بالدفع حسب الساعة — بشفافية وبدون مفاجآت.
-          </span>
-        </p>
-
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="https://wa.me/972000000000" target="_blank">
-            שלחו הודעה בוואטסאפ
-          </a>
-          <a class="btn btn-secondary" href="#services">
-            عرض الخدمات
-          </a>
-        </div>
-
-        <div class="trust">
-          <div>✓ תשלום לפי זמן עבודה</div>
-          <div>✓ בעלי מקצוע מנוסים</div>
-          <div>✓ שירות בעברית ובערבית</div>
-        </div>
-      </div>
-
-      <div class="hero-card">
-        <img src="logo.png" alt="FixSha’a" />
-        <div class="coming">Coming Soon</div>
-        <div class="coming-sub">قريبًا | בקרוב</div>
-      </div>
-    </header>
-
-    <section class="services" id="services">
-      <div class="section-title">
-        <h2>השירותים שלנו | خدماتنا</h2>
-        <p>
-          פתרונות לבית ולעסק הקטן — מתיקונים קטנים ועד עבודות שיפוץ ושדרוג.
-          <br />
-          حلول للبيت والمحل — من التصليحات الصغيرة حتى أعمال الترميم والتجديد.
-        </p>
-      </div>
-
-      <div class="grid">
-        <div class="service-card">
-          <div class="icon">🛠️</div>
-          <h3>תיקונים לבית</h3>
-          <p>תיקונים כלליים, עבודות קטנות, תלייה, החלפה ושדרוגים לפי צורך.</p>
-        </div>
-
-        <div class="service-card">
-          <div class="icon">🏠</div>
-          <h3>ריצוף ושיפוצים</h3>
-          <p>עבודות ריצוף, תיקוני אריחים, שדרוג חדרים ושיפוץ נקודתי.</p>
-        </div>
-
-        <div class="service-card">
-          <div class="icon">⏱️</div>
-          <h3>עבודה לפי שעה</h3>
-          <p>מודל ברור ושקוף: משלמים לפי זמן העבודה בפועל ולפי סוג העבודה.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="how" id="how">
-      <div class="section-title">
-        <h2>איך זה עובד? | كيف يعمل؟</h2>
-        <p>
-          תהליך פשוט ומהיר להזמנת בעל מקצוע.
-        </p>
-      </div>
-
-      <div class="steps">
-        <div class="step">
-          <div class="num">1</div>
-          <h3>שולחים תמונה</h3>
-          <p>מצלמים את הבעיה ושולחים לנו בוואטסאפ.</p>
-        </div>
-
-        <div class="step">
-          <div class="num">2</div>
-          <h3>מקבלים הערכה</h3>
-          <p>אנחנו בודקים את סוג העבודה ונותנים כיוון ראשוני.</p>
-        </div>
-
-        <div class="step">
-          <div class="num">3</div>
-          <h3>קובעים זמן</h3>
-          <p>מתאמים הגעה לפי זמינות ובאזור השירות.</p>
-        </div>
-
-        <div class="step">
-          <div class="num">4</div>
-          <h3>משלמים בשקיפות</h3>
-          <p>התשלום מחושב לפי זמן העבודה וסוג השירות.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta" id="contact">
-      <h2>רוצים להיות בין הראשונים?</h2>
-      <p>
-        השאירו לנו הודעה בוואטסאפ ונעדכן אתכם כשהשירות יעלה לאוויר.
-        <br />
-        ابعثوا لنا رسالة واتساب وسنخبركم عند إطلاق الخدمة.
-      </p>
-
-      <a class="btn" href="https://wa.me/+972528767577" target="_blank">
-        צור קשר בוואטסאפ
       </a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#how" data-i18n="navHow">איך זה עובד</a>
+        <a href="#services" data-i18n="navServices">שירותים</a>
+        <a href="#pricing" data-i18n="navPricing">מחירים</a>
+        <a href="#gallery" data-i18n="navGallery">גלריה</a>
+        <a href="#faq" data-i18n="navFAQ">שאלות</a>
+        <a href="#contact" data-i18n="navContact">צור קשר</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="language-switcher" aria-label="Language switcher">
+          <button class="lang-btn active" type="button" data-lang="he">עברית</button>
+          <button class="lang-btn" type="button" data-lang="ar">العربية</button>
+          <button class="lang-btn" type="button" data-lang="en">English</button>
+        </div>
+
+        <a class="btn btn-primary header-cta" href="#contact" data-i18n="bookPro">הזמנת בעל מקצוע</a>
+
+        <button class="mobile-menu-btn" type="button" id="menuBtn" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow" data-i18n="heroBadge">שירות חדש בירושלים והסביבה</div>
+
+          <h1 data-i18n="heroTitle">בעלי מקצוע אמינים — לפי שעה, בשקיפות מלאה</h1>
+
+          <p class="hero-subtitle" data-i18n="heroSubtitle">
+            שלחו בקשה, העלו תמונות של הבעיה, וקבלו חזרה מהירה. התשלום ברור ומבוסס על זמן העבודה בפועל.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact" data-i18n="primaryCTA">הזמנת שירות עכשיו</a>
+            <a class="btn btn-outline" href="https://wa.me/972000000000" target="_blank" data-i18n="secondaryCTA">
+              שליחת תמונות בוואטסאפ
+            </a>
+          </div>
+
+          <div class="trust-badges">
+            <div class="trust-badge" data-i18n="badge1">✓ בעלי מקצוע מאומתים</div>
+            <div class="trust-badge" data-i18n="badge2">✓ תמחור שעתי שקוף</div>
+            <div class="trust-badge" data-i18n="badge3">✓ מענה מהיר</div>
+            <div class="trust-badge" data-i18n="badge4">✓ שירות בעברית, ערבית ואנגלית</div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-image-placeholder">
+            <div class="hero-mini-card">
+              <strong data-i18n="heroCardTitle">עבודה ברורה. תקשורת ברורה.</strong>
+              <p data-i18n="heroCardText">
+                הלקוח יודע מה קורה, מה סוג העבודה, ואיך התשלום מחושב.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <footer>
-      © 2026 FixSha’a — עבודה לפי שעה | خدمات حسب الساعة
-    </footer>
+    <!-- PROBLEM + SOLUTION -->
+    <section class="section">
+      <div class="container split">
+        <div class="panel">
+          <div class="eyebrow" data-i18n="problemEyebrow">הבעיה</div>
+          <h2 data-i18n="problemTitle">קשה למצוא בעל מקצוע שאפשר לסמוך עליו.</h2>
+          <ul class="check-list">
+            <li data-i18n="problem1">מחירים לא ברורים מראש</li>
+            <li data-i18n="problem2">קשה לדעת מי באמת מקצועי</li>
+            <li data-i18n="problem3">עיכובים, איחורים וחוסר תקשורת</li>
+            <li data-i18n="problem4">תיקונים קטנים נדחים או לא מקבלים יחס</li>
+          </ul>
+        </div>
 
-    <a class="whatsapp-float" href="https://wa.me/+972528767577" target="_blank">
-      ☎
-    </a>
+        <div class="panel dark">
+          <div class="eyebrow" data-i18n="solutionEyebrow">הפתרון</div>
+          <h2 data-i18n="solutionTitle">FixSha’a עושה את זה פשוט, ברור ושקוף.</h2>
+          <ul class="check-list">
+            <li data-i18n="solution1">שולחים תיאור ותמונות של הבעיה</li>
+            <li data-i18n="solution2">מתאימים את בעל המקצוע הנכון</li>
+            <li data-i18n="solution3">זמן העבודה מוסבר ומנוהל בבירור</li>
+            <li data-i18n="solution4">התשלום מחושב בצורה שקופה לפי שעה</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-  </div>
+    <!-- HOW IT WORKS -->
+    <section class="section soft-bg" id="how">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow" data-i18n="howEyebrow">איך זה עובד</div>
+          <h2 data-i18n="howTitle">ארבעה צעדים פשוטים</h2>
+          <p data-i18n="howSubtitle">מתיאור הבעיה ועד תשלום ברור לפי זמן העבודה.</p>
+        </div>
+
+        <div class="steps-grid">
+          <article class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-icon">📝</div>
+            <h3 data-i18n="step1Title">מתארים את הבעיה</h3>
+            <p data-i18n="step1Text">ספרו לנו מה צריך לתקן או לשפץ.</p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-icon">📸</div>
+            <h3 data-i18n="step2Title">מעלים תמונות</h3>
+            <p data-i18n="step2Text">תמונות עוזרות להבין את העבודה מהר יותר.</p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-icon">👷</div>
+            <h3 data-i18n="step3Title">מקבלים התאמה</h3>
+            <p data-i18n="step3Text">נחבר אתכם לבעל מקצוע מתאים.</p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-number">4</div>
+            <div class="step-icon">⏱️</div>
+            <h3 data-i18n="step4Title">משלמים לפי שעה</h3>
+            <p data-i18n="step4Text">הכול ברור, מוסבר ושקוף.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow" data-i18n="servicesEyebrow">השירותים שלנו</div>
+          <h2 data-i18n="servicesTitle">תיקונים ושיפוצים לבית</h2>
+          <p data-i18n="servicesSubtitle">שירותים נפוצים שאפשר להזמין דרך FixSha’a.</p>
+        </div>
+
+        <div class="services-grid" id="servicesGrid"></div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="section" id="pricing">
+      <div class="container">
+        <div class="pricing-box">
+          <div>
+            <div class="eyebrow" data-i18n="pricingEyebrow">שקיפות במחיר</div>
+            <h2 data-i18n="pricingTitle">מודל שעתי ברור — בלי הפתעות.</h2>
+            <p data-i18n="pricingText">
+              המחיר הסופי לא נקבע לפני שמבינים את העבודה. אנחנו מסבירים את המודל, את זמן העבודה המשוער ואת התנאים לפני שמתחילים.
+            </p>
+          </div>
+
+          <div class="pricing-notes">
+            <div class="pricing-note" data-i18n="pricing1">מודל תשלום לפי שעה</div>
+            <div class="pricing-note" data-i18n="pricing2">ייתכן מינימום שעה ראשונה</div>
+            <div class="pricing-note" data-i18n="pricing3">ייתכנו דמי נסיעה לאזורים רחוקים</div>
+            <div class="pricing-note" data-i18n="pricing4">שירות חירום או לילה עשוי לעלות יותר</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section soft-bg" id="gallery">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow" data-i18n="galleryEyebrow">גלריה</div>
+          <h2 data-i18n="galleryTitle">עבודות, כלים ותיקונים</h2>
+          <p data-i18n="gallerySubtitle">תוכלו להחליף את התמונות כאן בתמונות אמיתיות של עבודות שלכם.</p>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-item"><div class="gallery-label" data-i18n="gallery1">לפני / אחרי</div></div>
+          <div class="gallery-item"><div class="gallery-label" data-i18n="gallery2">עבודות אמבטיה</div></div>
+          <div class="gallery-item"><div class="gallery-label" data-i18n="gallery3">ריצוף</div></div>
+          <div class="gallery-item"><div class="gallery-label" data-i18n="gallery4">תיקונים</div></div>
+          <div class="gallery-item"><div class="gallery-label" data-i18n="gallery5">צביעה</div></div>
+          <div class="gallery-item"><div class="gallery-label" data-i18n="gallery6">כלים ועבודה בשטח</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEAD FORM -->
+    <section class="section" id="contact">
+      <div class="container lead-layout">
+        <aside class="lead-info">
+          <h2 data-i18n="formTitle">ספרו לנו מה צריך לתקן</h2>
+          <p data-i18n="formIntro">
+            מלאו פרטים קצרים, ואנחנו נחזור אליכם עם הכוונה ראשונית.
+          </p>
+          <ul>
+            <li data-i18n="formBenefit1">✓ אפשר לשלוח תמונות</li>
+            <li data-i18n="formBenefit2">✓ מענה בעברית, ערבית ואנגלית</li>
+            <li data-i18n="formBenefit3">✓ מתאים גם לתיקונים קטנים</li>
+          </ul>
+        </aside>
+
+        <form class="form-card" id="leadForm">
+          <div class="form-grid">
+            <div class="field">
+              <label for="fullName" data-i18n="labelName">שם מלא</label>
+              <input id="fullName" name="fullName" type="text" required />
+            </div>
+
+            <div class="field">
+              <label for="phone" data-i18n="labelPhone">מספר טלפון</label>
+              <input id="phone" name="phone" type="tel" required />
+            </div>
+
+            <div class="field">
+              <label for="language" data-i18n="labelLanguage">שפה מועדפת</label>
+              <select id="language" name="language">
+                <option>Hebrew</option>
+                <option>Arabic</option>
+                <option>English</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="city" data-i18n="labelCity">עיר / אזור</label>
+              <input id="city" name="city" type="text" />
+            </div>
+
+            <div class="field">
+              <label for="category" data-i18n="labelCategory">סוג השירות</label>
+              <select id="category" name="category"></select>
+            </div>
+
+            <div class="field">
+              <label for="urgency" data-i18n="labelUrgency">דחיפות</label>
+              <select id="urgency" name="urgency"></select>
+            </div>
+
+            <div class="field full">
+              <label for="description" data-i18n="labelDescription">תיאור הבעיה</label>
+              <textarea id="description" name="description" required></textarea>
+            </div>
+
+            <div class="field full">
+              <label for="photos" data-i18n="labelPhotos">העלאת תמונות</label>
+              <input id="photos" name="photos" type="file" multiple accept="image/*" />
+            </div>
+
+            <div class="field">
+              <label for="contactMethod" data-i18n="labelContactMethod">דרך התקשרות מועדפת</label>
+              <select id="contactMethod" name="contactMethod"></select>
+            </div>
+
+            <div class="field full">
+              <label class="checkbox-row">
+                <input id="consent" name="consent" type="checkbox" required />
+                <span data-i18n="labelConsent">אני מאשר/ת שיצרו איתי קשר לגבי הבקשה</span>
+              </label>
+            </div>
+
+            <div class="field full">
+              <button class="btn btn-primary" type="submit" data-i18n="submitBtn">שליחת בקשה</button>
+              <div class="success-message" id="successMessage" data-i18n="successMessage">
+                הבקשה התקבלה. ניצור איתך קשר בקרוב.
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section soft-bg">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow" data-i18n="testimonialsEyebrow">לקוחות</div>
+          <h2 data-i18n="testimonialsTitle">מה לקוחות אומרים</h2>
+          <p data-i18n="testimonialsSubtitle">טקסטים זמניים — אפשר להחליף בהמלצות אמיתיות בהמשך.</p>
+        </div>
+
+        <div class="testimonials-grid">
+          <div class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>“השירות היה ברור, מהיר ומסודר. סוף סוף הבנתי על מה אני משלמת.”</p>
+            <strong>— לקוחה מירושלים</strong>
+          </div>
+          <div class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>“بعثت صور للمشكلة وتواصلوا معي بسرعة. التعامل كان واضح ومحترم.”</p>
+            <strong>— زبونة من القدس</strong>
+          </div>
+          <div class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>“Clear communication and transparent pricing. Very useful for small home repairs.”</p>
+            <strong>— Local customer</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow" data-i18n="faqEyebrow">FAQ</div>
+          <h2 data-i18n="faqTitle">שאלות נפוצות</h2>
+        </div>
+
+        <div class="faq-list" id="faqList"></div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="section">
+      <div class="container">
+        <div class="final-cta">
+          <h2 data-i18n="finalTitle">צריכים עזרה בבית? שלחו בקשה עכשיו.</h2>
+          <p data-i18n="finalText">
+            FixSha’a נבנתה כדי להפוך תיקונים ושיפוצים לפשוטים, שקופים ונגישים יותר.
+          </p>
+          <div class="final-actions">
+            <a class="btn btn-primary" href="#contact" data-i18n="finalBook">הזמנה עכשיו</a>
+            <a class="btn btn-outline" href="https://wa.me/972000000000" target="_blank" data-i18n="finalWhatsapp">יצירת קשר בוואטסאפ</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo">
+            <img src="logo.png" alt="FixSha’a logo" />
+            <span>FixSha’a</span>
+          </div>
+          <p data-i18n="footerDesc">
+            בעלי מקצוע אמינים לבית — לפי שעה, בשקיפות ובתקשורת ברורה.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h3 data-i18n="footerContact">יצירת קשר</h3>
+          <a href="https://wa.me/972000000000">WhatsApp: 972-00-000-0000</a>
+          <a href="mailto:hello@fixshaa.com">hello@fixshaa.com</a>
+        </div>
+
+        <div class="footer-col">
+          <h3 data-i18n="footerLinks">קישורים</h3>
+          <a href="#services" data-i18n="navServices">שירותים</a>
+          <a href="#pricing" data-i18n="navPricing">מחירים</a>
+          <a href="#faq" data-i18n="navFAQ">שאלות</a>
+        </div>
+
+        <div class="footer-col">
+          <h3 data-i18n="footerLegal">מידע משפטי</h3>
+          <a href="#" data-i18n="privacy">מדיניות פרטיות</a>
+          <a href="#" data-i18n="terms">תנאי שימוש</a>
+          <a href="#" data-i18n="social">Facebook / Instagram</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        © 2026 FixSha’a. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <a class="whatsapp-sticky" href="https://wa.me/972000000000" target="_blank" aria-label="WhatsApp">
+    <span>☘</span>
+    <strong data-i18n="stickyWhatsapp">שלחו תמונות בוואטסאפ</strong>
+  </a>
+
+  <script>
+    /* =========================
+       CONTENT TRANSLATIONS
+       Edit text here anytime.
+       ========================= */
+
+    const content = {
+      he: {
+        dir: "rtl",
+        lang: "he",
+        navHow: "איך זה עובד",
+        navServices: "שירותים",
+        navPricing: "מחירים",
+        navGallery: "גלריה",
+        navFAQ: "שאלות",
+        navContact: "צור קשר",
+        bookPro: "הזמנת בעל מקצוע",
+        heroBadge: "שירות חדש בירושלים והסביבה",
+        heroTitle: "בעלי מקצוע אמינים — לפי שעה, בשקיפות מלאה",
+        heroSubtitle: "שלחו בקשה, העלו תמונות של הבעיה, וקבלו חזרה מהירה. התשלום ברור ומבוסס על זמן העבודה בפועל.",
+        primaryCTA: "הזמנת שירות עכשיו",
+        secondaryCTA: "שליחת תמונות בוואטסאפ",
+        badge1: "✓ בעלי מקצוע מאומתים",
+        badge2: "✓ תמחור שעתי שקוף",
+        badge3: "✓ מענה מהיר",
+        badge4: "✓ שירות בעברית, ערבית ואנגלית",
+        heroCardTitle: "עבודה ברורה. תקשורת ברורה.",
+        heroCardText: "הלקוח יודע מה קורה, מה סוג העבודה, ואיך התשלום מחושב.",
+        problemEyebrow: "הבעיה",
+        problemTitle: "קשה למצוא בעל מקצוע שאפשר לסמוך עליו.",
+        problem1: "מחירים לא ברורים מראש",
+        problem2: "קשה לדעת מי באמת מקצועי",
+        problem3: "עיכובים, איחורים וחוסר תקשורת",
+        problem4: "תיקונים קטנים נדחים או לא מקבלים יחס",
+        solutionEyebrow: "הפתרון",
+        solutionTitle: "FixSha’a עושה את זה פשוט, ברור ושקוף.",
+        solution1: "שולחים תיאור ותמונות של הבעיה",
+        solution2: "מתאימים את בעל המקצוע הנכון",
+        solution3: "זמן העבודה מוסבר ומנוהל בבירור",
+        solution4: "התשלום מחושב בצורה שקופה לפי שעה",
+        howEyebrow: "איך זה עובד",
+        howTitle: "ארבעה צעדים פשוטים",
+        howSubtitle: "מתיאור הבעיה ועד תשלום ברור לפי זמן העבודה.",
+        step1Title: "מתארים את הבעיה",
+        step1Text: "ספרו לנו מה צריך לתקן או לשפץ.",
+        step2Title: "מעלים תמונות",
+        step2Text: "תמונות עוזרות להבין את העבודה מהר יותר.",
+        step3Title: "מקבלים התאמה",
+        step3Text: "נחבר אתכם לבעל מקצוע מתאים.",
+        step4Title: "משלמים לפי שעה",
+        step4Text: "הכול ברור, מוסבר ושקוף.",
+        servicesEyebrow: "השירותים שלנו",
+        servicesTitle: "תיקונים ושיפוצים לבית",
+        servicesSubtitle: "שירותים נפוצים שאפשר להזמין דרך FixSha’a.",
+        pricingEyebrow: "שקיפות במחיר",
+        pricingTitle: "מודל שעתי ברור — בלי הפתעות.",
+        pricingText: "המחיר הסופי לא נקבע לפני שמבינים את העבודה. אנחנו מסבירים את המודל, את זמן העבודה המשוער ואת התנאים לפני שמתחילים.",
+        pricing1: "מודל תשלום לפי שעה",
+        pricing2: "ייתכן מינימום שעה ראשונה",
+        pricing3: "ייתכנו דמי נסיעה לאזורים רחוקים",
+        pricing4: "שירות חירום או לילה עשוי לעלות יותר",
+        galleryEyebrow: "גלריה",
+        galleryTitle: "עבודות, כלים ותיקונים",
+        gallerySubtitle: "תוכלו להחליף את התמונות כאן בתמונות אמיתיות של עבודות שלכם.",
+        gallery1: "לפני / אחרי",
+        gallery2: "עבודות אמבטיה",
+        gallery3: "ריצוף",
+        gallery4: "תיקונים",
+        gallery5: "צביעה",
+        gallery6: "כלים ועבודה בשטח",
+        formTitle: "ספרו לנו מה צריך לתקן",
+        formIntro: "מלאו פרטים קצרים, ואנחנו נחזור אליכם עם הכוונה ראשונית.",
+        formBenefit1: "✓ אפשר לשלוח תמונות",
+        formBenefit2: "✓ מענה בעברית, ערבית ואנגלית",
+        formBenefit3: "✓ מתאים גם לתיקונים קטנים",
+        labelName: "שם מלא",
+        labelPhone: "מספר טלפון",
+        labelLanguage: "שפה מועדפת",
+        labelCity: "עיר / אזור",
+        labelCategory: "סוג השירות",
+        labelUrgency: "דחיפות",
+        labelDescription: "תיאור הבעיה",
+        labelPhotos: "העלאת תמונות",
+        labelContactMethod: "דרך התקשרות מועדפת",
+        labelConsent: "אני מאשר/ת שיצרו איתי קשר לגבי הבקשה",
+        submitBtn: "שליחת בקשה",
+        successMessage: "הבקשה התקבלה. ניצור איתך קשר בקרוב.",
+        testimonialsEyebrow: "לקוחות",
+        testimonialsTitle: "מה לקוחות אומרים",
+        testimonialsSubtitle: "טקסטים זמניים — אפשר להחליף בהמלצות אמיתיות בהמשך.",
+        faqEyebrow: "FAQ",
+        faqTitle: "שאלות נפוצות",
+        finalTitle: "צריכים עזרה בבית? שלחו בקשה עכשיו.",
+        finalText: "FixSha’a נבנתה כדי להפוך תיקונים ושיפוצים לפשוטים, שקופים ונגישים יותר.",
+        finalBook: "הזמנה עכשיו",
+        finalWhatsapp: "יצירת קשר בוואטסאפ",
+        footerDesc: "בעלי מקצוע אמינים לבית — לפי שעה, בשקיפות ובתקשורת ברורה.",
+        footerContact: "יצירת קשר",
+        footerLinks: "קישורים",
+        footerLegal: "מידע משפטי",
+        privacy: "מדיניות פרטיות",
+        terms: "תנאי שימוש",
+        social: "Facebook / Instagram",
+        stickyWhatsapp: "שלחו תמונות בוואטסאפ"
+      },
+
+      ar: {
+        dir: "rtl",
+        lang: "ar",
+        navHow: "كيف يعمل",
+        navServices: "الخدمات",
+        navPricing: "الأسعار",
+        navGallery: "المعرض",
+        navFAQ: "أسئلة",
+        navContact: "تواصل",
+        bookPro: "احجز مهني",
+        heroBadge: "خدمة جديدة في القدس والمنطقة",
+        heroTitle: "مهنيين موثوقين — حسب الساعة وبشفافية كاملة",
+        heroSubtitle: "أرسل الطلب، ارفع صور المشكلة، وسنعود إليك بسرعة. الدفع واضح ومبني على وقت العمل الفعلي.",
+        primaryCTA: "احجز خدمة الآن",
+        secondaryCTA: "أرسل الصور على واتساب",
+        badge1: "✓ مهنيون موثوقون",
+        badge2: "✓ تسعير شفاف حسب الساعة",
+        badge3: "✓ رد سريع",
+        badge4: "✓ خدمة بالعربية والعبرية والإنجليزية",
+        heroCardTitle: "عمل واضح. تواصل واضح.",
+        heroCardText: "الزبون يعرف ما الذي يحدث، نوع العمل، وكيف يتم حساب الدفع.",
+        problemEyebrow: "المشكلة",
+        problemTitle: "من الصعب إيجاد مهني يمكن الوثوق به.",
+        problem1: "الأسعار غير واضحة من البداية",
+        problem2: "صعب معرفة من هو المهني فعلاً",
+        problem3: "تأخير، عدم التزام، وتواصل غير واضح",
+        problem4: "التصليحات الصغيرة يتم تجاهلها",
+        solutionEyebrow: "الحل",
+        solutionTitle: "FixSha’a تجعل الأمر بسيطًا، واضحًا وشفافًا.",
+        solution1: "ترسل وصفًا وصورًا للمشكلة",
+        solution2: "نطابقك مع المهني المناسب",
+        solution3: "وقت العمل يتم شرحه بوضوح",
+        solution4: "الدفع محسوب بشفافية حسب الساعة",
+        howEyebrow: "كيف يعمل",
+        howTitle: "أربع خطوات بسيطة",
+        howSubtitle: "من وصف المشكلة حتى دفع واضح حسب وقت العمل.",
+        step1Title: "اشرح المشكلة",
+        step1Text: "أخبرنا ماذا يحتاج إلى تصليح أو ترميم.",
+        step2Title: "ارفع الصور",
+        step2Text: "الصور تساعدنا على فهم العمل بسرعة.",
+        step3Title: "نطابقك مع مهني",
+        step3Text: "نوصلك مع المهني المناسب لنوع العمل.",
+        step4Title: "ادفع حسب الساعة",
+        step4Text: "كل شيء واضح ومفسّر وشفاف.",
+        servicesEyebrow: "خدماتنا",
+        servicesTitle: "تصليحات وترميمات للبيت",
+        servicesSubtitle: "خدمات شائعة يمكن طلبها عبر FixSha’a.",
+        pricingEyebrow: "شفافية بالسعر",
+        pricingTitle: "نموذج واضح حسب الساعة — بدون مفاجآت.",
+        pricingText: "السعر النهائي لا يتم تحديده قبل فهم العمل. نشرح نموذج الدفع، الوقت المتوقع، والشروط قبل بدء العمل.",
+        pricing1: "نموذج دفع حسب الساعة",
+        pricing2: "قد يكون هناك حد أدنى للساعة الأولى",
+        pricing3: "قد تضاف رسوم سفر للمناطق البعيدة",
+        pricing4: "خدمة الطوارئ أو الليل قد تكلف أكثر",
+        galleryEyebrow: "المعرض",
+        galleryTitle: "أعمال، أدوات وتصليحات",
+        gallerySubtitle: "يمكنك استبدال الصور لاحقًا بصور حقيقية من أعمالكم.",
+        gallery1: "قبل / بعد",
+        gallery2: "أعمال حمامات",
+        gallery3: "تبليط",
+        gallery4: "تصليحات",
+        gallery5: "دهان",
+        gallery6: "أدوات وعمل ميداني",
+        formTitle: "أخبرنا ماذا يحتاج إلى تصليح",
+        formIntro: "املأ التفاصيل وسنعود إليك بتوجيه أولي.",
+        formBenefit1: "✓ يمكن إرسال الصور",
+        formBenefit2: "✓ خدمة بالعربية، العبرية والإنجليزية",
+        formBenefit3: "✓ مناسب أيضًا للتصليحات الصغيرة",
+        labelName: "الاسم الكامل",
+        labelPhone: "رقم الهاتف",
+        labelLanguage: "اللغة المفضلة",
+        labelCity: "المدينة / المنطقة",
+        labelCategory: "نوع الخدمة",
+        labelUrgency: "الاستعجال",
+        labelDescription: "وصف المشكلة",
+        labelPhotos: "رفع الصور",
+        labelContactMethod: "طريقة التواصل المفضلة",
+        labelConsent: "أوافق على التواصل معي بخصوص طلبي",
+        submitBtn: "إرسال الطلب",
+        successMessage: "تم استلام طلبك. سنتواصل معك قريبًا.",
+        testimonialsEyebrow: "العملاء",
+        testimonialsTitle: "ماذا يقول العملاء",
+        testimonialsSubtitle: "نصوص مؤقتة — يمكن استبدالها بتوصيات حقيقية لاحقًا.",
+        faqEyebrow: "FAQ",
+        faqTitle: "أسئلة شائعة",
+        finalTitle: "تحتاج مساعدة في البيت؟ أرسل طلبك الآن.",
+        finalText: "FixSha’a وُجدت لتجعل التصليحات والترميمات أبسط، أوضح وأكثر شفافية.",
+        finalBook: "احجز الآن",
+        finalWhatsapp: "تواصل على واتساب",
+        footerDesc: "مهنيون موثوقون للبيت — حسب الساعة وبشفافية وتواصل واضح.",
+        footerContact: "تواصل",
+        footerLinks: "روابط",
+        footerLegal: "معلومات قانونية",
+        privacy: "سياسة الخصوصية",
+        terms: "شروط الاستخدام",
+        social: "Facebook / Instagram",
+        stickyWhatsapp: "أرسل الصور على واتساب"
+      },
+
+      en: {
+        dir: "ltr",
+        lang: "en",
+        navHow: "How it works",
+        navServices: "Services",
+        navPricing: "Pricing",
+        navGallery: "Gallery",
+        navFAQ: "FAQ",
+        navContact: "Contact",
+        bookPro: "Book a Professional",
+        heroBadge: "New service in Jerusalem and nearby areas",
+        heroTitle: "Trusted home professionals — paid by the hour, with full transparency",
+        heroSubtitle: "Send a request, upload photos of the problem, and get contacted quickly. Payment is clear and based on actual working time.",
+        primaryCTA: "Book a service now",
+        secondaryCTA: "Send photos on WhatsApp",
+        badge1: "✓ Verified professionals",
+        badge2: "✓ Transparent hourly pricing",
+        badge3: "✓ Fast response",
+        badge4: "✓ Arabic / Hebrew / English support",
+        heroCardTitle: "Clear work. Clear communication.",
+        heroCardText: "Customers understand what is happening, what type of work is needed, and how payment is calculated.",
+        problemEyebrow: "The problem",
+        problemTitle: "Finding a reliable professional can be difficult.",
+        problem1: "Prices are unclear",
+        problem2: "It is hard to know who is truly professional",
+        problem3: "Late arrivals and poor communication",
+        problem4: "Small repairs are often ignored",
+        solutionEyebrow: "The solution",
+        solutionTitle: "FixSha’a makes it simple, clear, and transparent.",
+        solution1: "Send a description and photos of the issue",
+        solution2: "We match the right professional",
+        solution3: "Work time is explained clearly",
+        solution4: "Payment is transparent and hourly",
+        howEyebrow: "How it works",
+        howTitle: "Four simple steps",
+        howSubtitle: "From describing the issue to clear hourly payment.",
+        step1Title: "Describe the problem",
+        step1Text: "Tell us what needs repair or renovation.",
+        step2Title: "Upload photos",
+        step2Text: "Photos help us understand the job faster.",
+        step3Title: "Get matched",
+        step3Text: "We connect you with the right professional.",
+        step4Title: "Pay by the hour",
+        step4Text: "Everything is clear, explained, and transparent.",
+        servicesEyebrow: "Our services",
+        servicesTitle: "Home repairs and renovation support",
+        servicesSubtitle: "Common services customers can request through FixSha’a.",
+        pricingEyebrow: "Transparent pricing",
+        pricingTitle: "A clear hourly model — no surprises.",
+        pricingText: "The final price is not confirmed before understanding the work. We explain the model, estimated time, and conditions before work starts.",
+        pricing1: "Clear hourly model",
+        pricing2: "First-hour minimum may apply",
+        pricing3: "Travel fee may apply for distant areas",
+        pricing4: "Emergency or night service may cost more",
+        galleryEyebrow: "Gallery",
+        galleryTitle: "Work, tools, and repairs",
+        gallerySubtitle: "You can replace these placeholders later with real photos from your work.",
+        gallery1: "Before / After",
+        gallery2: "Bathroom work",
+        gallery3: "Tiling",
+        gallery4: "Repairs",
+        gallery5: "Painting",
+        gallery6: "Tools / professionals at work",
+        formTitle: "Tell us what needs fixing",
+        formIntro: "Fill in a few details and we will contact you with initial guidance.",
+        formBenefit1: "✓ Upload photos",
+        formBenefit2: "✓ Hebrew, Arabic, and English support",
+        formBenefit3: "✓ Great for small repairs too",
+        labelName: "Full name",
+        labelPhone: "Phone number",
+        labelLanguage: "Preferred language",
+        labelCity: "City / area",
+        labelCategory: "Service category",
+        labelUrgency: "Urgency",
+        labelDescription: "Problem description",
+        labelPhotos: "Upload photos",
+        labelContactMethod: "Preferred contact method",
+        labelConsent: "I agree to be contacted about my request",
+        submitBtn: "Submit request",
+        successMessage: "Your request was received. We will contact you soon.",
+        testimonialsEyebrow: "Customers",
+        testimonialsTitle: "What customers say",
+        testimonialsSubtitle: "Placeholder testimonials — replace them with real reviews later.",
+        faqEyebrow: "FAQ",
+        faqTitle: "Frequently asked questions",
+        finalTitle: "Need help at home? Send your request now.",
+        finalText: "FixSha’a is built to make home repairs and renovations simpler, clearer, and more transparent.",
+        finalBook: "Book now",
+        finalWhatsapp: "Contact on WhatsApp",
+        footerDesc: "Trusted home professionals — paid by the hour, with clear communication.",
+        footerContact: "Contact",
+        footerLinks: "Links",
+        footerLegal: "Legal",
+        privacy: "Privacy policy",
+        terms: "Terms",
+        social: "Facebook / Instagram",
+        stickyWhatsapp: "Send photos on WhatsApp"
+      }
+    };
+
+    const services = {
+      he: [
+        ["🚰", "תיקוני אינסטלציה", "נזילות, ברזים, סיפונים ותיקוני מים בסיסיים."],
+        ["💡", "חשמל ותאורה", "החלפת גופי תאורה, שקעים ותיקונים קטנים."],
+        ["🧱", "ריצוף ואריחים", "החלפת אריחים, תיקוני ריצוף ועבודות נקודתיות."],
+        ["🎨", "צביעה", "צביעת קירות, תיקונים והכנה לצבע."],
+        ["🛠️", "תיקונים קטנים", "תלייה, החלפה, סידור ותיקוני בית כלליים."],
+        ["🚿", "תיקוני אמבטיה", "שדרוגים קטנים, איטום ותיקוני אזור רטוב."],
+        ["🏗️", "תמיכה בשיפוצים", "עזרה בעבודות שיפוץ ושדרוג לפי צורך."],
+        ["⚡", "תיקוני חירום", "מענה לעבודות דחופות לפי זמינות ואזור שירות."]
+      ],
+      ar: [
+        ["🚰", "تصليحات سباكة", "تسريبات، حنفيات، سيفون وتصليحات مياه بسيطة."],
+        ["💡", "كهرباء وإنارة", "تبديل إضاءة، مقابس وتصليحات كهرباء صغيرة."],
+        ["🧱", "تبليط وأرضيات", "تبديل بلاط، إصلاح أرضيات وأعمال موضعية."],
+        ["🎨", "دهان", "دهان حيطان، تصليحات وتحضير للدهان."],
+        ["🛠️", "تصليحات منزلية صغيرة", "تعليق، تبديل، ترتيب وتصليحات عامة."],
+        ["🚿", "تصليحات حمام", "تحسينات صغيرة، عزل وتصليحات مناطق رطبة."],
+        ["🏗️", "دعم ترميم", "مساعدة بأعمال ترميم وتجديد حسب الحاجة."],
+        ["⚡", "تصليحات طارئة", "استجابة للأعمال المستعجلة حسب التوفر والمنطقة."]
+      ],
+      en: [
+        ["🚰", "Plumbing repairs", "Leaks, faucets, drains, and basic water repairs."],
+        ["💡", "Electrical and lighting", "Lighting fixtures, outlets, and small electrical repairs."],
+        ["🧱", "Tiling and flooring", "Tile replacement, floor repairs, and focused work."],
+        ["🎨", "Painting", "Wall painting, patching, and preparation."],
+        ["🛠️", "Small home repairs", "Hanging, replacing, fixing, and general home tasks."],
+        ["🚿", "Bathroom repairs", "Small upgrades, sealing, and wet-area repairs."],
+        ["🏗️", "Renovation support", "Support for renovation and upgrade work as needed."],
+        ["⚡", "Emergency repairs", "Urgent help based on availability and service area."]
+      ]
+    };
+
+    const faq = {
+      he: [
+        ["איך עובד תמחור לפי שעה?", "התשלום מבוסס על זמן העבודה בפועל וסוג השירות. לפני התחלה מסבירים את המודל והתנאים."],
+        ["אפשר להעלות תמונות לפני הזמנה?", "כן. מומלץ לשלוח תמונות כדי להבין את הבעיה מהר יותר."],
+        ["יש שירותי חירום?", "כן, לפי זמינות. שירות חירום או לילה עשוי לעלות יותר."],
+        ["בעלי המקצוע מאומתים?", "המטרה היא לעבוד עם בעלי מקצוע אמינים ומנוסים שעוברים בדיקה לפני עבודה."],
+        ["באילו אזורים אתם עובדים?", "בהתחלה באזור ירושלים והסביבה. בהמשך ניתן להתרחב לאזורים נוספים."],
+        ["אפשר לקבל שירות בערבית או עברית?", "כן. השירות תומך בעברית, ערבית ואנגלית."],
+        ["מה קורה אחרי שליחת הטופס?", "אנחנו מקבלים את הפרטים וחוזרים אליכם בהקדם להמשך תיאום."]
+      ],
+      ar: [
+        ["كيف يعمل التسعير حسب الساعة؟", "الدفع يعتمد على وقت العمل الفعلي ونوع الخدمة. قبل البدء نشرح النموذج والشروط."],
+        ["هل يمكنني رفع الصور قبل الحجز؟", "نعم. يفضل إرسال صور حتى نفهم المشكلة بسرعة أكبر."],
+        ["هل توفرون تصليحات طارئة؟", "نعم، حسب التوفر. خدمة الطوارئ أو الليل قد تكون بتكلفة أعلى."],
+        ["هل المهنيون موثوقون؟", "الهدف هو العمل مع مهنيين موثوقين وذوي خبرة بعد فحصهم."],
+        ["أي مناطق تخدمون؟", "مبدئيًا القدس والمنطقة، ولاحقًا يمكن التوسع لمناطق أخرى."],
+        ["هل يمكن الحصول على الخدمة بالعربية أو العبرية؟", "نعم. الخدمة تدعم العربية، العبرية والإنجليزية."],
+        ["ماذا يحدث بعد إرسال النموذج؟", "نستلم التفاصيل ونتواصل معك قريبًا لتنسيق الخطوة التالية."]
+      ],
+      en: [
+        ["How does hourly pricing work?", "Payment is based on actual working time and service type. The model and conditions are explained before work starts."],
+        ["Can I upload photos before booking?", "Yes. Photos help us understand the issue faster."],
+        ["Do you provide emergency repairs?", "Yes, based on availability. Emergency or night service may cost more."],
+        ["Are the professionals verified?", "The goal is to work with reliable, experienced professionals who are checked before work."],
+        ["Which areas do you serve?", "Initially Jerusalem and nearby areas, with potential expansion later."],
+        ["Can I get service in Arabic or Hebrew?", "Yes. The service supports Arabic, Hebrew, and English."],
+        ["What happens after I submit the form?", "We receive your details and contact you soon to coordinate the next step."]
+      ]
+    };
+
+    const categoryOptions = {
+      he: ["אינסטלציה", "חשמל ותאורה", "ריצוף", "צביעה", "תיקון קטן", "אמבטיה", "שיפוץ", "חירום"],
+      ar: ["سباكة", "كهرباء وإنارة", "تبليط", "دهان", "تصليح صغير", "حمام", "ترميم", "طارئ"],
+      en: ["Plumbing", "Electrical and lighting", "Tiling", "Painting", "Small repair", "Bathroom", "Renovation", "Emergency"]
+    };
+
+    const urgencyOptions = {
+      he: ["היום", "השבוע", "גמיש", "חירום"],
+      ar: ["اليوم", "هذا الأسبوع", "مرن", "طارئ"],
+      en: ["Today", "This week", "Flexible", "Emergency"]
+    };
+
+    const contactOptions = {
+      he: ["טלפון", "WhatsApp"],
+      ar: ["هاتف", "واتساب"],
+      en: ["Phone", "WhatsApp"]
+    };
+
+    let currentLang = "he";
+
+    function applyLanguage(lang) {
+      currentLang = lang;
+      const t = content[lang];
+
+      document.documentElement.lang = t.lang;
+      document.documentElement.dir = t.dir;
+      document.body.dir = t.dir;
+
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        const key = el.getAttribute("data-i18n");
+        if (t[key]) el.textContent = t[key];
+      });
+
+      document.querySelectorAll(".lang-btn").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.lang === lang);
+      });
+
+      renderServices(lang);
+      renderFAQ(lang);
+      renderSelect("category", categoryOptions[lang]);
+      renderSelect("urgency", urgencyOptions[lang]);
+      renderSelect("contactMethod", contactOptions[lang]);
+    }
+
+    function renderServices(lang) {
+      const grid = document.getElementById("servicesGrid");
+      grid.innerHTML = services[lang].map(item => `
+        <article class="service-card">
+          <div class="service-icon">${item[0]}</div>
+          <h3>${item[1]}</h3>
+          <p>${item[2]}</p>
+        </article>
+      `).join("");
+    }
+
+    function renderFAQ(lang) {
+      const list = document.getElementById("faqList");
+      list.innerHTML = faq[lang].map(item => `
+        <details>
+          <summary>${item[0]}</summary>
+          <p>${item[1]}</p>
+        </details>
+      `).join("");
+    }
+
+    function renderSelect(id, options) {
+      const select = document.getElementById(id);
+      select.innerHTML = options.map(option => `<option>${option}</option>`).join("");
+    }
+
+    document.querySelectorAll(".lang-btn").forEach((btn) => {
+      btn.addEventListener("click", () => applyLanguage(btn.dataset.lang));
+    });
+
+    document.getElementById("menuBtn").addEventListener("click", () => {
+      document.getElementById("navbar").classList.toggle("mobile-open");
+    });
+
+    document.querySelectorAll(".nav-links a").forEach((link) => {
+      link.addEventListener("click", () => {
+        document.getElementById("navbar").classList.remove("mobile-open");
+      });
+    });
+
+    /* =========================
+       FORM SUBMISSION
+       Currently: shows success message only.
+       Later: connect this to Supabase.
+       ========================= */
+
+    document.getElementById("leadForm").addEventListener("submit", async function(event) {
+      event.preventDefault();
+
+      const form = event.target;
+      const formData = new FormData(form);
+
+      const requestData = {
+        fullName: formData.get("fullName"),
+        phone: formData.get("phone"),
+        preferredLanguage: formData.get("language"),
+        city: formData.get("city"),
+        category: formData.get("category"),
+        urgency: formData.get("urgency"),
+        description: formData.get("description"),
+        contactMethod: formData.get("contactMethod"),
+        consent: formData.get("consent") === "on",
+        createdAt: new Date().toISOString()
+      };
+
+      console.log("Prepared for Supabase:", requestData);
+
+      /*
+        SUPABASE CONNECTION LATER:
+
+        1. Create a Supabase project.
+        2. Create table: service_requests
+        3. Add columns:
+           full_name, phone, preferred_language, city, category,
+           urgency, description, contact_method, consent, created_at
+        4. Add Supabase client script.
+        5. Replace this comment with:
+
+        const { error } = await supabase
+          .from("service_requests")
+          .insert([requestData]);
+
+        if (error) {
+          alert("Something went wrong.");
+          return;
+        }
+      */
+
+      document.getElementById("successMessage").style.display = "block";
+      form.reset();
+      renderSelect("category", categoryOptions[currentLang]);
+      renderSelect("urgency", urgencyOptions[currentLang]);
+      renderSelect("contactMethod", contactOptions[currentLang]);
+    });
+
+    applyLanguage("he");
+  </script>
 </body>
 </html>
