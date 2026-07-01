@@ -170,7 +170,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(255, 255, 255, 0.88);
+      background: rgba(255, 255, 255, 0.90);
       backdrop-filter: blur(18px);
       border-bottom: 1px solid rgba(230, 238, 242, 0.9);
     }
@@ -279,10 +279,6 @@
       margin-bottom: 22px;
     }
 
-    .accent-text {
-      color: var(--turquoise);
-    }
-
     .hero p {
       max-width: 680px;
       color: var(--gray);
@@ -328,16 +324,12 @@
       border-radius: 28px;
       overflow: hidden;
       background:
-        linear-gradient(180deg, rgba(6, 27, 51, 0.05), rgba(6, 27, 51, 0.35)),
-        url("https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1200&q=85");
+        linear-gradient(180deg, rgba(6, 27, 51, 0.02), rgba(6, 27, 51, 0.18)),
+        url("2.png");
       background-size: cover;
       background-position: center;
       position: relative;
     }
-
-    /* Replace hero image later:
-       Upload hero.jpg to GitHub and change url(...) to url("hero.jpg")
-    */
 
     .app-chip {
       position: absolute;
@@ -535,14 +527,42 @@
       font-size: 18px;
     }
 
+    .pricing-visual {
+      border-radius: 28px;
+      background:
+        linear-gradient(180deg, rgba(6, 27, 51, 0.02), rgba(6, 27, 51, 0.18)),
+        url("1.png");
+      background-size: cover;
+      background-position: center;
+      min-height: 320px;
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.20);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .pricing-visual-card {
+      position: absolute;
+      inset-inline-start: 20px;
+      bottom: 20px;
+      background: rgba(255,255,255,0.94);
+      color: var(--navy);
+      border-radius: 20px;
+      padding: 16px;
+      width: min(300px, calc(100% - 40px));
+      box-shadow: 0 18px 44px rgba(6, 27, 51, 0.22);
+      font-weight: 900;
+    }
+
     .pricing-list {
       display: grid;
       gap: 14px;
+      margin-top: 24px;
     }
 
     .pricing-item {
-      padding: 18px;
-      border-radius: 20px;
+      padding: 16px;
+      border-radius: 18px;
       background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.12);
       color: white;
@@ -568,8 +588,8 @@
       min-height: 470px;
       border-radius: 34px;
       background:
-        linear-gradient(180deg, rgba(6, 27, 51, 0.03), rgba(6, 27, 51, 0.25)),
-        url("https://images.unsplash.com/photo-1604014237800-1c9102c219da?auto=format&fit=crop&w=1200&q=85");
+        linear-gradient(180deg, rgba(6, 27, 51, 0.02), rgba(6, 27, 51, 0.14)),
+        url("4.png");
       background-size: cover;
       background-position: center;
       box-shadow: var(--shadow);
@@ -606,13 +626,13 @@
     /* Gallery */
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 18px;
     }
 
     .gallery-item {
       position: relative;
-      min-height: 240px;
+      min-height: 250px;
       overflow: hidden;
       border-radius: 28px;
       background: linear-gradient(135deg, #DDEAF0, #FFFFFF);
@@ -621,37 +641,25 @@
     }
 
     .gallery-item:nth-child(1) {
-      background-image: linear-gradient(180deg, rgba(6,27,51,0.02), rgba(6,27,51,0.30)), url("https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=900&q=85");
+      background-image: linear-gradient(180deg, rgba(6,27,51,0.02), rgba(6,27,51,0.24)), url("1.png");
       background-size: cover;
       background-position: center;
     }
 
     .gallery-item:nth-child(2) {
-      background-image: linear-gradient(180deg, rgba(6,27,51,0.02), rgba(6,27,51,0.30)), url("https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=85");
+      background-image: linear-gradient(180deg, rgba(6,27,51,0.02), rgba(6,27,51,0.18)), url("2.png");
       background-size: cover;
       background-position: center;
     }
 
     .gallery-item:nth-child(3) {
-      background-image: linear-gradient(180deg, rgba(6,27,51,0.02), rgba(6,27,51,0.30)), url("https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=85");
+      background-image: linear-gradient(180deg, rgba(6,27,51,0.02), rgba(6,27,51,0.18)), url("3.png");
       background-size: cover;
       background-position: center;
     }
 
     .gallery-item:nth-child(4) {
-      background-image: linear-gradient(180deg, rgba(6,27,51,0.02), rgba(6,27,51,0.30)), url("https://images.unsplash.com/photo-1581244277943-fe4a9c777189?auto=format&fit=crop&w=900&q=85");
-      background-size: cover;
-      background-position: center;
-    }
-
-    .gallery-item:nth-child(5) {
-      background-image: linear-gradient(180deg, rgba(6,27,51,0.02), rgba(6,27,51,0.30)), url("https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&fit=crop&w=900&q=85");
-      background-size: cover;
-      background-position: center;
-    }
-
-    .gallery-item:nth-child(6) {
-      background-image: linear-gradient(180deg, rgba(6,27,51,0.02), rgba(6,27,51,0.30)), url("https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=900&q=85");
+      background-image: linear-gradient(180deg, rgba(6,27,51,0.02), rgba(6,27,51,0.22)), url("4.png");
       background-size: cover;
       background-position: center;
     }
@@ -773,6 +781,10 @@
       margin-bottom: 9px;
     }
 
+    .footer-col a:hover {
+      color: var(--turquoise);
+    }
+
     .footer-lang {
       margin-top: 14px;
       display: flex;
@@ -847,7 +859,8 @@
       }
 
       .badges-grid,
-      .services-grid {
+      .services-grid,
+      .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
       }
 
@@ -923,6 +936,10 @@
         padding: 26px;
       }
 
+      .pricing-visual {
+        min-height: 260px;
+      }
+
       .whatsapp-float {
         inset-inline: 14px;
         justify-content: center;
@@ -932,13 +949,6 @@
 </head>
 
 <body>
-  <!-- 
-    IMPORTANT EDITS:
-    1. Replace logo.png if your logo file name is different.
-    2. Replace WHATSAPP_NUMBER below in JS with your real number.
-    3. Replace hero/gallery image URLs later with your real project photos.
-  -->
-
   <header class="site-header">
     <div class="container nav" id="nav">
       <a href="#top" class="brand" aria-label="FixSha’a home">
@@ -1047,9 +1057,15 @@
             <p data-i18n="pricingText">
               אנחנו לא מציגים מחיר סופי לפני שמבינים את העבודה. הלקוח מקבל הסבר ברור על המודל, הזמן המשוער והחומרים לפני שמתחילים.
             </p>
+
+            <div class="pricing-list" id="pricingList"></div>
           </div>
 
-          <div class="pricing-list" id="pricingList"></div>
+          <div class="pricing-visual">
+            <div class="pricing-visual-card" data-i18n="pricingVisual">
+              מעקב זמן ברור דרך השירות
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1068,7 +1084,7 @@
           <div class="why-list" id="whyList"></div>
         </div>
 
-        <div class="why-image" aria-label="Modern home repair service image"></div>
+        <div class="why-image" aria-label="FixSha’a van arriving to customer home"></div>
       </div>
     </section>
 
@@ -1076,8 +1092,8 @@
       <div class="container">
         <div class="section-head">
           <div class="kicker" data-i18n="galleryKicker">דוגמאות עבודה</div>
-          <h2 data-i18n="galleryTitle">לפני / אחרי ופרויקטים</h2>
-          <p data-i18n="galleryText">כרגע אלו תמונות זמניות. בהמשך החליפו אותן בתמונות אמיתיות של עבודות שלכם.</p>
+          <h2 data-i18n="galleryTitle">החוויה של FixSha’a</h2>
+          <p data-i18n="galleryText">תמונות מותג ראשוניות שמציגות שירות מהיר, מקצועי ושקוף.</p>
         </div>
 
         <div class="gallery-grid" id="galleryGrid"></div>
@@ -1102,10 +1118,10 @@
           <p data-i18n="finalText">שלחו לנו בקשה או תמונות בוואטסאפ, ונחזור אליכם עם הכוונה ראשונית.</p>
 
           <div class="final-actions">
-            <a href="https://wa.me/972000000000" target="_blank" class="btn btn-turquoise whatsapp-link" data-i18n="book">
+            <a href="https://wa.me/972528767577" target="_blank" class="btn btn-turquoise whatsapp-link" data-i18n="book">
               הזמן בעל מקצוע
             </a>
-            <a href="https://wa.me/972000000000" target="_blank" class="btn btn-secondary whatsapp-link" data-i18n="whatsappBtn">
+            <a href="https://wa.me/972528767577" target="_blank" class="btn btn-secondary whatsapp-link" data-i18n="whatsappBtn">
               שליחה בוואטסאפ
             </a>
           </div>
@@ -1132,8 +1148,8 @@
 
       <div class="footer-col">
         <h3 data-i18n="footerContact">יצירת קשר</h3>
-        <a href="tel:+972000000000">+972 00 000 0000</a>
-        <a href="https://wa.me/972000000000" class="whatsapp-link">WhatsApp</a>
+        <a href="tel:+972528767577">052-876-7577</a>
+        <a href="https://wa.me/972528767577" class="whatsapp-link" target="_blank">WhatsApp</a>
         <a href="mailto:hello@fixshaa.com">hello@fixshaa.com</a>
       </div>
 
@@ -1144,9 +1160,12 @@
 
       <div class="footer-col">
         <h3 data-i18n="footerSocial">רשתות</h3>
-        <a href="#">Instagram</a>
-        <a href="#">Facebook</a>
-        <a href="#">Privacy Policy</a>
+
+        <!-- Replace # with your real social media links -->
+        <a href="#" id="instagramLink" target="_blank">Instagram</a>
+        <a href="#" id="facebookLink" target="_blank">Facebook</a>
+        <a href="#" id="linkedinLink" target="_blank">LinkedIn</a>
+        <a href="#" id="tiktokLink" target="_blank">TikTok</a>
       </div>
     </div>
 
@@ -1155,14 +1174,22 @@
     </div>
   </footer>
 
-  <a href="https://wa.me/972000000000" target="_blank" class="whatsapp-float whatsapp-link" data-i18n="whatsappFloat">
+  <a href="https://wa.me/972528767577" target="_blank" class="whatsapp-float whatsapp-link" data-i18n="whatsappFloat">
     WhatsApp
   </a>
 
   <script>
-    const WHATSAPP_NUMBER = "972000000000"; 
-    // Replace with your real WhatsApp number.
-    // Example: 0501234567 becomes 972501234567
+    const WHATSAPP_NUMBER = "972528767577";
+
+    /*
+      Replace these links later with your real pages:
+      Example:
+      const INSTAGRAM_URL = "https://www.instagram.com/fixshaa";
+    */
+    const INSTAGRAM_URL = "#";
+    const FACEBOOK_URL = "#";
+    const LINKEDIN_URL = "#";
+    const TIKTOK_URL = "#";
 
     const translations = {
       he: {
@@ -1191,12 +1218,13 @@
         pricingKicker: "המודל שלנו",
         pricingTitle: "משלמים על זמן העבודה בפועל — בלי בלבול ובלי הפתעות.",
         pricingText: "אנחנו לא מציגים מחיר סופי לפני שמבינים את העבודה. הלקוח מקבל הסבר ברור על המודל, הזמן המשוער והחומרים לפני שמתחילים.",
+        pricingVisual: "מעקב זמן ברור דרך השירות",
         whyKicker: "למה FixSha’a?",
         whyTitle: "שירות מקומי עם סטנדרט מודרני.",
         whyText: "בנינו חוויה פשוטה וברורה: לקוח שולח בעיה, מקבל מענה, מבין את העבודה ומשלם בצורה שקופה.",
         galleryKicker: "דוגמאות עבודה",
-        galleryTitle: "לפני / אחרי ופרויקטים",
-        galleryText: "כרגע אלו תמונות זמניות. בהמשך החליפו אותן בתמונות אמיתיות של עבודות שלכם.",
+        galleryTitle: "החוויה של FixSha’a",
+        galleryText: "תמונות מותג ראשוניות שמציגות שירות מהיר, מקצועי ושקוף.",
         faqTitle: "שאלות נפוצות",
         finalTitle: "צריכים בעל מקצוע אמין לבית?",
         finalText: "שלחו לנו בקשה או תמונות בוואטסאפ, ונחזור אליכם עם הכוונה ראשונית.",
@@ -1213,7 +1241,7 @@
         navHow: "كيف يعمل",
         navServices: "الخدمات",
         navPricing: "الدفع حسب الساعة",
-        navGallery: "أعمالنا",
+        navGallery: "الصور",
         navFAQ: "أسئلة",
         navContact: "تواصل",
         book: "احجز فني",
@@ -1234,12 +1262,13 @@
         pricingKicker: "نموذجنا",
         pricingTitle: "ادفع مقابل وقت العمل الفعلي — بدون حيرة وبدون مفاجآت.",
         pricingText: "لا نعرض سعرًا نهائيًا قبل فهم العمل. يحصل الزبون على شرح واضح للنموذج، الوقت المتوقع والمواد قبل البدء.",
+        pricingVisual: "تتبع واضح لوقت العمل عبر الخدمة",
         whyKicker: "لماذا FixSha’a؟",
         whyTitle: "خدمة محلية بمعايير حديثة.",
         whyText: "بنينا تجربة بسيطة وواضحة: الزبون يرسل المشكلة، يحصل على رد، يفهم العمل ويدفع بشفافية.",
-        galleryKicker: "أمثلة أعمال",
-        galleryTitle: "قبل / بعد ومشاريع",
-        galleryText: "هذه صور مؤقتة حاليًا. لاحقًا استبدلوها بصور حقيقية من أعمالكم.",
+        galleryKicker: "صور الخدمة",
+        galleryTitle: "تجربة FixSha’a",
+        galleryText: "صور أولية للعلامة التجارية تعرض خدمة سريعة، مهنية وشفافة.",
         faqTitle: "أسئلة شائعة",
         finalTitle: "تحتاج فني موثوق للبيت؟",
         finalText: "أرسل لنا طلبك أو صور المشكلة عبر واتساب، وسنعود إليك بتوجيه أولي.",
@@ -1277,12 +1306,13 @@
         pricingKicker: "Our model",
         pricingTitle: "Pay for the actual work time — no confusion, no hidden surprises.",
         pricingText: "We do not show a final price before understanding the job. Customers receive a clear explanation of the model, estimated time, and materials before work starts.",
+        pricingVisual: "Clear time tracking through the service",
         whyKicker: "Why FixSha’a?",
         whyTitle: "A local service with a modern standard.",
         whyText: "We built a simple experience: customers send the issue, get a response, understand the work, and pay transparently.",
         galleryKicker: "Work examples",
-        galleryTitle: "Before / after and projects",
-        galleryText: "These are temporary images. Replace them later with real photos from your work.",
+        galleryTitle: "The FixSha’a experience",
+        galleryText: "Initial brand images showing a fast, professional, and transparent service.",
         faqTitle: "Frequently asked questions",
         finalTitle: "Need a trusted professional for your home?",
         finalText: "Send your request or photos on WhatsApp, and we will contact you with initial guidance.",
@@ -1411,9 +1441,9 @@
       },
 
       gallery: {
-        he: ["לפני / אחרי", "אמבטיה", "ריצוף", "תיקונים", "צביעה", "עבודה בשטח"],
-        ar: ["قبل / بعد", "حمام", "تبليط", "تصليحات", "دهان", "عمل ميداني"],
-        en: ["Before / After", "Bathroom", "Tiling", "Repairs", "Painting", "On-site work"]
+        he: ["אפליקציה ושעון עבודה", "בעל מקצוע בבית", "צוות מקצועי", "הגעה לבית הלקוח"],
+        ar: ["تطبيق وتتبع وقت العمل", "فني داخل البيت", "طاقم مهني", "وصول إلى بيت الزبون"],
+        en: ["App & time tracking", "Professional at home", "Professional team", "Arriving at the customer"]
       },
 
       faq: {
@@ -1444,12 +1474,15 @@
       }
     };
 
-    let currentLang = "he";
-
-    function setWhatsappLinks() {
+    function setContactLinks() {
       document.querySelectorAll(".whatsapp-link").forEach(link => {
         link.href = `https://wa.me/${WHATSAPP_NUMBER}`;
       });
+
+      document.getElementById("instagramLink").href = INSTAGRAM_URL;
+      document.getElementById("facebookLink").href = FACEBOOK_URL;
+      document.getElementById("linkedinLink").href = LINKEDIN_URL;
+      document.getElementById("tiktokLink").href = TIKTOK_URL;
     }
 
     function renderCards(containerId, items, cardClass = "card") {
@@ -1506,7 +1539,6 @@
     }
 
     function applyLanguage(lang) {
-      currentLang = lang;
       const t = translations[lang];
 
       document.documentElement.lang = lang;
@@ -1545,7 +1577,7 @@
       });
     });
 
-    setWhatsappLinks();
+    setContactLinks();
     applyLanguage("he");
   </script>
 </body>
