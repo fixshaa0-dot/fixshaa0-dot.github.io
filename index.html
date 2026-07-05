@@ -1150,7 +1150,7 @@
         <h3 data-i18n="footerContact">יצירת קשר</h3>
         <a href="tel:+972528767577">052-876-7577</a>
         <a href="https://wa.me/972528767577" class="whatsapp-link" target="_blank">WhatsApp</a>
-        <a href="mailto:hello@fixshaa.com">hello@fixshaa.com</a>
+        <a href="mailto:hello@fixshaa.com">fixshaa0@gmail.com</a>
       </div>
 
       <div class="footer-col">
@@ -1186,10 +1186,11 @@
       Example:
       const INSTAGRAM_URL = "https://www.instagram.com/fixshaa";
     */
-    const INSTAGRAM_URL = "#";
-    const FACEBOOK_URL = "#";
-    const LINKEDIN_URL = "#";
-    const TIKTOK_URL = "#";
+  const INSTAGRAM_URL = "https://www.instagram.com/fixshaa0?igsh=dW90emlkMzMyaGl6";
+const FACEBOOK_URL = "https://www.facebook.com/share/1Ck9qm53b4/";
+const LINKEDIN_URL = "https://www.linkedin.com/company/fixsha-a/";
+const TIKTOK_URL = "https://www.tiktok.com/@fixshaa3?_r=1&_t=ZS-97msyZxbT62";
+const EMAIL_ADDRESS = "fixshaa0@gmail.com";
 
     const translations = {
       he: {
@@ -1475,15 +1476,21 @@
     };
 
     function setContactLinks() {
-      document.querySelectorAll(".whatsapp-link").forEach(link => {
-        link.href = `https://wa.me/${WHATSAPP_NUMBER}`;
-      });
+  document.querySelectorAll(".whatsapp-link").forEach(link => {
+    link.href = `https://wa.me/${WHATSAPP_NUMBER}`;
+  });
 
-      document.getElementById("instagramLink").href = INSTAGRAM_URL;
-      document.getElementById("facebookLink").href = FACEBOOK_URL;
-      document.getElementById("linkedinLink").href = LINKEDIN_URL;
-      document.getElementById("tiktokLink").href = TIKTOK_URL;
-    }
+  document.getElementById("instagramLink").href = INSTAGRAM_URL;
+  document.getElementById("facebookLink").href = FACEBOOK_URL;
+  document.getElementById("linkedinLink").href = LINKEDIN_URL;
+  document.getElementById("tiktokLink").href = TIKTOK_URL;
+
+  const emailLink = document.getElementById("emailLink");
+  if (emailLink) {
+    emailLink.href = `mailto:${EMAIL_ADDRESS}`;
+    emailLink.textContent = EMAIL_ADDRESS;
+  }
+}
 
     function renderCards(containerId, items, cardClass = "card") {
       const container = document.getElementById(containerId);
