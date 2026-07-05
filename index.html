@@ -826,6 +826,122 @@
       font-weight: 900;
       box-shadow: 0 18px 44px rgba(0,0,0,0.22);
     }
+    .service-card {
+  cursor: pointer;
+}
+
+.service-card::after {
+  content: "לחצו לפרטים ←";
+  display: block;
+  margin-top: 16px;
+  color: var(--turquoise);
+  font-weight: 900;
+  font-size: 14px;
+}
+
+html[lang="ar"] .service-card::after {
+  content: "اضغط للتفاصيل ←";
+}
+
+html[lang="en"] .service-card::after {
+  content: "Click for details →";
+}
+
+.service-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(6, 27, 51, 0.58);
+  backdrop-filter: blur(8px);
+}
+
+.service-modal.active {
+  display: flex;
+}
+
+.service-modal-card {
+  width: min(920px, 100%);
+  max-height: 92vh;
+  overflow: auto;
+  background: white;
+  border-radius: 34px;
+  box-shadow: 0 30px 90px rgba(0,0,0,0.25);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+}
+
+.service-modal-image {
+  min-height: 420px;
+  background-size: cover;
+  background-position: center;
+}
+
+.service-modal-content {
+  padding: 38px;
+}
+
+.service-modal-content h3 {
+  font-size: 34px;
+  margin-bottom: 14px;
+}
+
+.service-modal-content p {
+  color: var(--gray);
+  font-size: 18px;
+  margin-bottom: 22px;
+}
+
+.service-modal-content ul {
+  display: grid;
+  gap: 10px;
+  list-style: none;
+  color: var(--gray);
+  font-weight: 800;
+}
+
+.service-modal-content li::before {
+  content: "✓";
+  color: var(--turquoise);
+  margin-inline-end: 8px;
+}
+
+.close-modal {
+  position: absolute;
+  top: 16px;
+  inset-inline-end: 16px;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--navy);
+  color: white;
+  cursor: pointer;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+@media (max-width: 760px) {
+  .service-modal-card {
+    grid-template-columns: 1fr;
+  }
+
+  .service-modal-image {
+    min-height: 260px;
+  }
+
+  .service-modal-content {
+    padding: 26px;
+  }
+
+  .service-modal-content h3 {
+    font-size: 28px;
+  }
+}
 
     /* Responsive */
     @media (max-width: 1100px) {
@@ -1473,7 +1589,161 @@ const EMAIL_ADDRESS = "fixshaa0@gmail.com";
           ["How fast can someone arrive?", "It depends on availability, service area, and job urgency."]
         ]
       }
-    };
+    }
+     const serviceDetails = {
+  he: [
+    {
+      image: "1.png",
+      title: "תיקונים כלליים",
+      text: "שירות לתיקוני בית קטנים ומהירים — בלי צורך להזמין שיפוץ גדול.",
+      bullets: ["תלייה והתקנות קטנות", "תיקוני דלתות וידיות", "סידורים ותיקונים בבית"]
+    },
+    {
+      image: "4.png",
+      title: "עבודות שיפוץ",
+      text: "עבודות שיפוץ נקודתיות לבית או לעסק קטן, לפי צורך ולפי זמן עבודה.",
+      bullets: ["שדרוגים קטנים", "תיקונים אחרי נזק", "עזרה בפרויקט שיפוץ"]
+    },
+    {
+      image: "3.png",
+      title: "ריצוף ואריחים",
+      text: "תיקוני ריצוף, החלפת אריחים ועבודות גמר נקודתיות.",
+      bullets: ["החלפת אריח שבור", "תיקוני רובה", "עבודות ריצוף קטנות"]
+    },
+    {
+      image: "2.png",
+      title: "צביעה",
+      text: "צביעה נקייה ומסודרת לקירות, תיקוני צבע והכנה לפני צביעה.",
+      bullets: ["צביעת קירות", "תיקוני סדקים", "הכנה וגימור"]
+    },
+    {
+      image: "4.png",
+      title: "גבס וקירות",
+      text: "עבודות גבס ותיקוני קירות בצורה נקייה ומקצועית.",
+      bullets: ["תיקוני קיר", "עבודות גבס קטנות", "סגירות וגימורים"]
+    },
+    {
+      image: "1.png",
+      title: "אינסטלציה",
+      text: "תיקוני מים בסיסיים ובעיות אינסטלציה קטנות בבית.",
+      bullets: ["נזילות קלות", "ברזים וסיפונים", "בעיות ניקוז פשוטות"]
+    },
+    {
+      image: "2.png",
+      title: "חשמל ותאורה",
+      text: "תיקוני חשמל קטנים והחלפת גופי תאורה לפי צורך.",
+      bullets: ["החלפת תאורה", "שקעים ומתגים", "בדיקה ותיקון קטן"]
+    },
+    {
+      image: "3.png",
+      title: "תחזוקה",
+      text: "עבודות תחזוקה כלליות לבית, לעסק קטן או לנכס.",
+      bullets: ["תחזוקה שוטפת", "תיקונים לפי שעה", "עבודות קטנות מצטברות"]
+    }
+  ],
+
+  ar: [
+    {
+      image: "1.png",
+      title: "تصليحات عامة",
+      text: "خدمة للتصليحات المنزلية الصغيرة والسريعة بدون الحاجة لمشروع ترميم كبير.",
+      bullets: ["تعليق وتركيبات صغيرة", "تصليح أبواب ومقابض", "ترتيبات وتصليحات داخل البيت"]
+    },
+    {
+      image: "4.png",
+      title: "أعمال ترميم",
+      text: "أعمال ترميم محددة للبيت أو المحل، حسب الحاجة وحسب وقت العمل.",
+      bullets: ["تجديدات صغيرة", "تصليحات بعد ضرر", "مساعدة في مشروع ترميم"]
+    },
+    {
+      image: "3.png",
+      title: "تبليط وأرضيات",
+      text: "تصليح أرضيات، تبديل بلاط وأعمال إنهاء صغيرة.",
+      bullets: ["تبديل بلاطة مكسورة", "تصليح روبة", "أعمال تبليط صغيرة"]
+    },
+    {
+      image: "2.png",
+      title: "دهان",
+      text: "دهان نظيف ومرتب للجدران، تصليحات طلاء وتجهيز قبل الدهان.",
+      bullets: ["دهان حيطان", "تصليح تشققات", "تجهيز وتشطيب"]
+    },
+    {
+      image: "4.png",
+      title: "جبس وجدران",
+      text: "أعمال جبس وتصليح جدران بطريقة نظيفة ومهنية.",
+      bullets: ["تصليح جدران", "أعمال جبس صغيرة", "إغلاقات وتشطيبات"]
+    },
+    {
+      image: "1.png",
+      title: "سباكة",
+      text: "تصليحات مياه بسيطة ومشاكل سباكة صغيرة في البيت.",
+      bullets: ["تسريبات خفيفة", "حنفيات وسيفون", "مشاكل تصريف بسيطة"]
+    },
+    {
+      image: "2.png",
+      title: "كهرباء وإنارة",
+      text: "تصليحات كهرباء صغيرة وتبديل إنارة حسب الحاجة.",
+      bullets: ["تبديل إنارة", "مقابس ومفاتيح", "فحص وتصليح بسيط"]
+    },
+    {
+      image: "3.png",
+      title: "صيانة",
+      text: "أعمال صيانة عامة للبيت، للمحل أو للعقار.",
+      bullets: ["صيانة دورية", "تصليحات حسب الساعة", "مجموعة أعمال صغيرة"]
+    }
+  ],
+
+  en: [
+    {
+      image: "1.png",
+      title: "General repairs",
+      text: "Quick small home repairs without needing a full renovation project.",
+      bullets: ["Small installations", "Door and handle fixes", "General home repairs"]
+    },
+    {
+      image: "4.png",
+      title: "Renovation work",
+      text: "Focused renovation support for homes or small businesses, based on actual work time.",
+      bullets: ["Small upgrades", "Damage repair", "Renovation project support"]
+    },
+    {
+      image: "3.png",
+      title: "Flooring and tiling",
+      text: "Tile replacement, flooring fixes, and small finishing jobs.",
+      bullets: ["Broken tile replacement", "Grout repair", "Small tiling jobs"]
+    },
+    {
+      image: "2.png",
+      title: "Painting",
+      text: "Clean wall painting, paint fixes, and preparation before painting.",
+      bullets: ["Wall painting", "Crack repair", "Preparation and finishing"]
+    },
+    {
+      image: "4.png",
+      title: "Gypsum and drywall",
+      text: "Drywall and wall repair work with a clean professional finish.",
+      bullets: ["Wall repairs", "Small drywall work", "Finishing details"]
+    },
+    {
+      image: "1.png",
+      title: "Plumbing",
+      text: "Basic water repairs and small home plumbing issues.",
+      bullets: ["Small leaks", "Faucets and drains", "Basic drainage issues"]
+    },
+    {
+      image: "2.png",
+      title: "Electrical fixes",
+      text: "Small electrical fixes and lighting replacement as needed.",
+      bullets: ["Lighting replacement", "Outlets and switches", "Small checks and fixes"]
+    },
+    {
+      image: "3.png",
+      title: "Maintenance",
+      text: "General maintenance tasks for homes, small businesses, and properties.",
+      bullets: ["Ongoing maintenance", "Hourly repairs", "Multiple small tasks"]
+    }
+  ]
+};
 
     function setContactLinks() {
   document.querySelectorAll(".whatsapp-link").forEach(link => {
@@ -1493,16 +1763,25 @@ const EMAIL_ADDRESS = "fixshaa0@gmail.com";
 }
 
     function renderCards(containerId, items, cardClass = "card") {
-      const container = document.getElementById(containerId);
-      container.innerHTML = items.map(item => `
-        <article class="${cardClass}">
-          <div class="icon-box">${item[0]}</div>
-          <h3>${item[1]}</h3>
-          <p>${item[2]}</p>
-        </article>
-      `).join("");
-    }
+  const container = document.getElementById(containerId);
 
+  container.innerHTML = items.map((item, index) => `
+    <article class="${cardClass}" data-service-index="${index}">
+      <div class="icon-box">${item[0]}</div>
+      <h3>${item[1]}</h3>
+      <p>${item[2]}</p>
+    </article>
+  `).join("");
+
+  if (containerId === "servicesGrid") {
+    document.querySelectorAll("#servicesGrid .service-card").forEach(card => {
+      card.addEventListener("click", () => {
+        const index = Number(card.dataset.serviceIndex);
+        openServiceModal(index);
+      });
+    });
+  }
+}
     function renderBadges(lang) {
       const grid = document.getElementById("badgesGrid");
       grid.innerHTML = data.badges[lang].map(item => `
@@ -1583,9 +1862,60 @@ const EMAIL_ADDRESS = "fixshaa0@gmail.com";
         document.getElementById("nav").classList.remove("menu-open");
       });
     });
+function openServiceModal(index) {
+  const item = serviceDetails[document.documentElement.lang][index];
 
+  document.getElementById("serviceModalTitle").textContent = item.title;
+  document.getElementById("serviceModalText").textContent = item.text;
+
+  document.getElementById("serviceModalImage").style.backgroundImage =
+    `linear-gradient(180deg, rgba(6,27,51,0.02), rgba(6,27,51,0.18)), url("${item.image}")`;
+
+  document.getElementById("serviceModalList").innerHTML =
+    item.bullets.map(bullet => `<li>${bullet}</li>`).join("");
+
+  document.getElementById("serviceModalCTA").textContent =
+    document.documentElement.lang === "ar"
+      ? "إرسال طلب"
+      : document.documentElement.lang === "en"
+        ? "Send request"
+        : "שליחת בקשה";
+
+  document.getElementById("serviceModal").classList.add("active");
+}
+
+function closeServiceModal() {
+  document.getElementById("serviceModal").classList.remove("active");
+}
+
+document.getElementById("closeServiceModal").addEventListener("click", closeServiceModal);
+
+document.getElementById("serviceModal").addEventListener("click", function(event) {
+  if (event.target.id === "serviceModal") {
+    closeServiceModal();
+  }
+});
     setContactLinks();
     applyLanguage("he");
   </script>
+  <div class="service-modal" id="serviceModal">
+  <div class="service-modal-card">
+    <button class="close-modal" type="button" id="closeServiceModal">×</button>
+
+    <div class="service-modal-image" id="serviceModalImage"></div>
+
+    <div class="service-modal-content">
+      <h3 id="serviceModalTitle"></h3>
+      <p id="serviceModalText"></p>
+
+      <ul id="serviceModalList"></ul>
+
+      <a href="#contact" class="btn btn-turquoise" id="serviceModalCTA">
+        שליחת בקשה
+      </a>
+    </div>
+  </div>
+</div>
+  
 </body>
 </html>
