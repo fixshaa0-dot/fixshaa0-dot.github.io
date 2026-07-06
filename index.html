@@ -7,7 +7,6 @@
   <title>FixSha’a | פיקס שעה</title>
   <meta name="description" content="FixSha’a connects customers with trusted home repair and renovation professionals. Hourly, transparent, fast, and professional home services." />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Heebo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -165,7 +164,6 @@
       filter: brightness(0.96);
     }
 
-    /* Header */
     .site-header {
       position: sticky;
       top: 0;
@@ -255,7 +253,6 @@
       font-size: 24px;
     }
 
-    /* Hero */
     .hero {
       position: relative;
       overflow: hidden;
@@ -372,7 +369,6 @@
       margin: 0;
     }
 
-    /* Trust badges */
     .badges {
       margin-top: -18px;
       position: relative;
@@ -424,7 +420,6 @@
       margin-top: 3px;
     }
 
-    /* Cards */
     .cards-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -461,7 +456,6 @@
       font-size: 16px;
     }
 
-    /* Services */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -476,11 +470,29 @@
       min-height: 190px;
       box-shadow: var(--shadow-soft);
       transition: 0.2s ease;
+      cursor: pointer;
     }
 
     .service-card:hover {
       transform: translateY(-4px);
       border-color: rgba(0, 199, 217, 0.55);
+    }
+
+    .service-card::after {
+      content: "לחצו לפרטים ←";
+      display: block;
+      margin-top: 16px;
+      color: var(--turquoise);
+      font-weight: 900;
+      font-size: 14px;
+    }
+
+    html[lang="ar"] .service-card::after {
+      content: "اضغط للتفاصيل ←";
+    }
+
+    html[lang="en"] .service-card::after {
+      content: "Click for details →";
     }
 
     .service-card .icon-box {
@@ -500,7 +512,6 @@
       font-size: 15px;
     }
 
-    /* Pricing */
     .pricing-card {
       display: grid;
       grid-template-columns: 0.95fr 1.05fr;
@@ -576,7 +587,6 @@
       font-weight: 900;
     }
 
-    /* Why */
     .split {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -623,7 +633,6 @@
       font-weight: 900;
     }
 
-    /* Gallery */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -676,7 +685,6 @@
       font-size: 14px;
     }
 
-    /* FAQ */
     .faq-wrap {
       max-width: 880px;
       margin: 0 auto;
@@ -704,7 +712,6 @@
       margin-top: 12px;
     }
 
-    /* CTA */
     .final-cta {
       text-align: center;
       padding: 62px 32px;
@@ -737,7 +744,6 @@
       flex-wrap: wrap;
     }
 
-    /* Footer */
     footer {
       background: #041525;
       color: #C9D6E2;
@@ -826,124 +832,87 @@
       font-weight: 900;
       box-shadow: 0 18px 44px rgba(0,0,0,0.22);
     }
-    .service-card {
-  cursor: pointer;
-}
 
-.service-card::after {
-  content: "לחצו לפרטים ←";
-  display: block;
-  margin-top: 16px;
-  color: var(--turquoise);
-  font-weight: 900;
-  font-size: 14px;
-}
+    .service-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(6, 27, 51, 0.58);
+      backdrop-filter: blur(8px);
+    }
 
-html[lang="ar"] .service-card::after {
-  content: "اضغط للتفاصيل ←";
-}
+    .service-modal.active {
+      display: flex;
+    }
 
-html[lang="en"] .service-card::after {
-  content: "Click for details →";
-}
+    .service-modal-card {
+      width: min(920px, 100%);
+      max-height: 92vh;
+      overflow: auto;
+      background: white;
+      border-radius: 34px;
+      box-shadow: 0 30px 90px rgba(0,0,0,0.25);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+    }
 
-.service-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 999;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background: rgba(6, 27, 51, 0.58);
-  backdrop-filter: blur(8px);
-}
+    .service-modal-image {
+      min-height: 420px;
+      background-size: cover;
+      background-position: center;
+    }
 
-.service-modal.active {
-  display: flex;
-}
+    .service-modal-content {
+      padding: 38px;
+    }
 
-.service-modal-card {
-  width: min(920px, 100%);
-  max-height: 92vh;
-  overflow: auto;
-  background: white;
-  border-radius: 34px;
-  box-shadow: 0 30px 90px rgba(0,0,0,0.25);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  position: relative;
-}
+    .service-modal-content h3 {
+      font-size: 34px;
+      margin-bottom: 14px;
+    }
 
-.service-modal-image {
-  min-height: 420px;
-  background-size: cover;
-  background-position: center;
-}
+    .service-modal-content p {
+      color: var(--gray);
+      font-size: 18px;
+      margin-bottom: 22px;
+    }
 
-.service-modal-content {
-  padding: 38px;
-}
+    .service-modal-content ul {
+      display: grid;
+      gap: 10px;
+      list-style: none;
+      color: var(--gray);
+      font-weight: 800;
+      margin-bottom: 24px;
+    }
 
-.service-modal-content h3 {
-  font-size: 34px;
-  margin-bottom: 14px;
-}
+    .service-modal-content li::before {
+      content: "✓";
+      color: var(--turquoise);
+      margin-inline-end: 8px;
+    }
 
-.service-modal-content p {
-  color: var(--gray);
-  font-size: 18px;
-  margin-bottom: 22px;
-}
+    .close-modal {
+      position: absolute;
+      top: 16px;
+      inset-inline-end: 16px;
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--navy);
+      color: white;
+      cursor: pointer;
+      font-size: 22px;
+      font-weight: 900;
+      z-index: 2;
+    }
 
-.service-modal-content ul {
-  display: grid;
-  gap: 10px;
-  list-style: none;
-  color: var(--gray);
-  font-weight: 800;
-}
-
-.service-modal-content li::before {
-  content: "✓";
-  color: var(--turquoise);
-  margin-inline-end: 8px;
-}
-
-.close-modal {
-  position: absolute;
-  top: 16px;
-  inset-inline-end: 16px;
-  width: 42px;
-  height: 42px;
-  border: 0;
-  border-radius: 50%;
-  background: var(--navy);
-  color: white;
-  cursor: pointer;
-  font-size: 22px;
-  font-weight: 900;
-}
-
-@media (max-width: 760px) {
-  .service-modal-card {
-    grid-template-columns: 1fr;
-  }
-
-  .service-modal-image {
-    min-height: 260px;
-  }
-
-  .service-modal-content {
-    padding: 26px;
-  }
-
-  .service-modal-content h3 {
-    font-size: 28px;
-  }
-}
-
-    /* Responsive */
     @media (max-width: 1100px) {
       .nav-links,
       .header-cta {
@@ -1059,6 +1028,22 @@ html[lang="en"] .service-card::after {
       .whatsapp-float {
         inset-inline: 14px;
         justify-content: center;
+      }
+
+      .service-modal-card {
+        grid-template-columns: 1fr;
+      }
+
+      .service-modal-image {
+        min-height: 260px;
+      }
+
+      .service-modal-content {
+        padding: 26px;
+      }
+
+      .service-modal-content h3 {
+        font-size: 28px;
       }
     }
   </style>
@@ -1266,7 +1251,7 @@ html[lang="en"] .service-card::after {
         <h3 data-i18n="footerContact">יצירת קשר</h3>
         <a href="tel:+972528767577">052-876-7577</a>
         <a href="https://wa.me/972528767577" class="whatsapp-link" target="_blank">WhatsApp</a>
-        <a href="mailto:hello@fixshaa.com">fixshaa0@gmail.com</a>
+        <a href="mailto:fixshaa0@gmail.com" id="emailLink">fixshaa0@gmail.com</a>
       </div>
 
       <div class="footer-col">
@@ -1276,8 +1261,6 @@ html[lang="en"] .service-card::after {
 
       <div class="footer-col">
         <h3 data-i18n="footerSocial">רשתות</h3>
-
-        <!-- Replace # with your real social media links -->
         <a href="#" id="instagramLink" target="_blank">Instagram</a>
         <a href="#" id="facebookLink" target="_blank">Facebook</a>
         <a href="#" id="linkedinLink" target="_blank">LinkedIn</a>
@@ -1294,19 +1277,28 @@ html[lang="en"] .service-card::after {
     WhatsApp
   </a>
 
+  <div class="service-modal" id="serviceModal">
+    <div class="service-modal-card">
+      <button class="close-modal" type="button" id="closeServiceModal">×</button>
+
+      <div class="service-modal-image" id="serviceModalImage"></div>
+
+      <div class="service-modal-content">
+        <h3 id="serviceModalTitle"></h3>
+        <p id="serviceModalText"></p>
+        <ul id="serviceModalList"></ul>
+        <a href="#contact" class="btn btn-turquoise" id="serviceModalCTA">שליחת בקשה</a>
+      </div>
+    </div>
+  </div>
+
   <script>
     const WHATSAPP_NUMBER = "972528767577";
-
-    /*
-      Replace these links later with your real pages:
-      Example:
-      const INSTAGRAM_URL = "https://www.instagram.com/fixshaa";
-    */
-  const INSTAGRAM_URL = "https://www.instagram.com/fixshaa0?igsh=dW90emlkMzMyaGl6";
-const FACEBOOK_URL = "https://www.facebook.com/share/1Ck9qm53b4/";
-const LINKEDIN_URL = "https://www.linkedin.com/company/fixsha-a/";
-const TIKTOK_URL = "https://www.tiktok.com/@fixshaa3?_r=1&_t=ZS-97msyZxbT62";
-const EMAIL_ADDRESS = "fixshaa0@gmail.com";
+    const INSTAGRAM_URL = "https://www.instagram.com/fixshaa0?igsh=dW90emlkMzMyaGl6";
+    const FACEBOOK_URL = "https://www.facebook.com/share/1Ck9qm53b4/";
+    const LINKEDIN_URL = "https://www.linkedin.com/company/fixsha-a/";
+    const TIKTOK_URL = "https://www.tiktok.com/@fixshaa3?_r=1&_t=ZS-97msyZxbT62";
+    const EMAIL_ADDRESS = "fixshaa0@gmail.com";
 
     const translations = {
       he: {
@@ -1516,45 +1508,15 @@ const EMAIL_ADDRESS = "fixshaa0@gmail.com";
       },
 
       pricing: {
-        he: [
-          "שירות שעתי ברור",
-          "ייתכן תשלום/פיקדון לשעה ראשונה",
-          "חומרים מתומחרים בנפרד לפי צורך",
-          "הסבר שקוף לפני תחילת העבודה"
-        ],
-        ar: [
-          "خدمة واضحة حسب الساعة",
-          "قد يكون هناك حجز/مقدمة للساعة الأولى",
-          "المواد تُحسب بشكل منفصل حسب الحاجة",
-          "شرح شفاف قبل بدء العمل"
-        ],
-        en: [
-          "Clear hourly service",
-          "First-hour booking/deposit concept",
-          "Extra materials quoted separately",
-          "Transparent communication before work starts"
-        ]
+        he: ["שירות שעתי ברור", "ייתכן תשלום/פיקדון לשעה ראשונה", "חומרים מתומחרים בנפרד לפי צורך", "הסבר שקוף לפני תחילת העבודה"],
+        ar: ["خدمة واضحة حسب الساعة", "قد يكون هناك حجز/مقدمة للساعة الأولى", "المواد تُحسب بشكل منفصل حسب الحاجة", "شرح شفاف قبل بدء العمل"],
+        en: ["Clear hourly service", "First-hour booking/deposit concept", "Extra materials quoted separately", "Transparent communication before work starts"]
       },
 
       why: {
-        he: [
-          "בעלי מקצוע מקומיים ואמינים",
-          "תקשורת ברורה לאורך התהליך",
-          "מעקב זמן ושירות לפי שעה",
-          "מתאים לתיקונים קטנים וגם לעבודות שיפוץ"
-        ],
-        ar: [
-          "فنيون محليون وموثوقون",
-          "تواصل واضح طوال العملية",
-          "تتبع وقت وخدمة حسب الساعة",
-          "مناسب للتصليحات الصغيرة وأعمال الترميم"
-        ],
-        en: [
-          "Trusted local professionals",
-          "Clear communication throughout",
-          "Time tracking and hourly service",
-          "Suitable for small repairs and renovation jobs"
-        ]
+        he: ["בעלי מקצוע מקומיים ואמינים", "תקשורת ברורה לאורך התהליך", "מעקב זמן ושירות לפי שעה", "מתאים לתיקונים קטנים וגם לעבודות שיפוץ"],
+        ar: ["فنيون محليون وموثوقون", "تواصل واضح طوال العملية", "تتبع وقت وخدمة حسب الساعة", "مناسب للتصليحات الصغيرة وأعمال الترميم"],
+        en: ["Trusted local professionals", "Clear communication throughout", "Time tracking and hourly service", "Suitable for small repairs and renovation jobs"]
       },
 
       gallery: {
@@ -1589,202 +1551,81 @@ const EMAIL_ADDRESS = "fixshaa0@gmail.com";
           ["How fast can someone arrive?", "It depends on availability, service area, and job urgency."]
         ]
       }
-    }
-     const serviceDetails = {
-  he: [
-    {
-      image: "1.png",
-      title: "תיקונים כלליים",
-      text: "שירות לתיקוני בית קטנים ומהירים — בלי צורך להזמין שיפוץ גדול.",
-      bullets: ["תלייה והתקנות קטנות", "תיקוני דלתות וידיות", "סידורים ותיקונים בבית"]
-    },
-    {
-      image: "4.png",
-      title: "עבודות שיפוץ",
-      text: "עבודות שיפוץ נקודתיות לבית או לעסק קטן, לפי צורך ולפי זמן עבודה.",
-      bullets: ["שדרוגים קטנים", "תיקונים אחרי נזק", "עזרה בפרויקט שיפוץ"]
-    },
-    {
-      image: "3.png",
-      title: "ריצוף ואריחים",
-      text: "תיקוני ריצוף, החלפת אריחים ועבודות גמר נקודתיות.",
-      bullets: ["החלפת אריח שבור", "תיקוני רובה", "עבודות ריצוף קטנות"]
-    },
-    {
-      image: "2.png",
-      title: "צביעה",
-      text: "צביעה נקייה ומסודרת לקירות, תיקוני צבע והכנה לפני צביעה.",
-      bullets: ["צביעת קירות", "תיקוני סדקים", "הכנה וגימור"]
-    },
-    {
-      image: "4.png",
-      title: "גבס וקירות",
-      text: "עבודות גבס ותיקוני קירות בצורה נקייה ומקצועית.",
-      bullets: ["תיקוני קיר", "עבודות גבס קטנות", "סגירות וגימורים"]
-    },
-    {
-      image: "1.png",
-      title: "אינסטלציה",
-      text: "תיקוני מים בסיסיים ובעיות אינסטלציה קטנות בבית.",
-      bullets: ["נזילות קלות", "ברזים וסיפונים", "בעיות ניקוז פשוטות"]
-    },
-    {
-      image: "2.png",
-      title: "חשמל ותאורה",
-      text: "תיקוני חשמל קטנים והחלפת גופי תאורה לפי צורך.",
-      bullets: ["החלפת תאורה", "שקעים ומתגים", "בדיקה ותיקון קטן"]
-    },
-    {
-      image: "3.png",
-      title: "תחזוקה",
-      text: "עבודות תחזוקה כלליות לבית, לעסק קטן או לנכס.",
-      bullets: ["תחזוקה שוטפת", "תיקונים לפי שעה", "עבודות קטנות מצטברות"]
-    }
-  ],
+    };
 
-  ar: [
-    {
-      image: "1.png",
-      title: "تصليحات عامة",
-      text: "خدمة للتصليحات المنزلية الصغيرة والسريعة بدون الحاجة لمشروع ترميم كبير.",
-      bullets: ["تعليق وتركيبات صغيرة", "تصليح أبواب ومقابض", "ترتيبات وتصليحات داخل البيت"]
-    },
-    {
-      image: "4.png",
-      title: "أعمال ترميم",
-      text: "أعمال ترميم محددة للبيت أو المحل، حسب الحاجة وحسب وقت العمل.",
-      bullets: ["تجديدات صغيرة", "تصليحات بعد ضرر", "مساعدة في مشروع ترميم"]
-    },
-    {
-      image: "3.png",
-      title: "تبليط وأرضيات",
-      text: "تصليح أرضيات، تبديل بلاط وأعمال إنهاء صغيرة.",
-      bullets: ["تبديل بلاطة مكسورة", "تصليح روبة", "أعمال تبليط صغيرة"]
-    },
-    {
-      image: "2.png",
-      title: "دهان",
-      text: "دهان نظيف ومرتب للجدران، تصليحات طلاء وتجهيز قبل الدهان.",
-      bullets: ["دهان حيطان", "تصليح تشققات", "تجهيز وتشطيب"]
-    },
-    {
-      image: "4.png",
-      title: "جبس وجدران",
-      text: "أعمال جبس وتصليح جدران بطريقة نظيفة ومهنية.",
-      bullets: ["تصليح جدران", "أعمال جبس صغيرة", "إغلاقات وتشطيبات"]
-    },
-    {
-      image: "1.png",
-      title: "سباكة",
-      text: "تصليحات مياه بسيطة ومشاكل سباكة صغيرة في البيت.",
-      bullets: ["تسريبات خفيفة", "حنفيات وسيفون", "مشاكل تصريف بسيطة"]
-    },
-    {
-      image: "2.png",
-      title: "كهرباء وإنارة",
-      text: "تصليحات كهرباء صغيرة وتبديل إنارة حسب الحاجة.",
-      bullets: ["تبديل إنارة", "مقابس ومفاتيح", "فحص وتصليح بسيط"]
-    },
-    {
-      image: "3.png",
-      title: "صيانة",
-      text: "أعمال صيانة عامة للبيت، للمحل أو للعقار.",
-      bullets: ["صيانة دورية", "تصليحات حسب الساعة", "مجموعة أعمال صغيرة"]
-    }
-  ],
-
-  en: [
-    {
-      image: "1.png",
-      title: "General repairs",
-      text: "Quick small home repairs without needing a full renovation project.",
-      bullets: ["Small installations", "Door and handle fixes", "General home repairs"]
-    },
-    {
-      image: "4.png",
-      title: "Renovation work",
-      text: "Focused renovation support for homes or small businesses, based on actual work time.",
-      bullets: ["Small upgrades", "Damage repair", "Renovation project support"]
-    },
-    {
-      image: "3.png",
-      title: "Flooring and tiling",
-      text: "Tile replacement, flooring fixes, and small finishing jobs.",
-      bullets: ["Broken tile replacement", "Grout repair", "Small tiling jobs"]
-    },
-    {
-      image: "2.png",
-      title: "Painting",
-      text: "Clean wall painting, paint fixes, and preparation before painting.",
-      bullets: ["Wall painting", "Crack repair", "Preparation and finishing"]
-    },
-    {
-      image: "4.png",
-      title: "Gypsum and drywall",
-      text: "Drywall and wall repair work with a clean professional finish.",
-      bullets: ["Wall repairs", "Small drywall work", "Finishing details"]
-    },
-    {
-      image: "1.png",
-      title: "Plumbing",
-      text: "Basic water repairs and small home plumbing issues.",
-      bullets: ["Small leaks", "Faucets and drains", "Basic drainage issues"]
-    },
-    {
-      image: "2.png",
-      title: "Electrical fixes",
-      text: "Small electrical fixes and lighting replacement as needed.",
-      bullets: ["Lighting replacement", "Outlets and switches", "Small checks and fixes"]
-    },
-    {
-      image: "3.png",
-      title: "Maintenance",
-      text: "General maintenance tasks for homes, small businesses, and properties.",
-      bullets: ["Ongoing maintenance", "Hourly repairs", "Multiple small tasks"]
-    }
-  ]
-};
+    const serviceDetails = {
+      he: [
+        { image: "1.png", title: "תיקונים כלליים", text: "שירות לתיקוני בית קטנים ומהירים — בלי צורך להזמין שיפוץ גדול.", bullets: ["תלייה והתקנות קטנות", "תיקוני דלתות וידיות", "סידורים ותיקונים בבית"] },
+        { image: "4.png", title: "עבודות שיפוץ", text: "עבודות שיפוץ נקודתיות לבית או לעסק קטן, לפי צורך ולפי זמן עבודה.", bullets: ["שדרוגים קטנים", "תיקונים אחרי נזק", "עזרה בפרויקט שיפוץ"] },
+        { image: "3.png", title: "ריצוף ואריחים", text: "תיקוני ריצוף, החלפת אריחים ועבודות גמר נקודתיות.", bullets: ["החלפת אריח שבור", "תיקוני רובה", "עבודות ריצוף קטנות"] },
+        { image: "2.png", title: "צביעה", text: "צביעה נקייה ומסודרת לקירות, תיקוני צבע והכנה לפני צביעה.", bullets: ["צביעת קירות", "תיקוני סדקים", "הכנה וגימור"] },
+        { image: "4.png", title: "גבס וקירות", text: "עבודות גבס ותיקוני קירות בצורה נקייה ומקצועית.", bullets: ["תיקוני קיר", "עבודות גבס קטנות", "סגירות וגימורים"] },
+        { image: "1.png", title: "אינסטלציה", text: "תיקוני מים בסיסיים ובעיות אינסטלציה קטנות בבית.", bullets: ["נזילות קלות", "ברזים וסיפונים", "בעיות ניקוז פשוטות"] },
+        { image: "2.png", title: "חשמל ותאורה", text: "תיקוני חשמל קטנים והחלפת גופי תאורה לפי צורך.", bullets: ["החלפת תאורה", "שקעים ומתגים", "בדיקה ותיקון קטן"] },
+        { image: "3.png", title: "תחזוקה", text: "עבודות תחזוקה כלליות לבית, לעסק קטן או לנכס.", bullets: ["תחזוקה שוטפת", "תיקונים לפי שעה", "עבודות קטנות מצטברות"] }
+      ],
+      ar: [
+        { image: "1.png", title: "تصليحات عامة", text: "خدمة للتصليحات المنزلية الصغيرة والسريعة بدون الحاجة لمشروع ترميم كبير.", bullets: ["تعليق وتركيبات صغيرة", "تصليح أبواب ومقابض", "ترتيبات وتصليحات داخل البيت"] },
+        { image: "4.png", title: "أعمال ترميم", text: "أعمال ترميم محددة للبيت أو المحل، حسب الحاجة وحسب وقت العمل.", bullets: ["تجديدات صغيرة", "تصليحات بعد ضرر", "مساعدة في مشروع ترميم"] },
+        { image: "3.png", title: "تبليط وأرضيات", text: "تصليح أرضيات، تبديل بلاط وأعمال إنهاء صغيرة.", bullets: ["تبديل بلاطة مكسورة", "تصليح روبة", "أعمال تبليط صغيرة"] },
+        { image: "2.png", title: "دهان", text: "دهان نظيف ومرتب للجدران، تصليحات طلاء وتجهيز قبل الدهان.", bullets: ["دهان حيطان", "تصليح تشققات", "تجهيز وتشطيب"] },
+        { image: "4.png", title: "جبس وجدران", text: "أعمال جبس وتصليح جدران بطريقة نظيفة ومهنية.", bullets: ["تصليح جدران", "أعمال جبس صغيرة", "إغلاقات وتشطيبات"] },
+        { image: "1.png", title: "سباكة", text: "تصليحات مياه بسيطة ومشاكل سباكة صغيرة في البيت.", bullets: ["تسريبات خفيفة", "حنفيات وسيفون", "مشاكل تصريف بسيطة"] },
+        { image: "2.png", title: "كهرباء وإنارة", text: "تصليحات كهرباء صغيرة وتبديل إنارة حسب الحاجة.", bullets: ["تبديل إنارة", "مقابس ومفاتيح", "فحص وتصليح بسيط"] },
+        { image: "3.png", title: "صيانة", text: "أعمال صيانة عامة للبيت، للمحل أو للعقار.", bullets: ["صيانة دورية", "تصليحات حسب الساعة", "مجموعة أعمال صغيرة"] }
+      ],
+      en: [
+        { image: "1.png", title: "General repairs", text: "Quick small home repairs without needing a full renovation project.", bullets: ["Small installations", "Door and handle fixes", "General home repairs"] },
+        { image: "4.png", title: "Renovation work", text: "Focused renovation support for homes or small businesses, based on actual work time.", bullets: ["Small upgrades", "Damage repair", "Renovation project support"] },
+        { image: "3.png", title: "Flooring and tiling", text: "Tile replacement, flooring fixes, and small finishing jobs.", bullets: ["Broken tile replacement", "Grout repair", "Small tiling jobs"] },
+        { image: "2.png", title: "Painting", text: "Clean wall painting, paint fixes, and preparation before painting.", bullets: ["Wall painting", "Crack repair", "Preparation and finishing"] },
+        { image: "4.png", title: "Gypsum and drywall", text: "Drywall and wall repair work with a clean professional finish.", bullets: ["Wall repairs", "Small drywall work", "Finishing details"] },
+        { image: "1.png", title: "Plumbing", text: "Basic water repairs and small home plumbing issues.", bullets: ["Small leaks", "Faucets and drains", "Basic drainage issues"] },
+        { image: "2.png", title: "Electrical fixes", text: "Small electrical fixes and lighting replacement as needed.", bullets: ["Lighting replacement", "Outlets and switches", "Small checks and fixes"] },
+        { image: "3.png", title: "Maintenance", text: "General maintenance tasks for homes, small businesses, and properties.", bullets: ["Ongoing maintenance", "Hourly repairs", "Multiple small tasks"] }
+      ]
+    };
 
     function setContactLinks() {
-  document.querySelectorAll(".whatsapp-link").forEach(link => {
-    link.href = `https://wa.me/${WHATSAPP_NUMBER}`;
-  });
+      document.querySelectorAll(".whatsapp-link").forEach(link => {
+        link.href = `https://wa.me/${WHATSAPP_NUMBER}`;
+      });
 
-  document.getElementById("instagramLink").href = INSTAGRAM_URL;
-  document.getElementById("facebookLink").href = FACEBOOK_URL;
-  document.getElementById("linkedinLink").href = LINKEDIN_URL;
-  document.getElementById("tiktokLink").href = TIKTOK_URL;
+      document.getElementById("instagramLink").href = INSTAGRAM_URL;
+      document.getElementById("facebookLink").href = FACEBOOK_URL;
+      document.getElementById("linkedinLink").href = LINKEDIN_URL;
+      document.getElementById("tiktokLink").href = TIKTOK_URL;
 
-  const emailLink = document.getElementById("emailLink");
-  if (emailLink) {
-    emailLink.href = `mailto:${EMAIL_ADDRESS}`;
-    emailLink.textContent = EMAIL_ADDRESS;
-  }
-}
+      const emailLink = document.getElementById("emailLink");
+      if (emailLink) {
+        emailLink.href = `mailto:${EMAIL_ADDRESS}`;
+        emailLink.textContent = EMAIL_ADDRESS;
+      }
+    }
 
     function renderCards(containerId, items, cardClass = "card") {
-  const container = document.getElementById(containerId);
+      const container = document.getElementById(containerId);
 
-  container.innerHTML = items.map((item, index) => `
-    <article class="${cardClass}" data-service-index="${index}">
-      <div class="icon-box">${item[0]}</div>
-      <h3>${item[1]}</h3>
-      <p>${item[2]}</p>
-    </article>
-  `).join("");
+      container.innerHTML = items.map((item, index) => `
+        <article class="${cardClass}" data-service-index="${index}">
+          <div class="icon-box">${item[0]}</div>
+          <h3>${item[1]}</h3>
+          <p>${item[2]}</p>
+        </article>
+      `).join("");
 
-  if (containerId === "servicesGrid") {
-    document.querySelectorAll("#servicesGrid .service-card").forEach(card => {
-      card.addEventListener("click", () => {
-        const index = Number(card.dataset.serviceIndex);
-        openServiceModal(index);
-      });
-    });
-  }
-}
+      if (containerId === "servicesGrid") {
+        document.querySelectorAll("#servicesGrid .service-card").forEach(card => {
+          card.addEventListener("click", () => {
+            const index = Number(card.dataset.serviceIndex);
+            openServiceModal(index);
+          });
+        });
+      }
+    }
+
     function renderBadges(lang) {
-      const grid = document.getElementById("badgesGrid");
-      grid.innerHTML = data.badges[lang].map(item => `
+      document.getElementById("badgesGrid").innerHTML = data.badges[lang].map(item => `
         <div class="badge">
           <div class="badge-icon">${item[0]}</div>
           <div>
@@ -1849,6 +1690,28 @@ const EMAIL_ADDRESS = "fixshaa0@gmail.com";
       renderFaq(lang);
     }
 
+    function openServiceModal(index) {
+      const lang = document.documentElement.lang || "he";
+      const item = serviceDetails[lang][index];
+
+      document.getElementById("serviceModalTitle").textContent = item.title;
+      document.getElementById("serviceModalText").textContent = item.text;
+      document.getElementById("serviceModalImage").style.backgroundImage =
+        `linear-gradient(180deg, rgba(6,27,51,0.02), rgba(6,27,51,0.18)), url("${item.image}")`;
+
+      document.getElementById("serviceModalList").innerHTML =
+        item.bullets.map(bullet => `<li>${bullet}</li>`).join("");
+
+      document.getElementById("serviceModalCTA").textContent =
+        lang === "ar" ? "إرسال طلب" : lang === "en" ? "Send request" : "שליחת בקשה";
+
+      document.getElementById("serviceModal").classList.add("active");
+    }
+
+    function closeServiceModal() {
+      document.getElementById("serviceModal").classList.remove("active");
+    }
+
     document.querySelectorAll(".lang-btn, .footer-lang button").forEach(btn => {
       btn.addEventListener("click", () => applyLanguage(btn.dataset.lang));
     });
@@ -1862,60 +1725,19 @@ const EMAIL_ADDRESS = "fixshaa0@gmail.com";
         document.getElementById("nav").classList.remove("menu-open");
       });
     });
-function openServiceModal(index) {
-  const item = serviceDetails[document.documentElement.lang][index];
 
-  document.getElementById("serviceModalTitle").textContent = item.title;
-  document.getElementById("serviceModalText").textContent = item.text;
+    document.getElementById("closeServiceModal").addEventListener("click", closeServiceModal);
 
-  document.getElementById("serviceModalImage").style.backgroundImage =
-    `linear-gradient(180deg, rgba(6,27,51,0.02), rgba(6,27,51,0.18)), url("${item.image}")`;
+    document.getElementById("serviceModal").addEventListener("click", function(event) {
+      if (event.target.id === "serviceModal") {
+        closeServiceModal();
+      }
+    });
 
-  document.getElementById("serviceModalList").innerHTML =
-    item.bullets.map(bullet => `<li>${bullet}</li>`).join("");
+    document.getElementById("serviceModalCTA").addEventListener("click", closeServiceModal);
 
-  document.getElementById("serviceModalCTA").textContent =
-    document.documentElement.lang === "ar"
-      ? "إرسال طلب"
-      : document.documentElement.lang === "en"
-        ? "Send request"
-        : "שליחת בקשה";
-
-  document.getElementById("serviceModal").classList.add("active");
-}
-
-function closeServiceModal() {
-  document.getElementById("serviceModal").classList.remove("active");
-}
-
-document.getElementById("closeServiceModal").addEventListener("click", closeServiceModal);
-
-document.getElementById("serviceModal").addEventListener("click", function(event) {
-  if (event.target.id === "serviceModal") {
-    closeServiceModal();
-  }
-});
     setContactLinks();
     applyLanguage("he");
   </script>
-  <div class="service-modal" id="serviceModal">
-  <div class="service-modal-card">
-    <button class="close-modal" type="button" id="closeServiceModal">×</button>
-
-    <div class="service-modal-image" id="serviceModalImage"></div>
-
-    <div class="service-modal-content">
-      <h3 id="serviceModalTitle"></h3>
-      <p id="serviceModalText"></p>
-
-      <ul id="serviceModalList"></ul>
-
-      <a href="#contact" class="btn btn-turquoise" id="serviceModalCTA">
-        שליחת בקשה
-      </a>
-    </div>
-  </div>
-</div>
-  
 </body>
 </html>
