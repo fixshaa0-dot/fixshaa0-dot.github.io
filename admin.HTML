@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>FixSha’a Admin | Leads</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Heebo:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    :root {
+      --navy: #061B33;
+      --navy2: #0A294A;
+      --turquoise: #00C7D9;
+      --bg: #F8FBFC;
+      --white: #FFFFFF;
+      --text: #101828;
+      --gray: #5D6B78;
+      --border: #E6EEF2;
+      --green: #22C55E;
+      --red: #EF4444;
+      --yellow: #F59E0B;
+      --shadow: 0 20px 60px rgba(6, 27, 51, 0.10);
+      --shadow-soft: 0 10px 30px rgba(6, 27, 51, 0.06);
+      --radius: 28px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Cairo", Arial, sans-serif;
+      background:
+        radial-gradient(circle at 10% 8%, rgba(0, 199, 217, 0.14), transparent 30%),
+        radial-gradient(circle at 88% 14%, rgba(6, 27, 51, 0.08), transparent 30%),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    .app {
+      width: min(1320px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 24px 0 48px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      margin-bottom: 24px;
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(16px);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--navy);
+      font-weight: 900;
+      font-size: 20px;
+    }
+
+    .logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      background: rgba(0, 199, 217, 0.10);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      min-height: 44px;
+      padding: 10px 18px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: 0.18s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--turquoise);
+      color: var(--navy);
+      box-shadow: 0 14px 30px rgba(0, 199, 217, 0.22);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-dark {
+      background: var(--navy);
+      color: white;
+    }
+
+    .btn-soft {
+      background: white;
+      color: var(--navy);
+      border: 1px solid var(--border);
+    }
+
+    .btn-danger {
+      background: rgba(239, 68, 68, 0.10);
+      color: #991B1B;
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .login-shell {
+      min-height: calc(100vh - 80px);
+      display: grid;
+      place-items: center;
+      padding: 30px 0;
+    }
+
+    .login-card {
+      width: min(480px, 100%);
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--border);
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+      padding: 34px;
+      backdrop-filter: blur(18px);
+    }
+
+    .login-card h1 {
+      color: var(--navy);
+      font-size: 34px;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .login-card p {
+      color: var(--gray);
+      margin-bottom: 24px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .field label {
+      color: var(--navy);
+      font-weight: 900;
+      font-size: 14px;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: rgba(248, 251, 252, 0.98);
+      border-radius: 17px;
+      padding: 14px;
+      color: var(--text);
+      outline: none;
+      transition: 0.18s ease;
+    }
+
+    .field textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--turquoise);
+      box-shadow: 0 0 0 4px rgba(0, 199, 217, 0.12);
+      background: white;
+    }
+
+    .alert {
+      display: none;
+      padding: 14px 16px;
+      border-radius: 18px;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .alert.show {
+      display: block;
+    }
+
+    .alert.error {
+      background: rgba(239, 68, 68, 0.10);
+      color: #991B1B;
+      border: 1px solid rgba(239, 68, 68, 0.22);
+    }
+
+    .alert.success {
+      background: rgba(34, 197, 94, 0.12);
+      color: #166534;
+      border: 1px solid rgba(34, 197, 94, 0.24);
+    }
+
+    .dashboard {
+      display: none;
+    }
+
+    .dashboard.active {
+      display: block;
+    }
+
+    .hero-panel {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+
+    .hero-title h1 {
+      color: var(--navy);
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: 1.05;
+      margin-bottom: 8px;
+    }
+
+    .hero-title p {
+      color: var(--gray);
+      font-size: 17px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(14px);
+    }
+
+    .stat-card span {
+      color: var(--gray);
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .stat-card strong {
+      display: block;
+      color: var(--navy);
+      font-size: 34px;
+      line-height: 1;
+      margin-top: 8px;
+    }
+
+    .filters {
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      padding: 18px;
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 22px;
+      display: grid;
+      grid-template-columns: 1.5fr 0.8fr 0.8fr auto;
+      gap: 12px;
+      align-items: end;
+    }
+
+    .leads-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .lead-card {
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 22px;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(14px);
+      display: grid;
+      gap: 18px;
+    }
+
+    .lead-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+    }
+
+    .lead-title h2 {
+      color: var(--navy);
+      font-size: 24px;
+      margin-bottom: 4px;
+    }
+
+    .lead-sub {
+      color: var(--gray);
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .badges-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 900;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .pill.status-new {
+      background: rgba(0, 199, 217, 0.12);
+      color: #075985;
+      border-color: rgba(0, 199, 217, 0.22);
+    }
+
+    .pill.status-contacted {
+      background: rgba(245, 158, 11, 0.14);
+      color: #92400E;
+      border-color: rgba(245, 158, 11, 0.25);
+    }
+
+    .pill.status-converted {
+      background: rgba(34, 197, 94, 0.14);
+      color: #166534;
+      border-color: rgba(34, 197, 94, 0.25);
+    }
+
+    .pill.status-lost {
+      background: rgba(239, 68, 68, 0.10);
+      color: #991B1B;
+      border-color: rgba(239, 68, 68, 0.22);
+    }
+
+    .pill.emergency {
+      background: rgba(239, 68, 68, 0.10);
+      color: #991B1B;
+      border-color: rgba(239, 68, 68, 0.22);
+    }
+
+    .lead-content {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .info-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 13px;
+      min-width: 0;
+    }
+
+    .info-box span {
+      display: block;
+      color: var(--gray);
+      font-size: 12px;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+
+    .info-box strong,
+    .info-box a {
+      color: var(--navy);
+      font-weight: 900;
+      word-break: break-word;
+    }
+
+    .message-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+    }
+
+    .message-box span {
+      display: block;
+      color: var(--gray);
+      font-size: 12px;
+      font-weight: 900;
+      margin-bottom: 6px;
+    }
+
+    .message-box p {
+      color: var(--text);
+      white-space: pre-wrap;
+    }
+
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .media-item {
+      position: relative;
+      overflow: hidden;
+      min-height: 150px;
+      border-radius: 18px;
+      background: #EAF2F5;
+      border: 1px solid var(--border);
+      display: grid;
+      place-items: center;
+    }
+
+    .media-item img,
+    .media-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .media-item a {
+      position: absolute;
+      inset-inline-start: 10px;
+      bottom: 10px;
+      background: rgba(255, 255, 255, 0.94);
+      color: var(--navy);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .lead-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+
+    .status-control {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .status-control select {
+      min-height: 44px;
+      border: 1px solid var(--border);
+      background: white;
+      border-radius: 999px;
+      padding: 8px 14px;
+      color: var(--navy);
+      font-weight: 900;
+      outline: none;
+    }
+
+    .empty-state {
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 42px;
+      text-align: center;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .empty-state h2 {
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .empty-state p {
+      color: var(--gray);
+    }
+
+    .loader {
+      display: none;
+      text-align: center;
+      color: var(--navy);
+      font-weight: 900;
+      padding: 30px;
+    }
+
+    .loader.show {
+      display: block;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 980px) {
+      .hero-panel,
+      .lead-content,
+      .filters {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .badges-row {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .app {
+        width: min(100% - 24px, 1320px);
+        padding-top: 14px;
+      }
+
+      .topbar,
+      .lead-head,
+      .lead-actions {
+        display: grid;
+      }
+
+      .top-actions {
+        justify-content: stretch;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .stats-grid,
+      .info-grid,
+      .media-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .login-card,
+      .lead-card,
+      .filters {
+        padding: 20px;
+      }
+
+      .brand {
+        font-size: 17px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <div class="topbar">
+      <a href="index.html" class="brand">
+        <div class="logo">
+          <img src="logo.png" alt="FixSha’a logo" onerror="this.style.display='none'">
+        </div>
+        <span>FixSha’a Admin</span>
+      </a>
+
+      <div class="top-actions">
+        <button class="btn btn-soft" id="refreshBtn" type="button">تحديث</button>
+        <button class="btn btn-danger hidden" id="logoutBtn" type="button">تسجيل خروج</button>
+      </div>
+    </div>
+
+    <section class="login-shell" id="loginView">
+      <form class="login-card" id="loginForm">
+        <h1>لوحة الطلبات</h1>
+        <p>سجّلي دخولك لعرض طلبات العملاء والصور وتغيير حالة الطلب.</p>
+
+        <div class="alert error" id="loginError"></div>
+
+        <div class="field">
+          <label for="adminEmail">الإيميل</label>
+          <input id="adminEmail" type="email" autocomplete="email" required placeholder="fixshaa0@gmail.com">
+        </div>
+
+        <div class="field">
+          <label for="adminPassword">كلمة المرور</label>
+          <input id="adminPassword" type="password" autocomplete="current-password" required placeholder="••••••••">
+        </div>
+
+        <button class="btn btn-primary" type="submit" id="loginBtn">دخول</button>
+      </form>
+    </section>
+
+    <main class="dashboard" id="dashboardView">
+      <div class="hero-panel">
+        <div class="hero-title">
+          <h1>طلبات العملاء</h1>
+          <p>هنا بتشوفي كل الـ leads القادمة من صفحة الهبوط قبل تحويلها إلى job request.</p>
+        </div>
+
+        <a href="index.html" class="btn btn-soft">فتح الموقع</a>
+      </div>
+
+      <section class="stats-grid">
+        <div class="stat-card">
+          <span>كل الطلبات</span>
+          <strong id="statTotal">0</strong>
+        </div>
+        <div class="stat-card">
+          <span>جديدة</span>
+          <strong id="statNew">0</strong>
+        </div>
+        <div class="stat-card">
+          <span>تم التواصل</span>
+          <strong id="statContacted">0</strong>
+        </div>
+        <div class="stat-card">
+          <span>تم التحويل</span>
+          <strong id="statConverted">0</strong>
+        </div>
+      </section>
+
+      <section class="filters">
+        <div class="field">
+          <label for="searchInput">بحث</label>
+          <input id="searchInput" type="search" placeholder="ابحثي بالاسم، الهاتف، المدينة أو الخدمة...">
+        </div>
+
+        <div class="field">
+          <label for="statusFilter">الحالة</label>
+          <select id="statusFilter">
+            <option value="all">كل الحالات</option>
+            <option value="new">جديد</option>
+            <option value="contacted">تم التواصل</option>
+            <option value="converted">تم التحويل</option>
+            <option value="lost">غير مناسب</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="sourceFilter">المصدر</label>
+          <select id="sourceFilter">
+            <option value="all">كل المصادر</option>
+            <option value="website">Website</option>
+            <option value="facebook">Facebook</option>
+            <option value="instagram">Instagram</option>
+            <option value="whatsapp">WhatsApp</option>
+            <option value="tiktok">TikTok</option>
+            <option value="google">Google</option>
+            <option value="referral">Referral</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <button class="btn btn-dark" id="applyFiltersBtn" type="button">تطبيق</button>
+      </section>
+
+      <div class="alert error" id="dashboardError"></div>
+      <div class="alert success" id="dashboardSuccess"></div>
+
+      <div class="loader" id="loader">جاري تحميل الطلبات...</div>
+
+      <section class="leads-grid" id="leadsGrid"></section>
+    </main>
+  </div>
+
+  <script>
+    const SUPABASE_URL = "PASTE_YOUR_PROJECT_URL_HERE";
+    const SUPABASE_ANON_KEY = "PASTE_YOUR_ANON_OR_PUBLISHABLE_KEY_HERE";
+    const STORAGE_BUCKET = "job-media";
+
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    let currentUser = null;
+    let allLeads = [];
+
+    const loginView = document.getElementById("loginView");
+    const dashboardView = document.getElementById("dashboardView");
+    const loginForm = document.getElementById("loginForm");
+    const loginBtn = document.getElementById("loginBtn");
+    const loginError = document.getElementById("loginError");
+    const logoutBtn = document.getElementById("logoutBtn");
+    const refreshBtn = document.getElementById("refreshBtn");
+    const loader = document.getElementById("loader");
+    const leadsGrid = document.getElementById("leadsGrid");
+    const dashboardError = document.getElementById("dashboardError");
+    const dashboardSuccess = document.getElementById("dashboardSuccess");
+    const searchInput = document.getElementById("searchInput");
+    const statusFilter = document.getElementById("statusFilter");
+    const sourceFilter = document.getElementById("sourceFilter");
+    const applyFiltersBtn = document.getElementById("applyFiltersBtn");
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function formatDate(value) {
+      if (!value) return "—";
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return "—";
+      return date.toLocaleString("he-IL", {
+        dateStyle: "short",
+        timeStyle: "short"
+      });
+    }
+
+    function normalizeSource(source) {
+      return String(source || "").toLowerCase();
+    }
+
+    function showAlert(element, message) {
+      element.textContent = message;
+      element.classList.add("show");
+      setTimeout(() => element.classList.remove("show"), 4500);
+    }
+
+    function hideAlert(element) {
+      element.textContent = "";
+      element.classList.remove("show");
+    }
+
+    function setLoading(isLoading) {
+      loader.classList.toggle("show", isLoading);
+    }
+
+    function showDashboard() {
+      loginView.classList.add("hidden");
+      dashboardView.classList.add("active");
+      logoutBtn.classList.remove("hidden");
+    }
+
+    function showLogin() {
+      loginView.classList.remove("hidden");
+      dashboardView.classList.remove("active");
+      logoutBtn.classList.add("hidden");
+    }
+
+    async function requireAdmin() {
+      const { data: sessionData } = await supabaseClient.auth.getSession();
+      const session = sessionData.session;
+
+      if (!session) {
+        currentUser = null;
+        showLogin();
+        return false;
+      }
+
+      currentUser = session.user;
+
+      const { data, error } = await supabaseClient
+        .from("users")
+        .select("id, role, full_name, email")
+        .eq("id", currentUser.id)
+        .single();
+
+      if (error || !data || data.role !== "admin") {
+        await supabaseClient.auth.signOut();
+        currentUser = null;
+        showLogin();
+        showAlert(loginError, "هذا المستخدم ليس أدمن. تأكدي أنك أضفتيه في public.users بدور admin.");
+        return false;
+      }
+
+      showDashboard();
+      return true;
+    }
+
+    async function login(email, password) {
+      loginBtn.disabled = true;
+      loginBtn.textContent = "جاري الدخول...";
+      hideAlert(loginError);
+
+      const { error } = await supabaseClient.auth.signInWithPassword({
+        email,
+        password
+      });
+
+      loginBtn.disabled = false;
+      loginBtn.textContent = "دخول";
+
+      if (error) {
+        showAlert(loginError, "فشل تسجيل الدخول. تأكدي من الإيميل وكلمة المرور.");
+        return;
+      }
+
+      const isAdmin = await requireAdmin();
+      if (isAdmin) {
+        await loadLeads();
+      }
+    }
+
+    async function logout() {
+      await supabaseClient.auth.signOut();
+      currentUser = null;
+      allLeads = [];
+      leadsGrid.innerHTML = "";
+      showLogin();
+    }
+
+    function updateStats(leads) {
+      document.getElementById("statTotal").textContent = leads.length;
+      document.getElementById("statNew").textContent = leads.filter(l => l.status === "new").length;
+      document.getElementById("statContacted").textContent = leads.filter(l => l.status === "contacted").length;
+      document.getElementById("statConverted").textContent = leads.filter(l => l.status === "converted").length;
+    }
+
+    function getFilteredLeads() {
+      const q = searchInput.value.trim().toLowerCase();
+      const status = statusFilter.value;
+      const source = sourceFilter.value;
+
+      return allLeads.filter(lead => {
+        const searchable = [
+          lead.full_name,
+          lead.phone,
+          lead.city,
+          lead.area,
+          lead.service_needed,
+          lead.message,
+          lead.additional_notes,
+          lead.marketing_source,
+          lead.source
+        ].join(" ").toLowerCase();
+
+        const matchesSearch = !q || searchable.includes(q);
+        const matchesStatus = status === "all" || lead.status === status;
+
+        const leadSource = normalizeSource(lead.marketing_source || lead.source);
+        const matchesSource = source === "all" || leadSource === source.toLowerCase();
+
+        return matchesSearch && matchesStatus && matchesSource;
+      });
+    }
+
+    async function enrichMediaFiles(leads) {
+      const enriched = [];
+
+      for (const lead of leads) {
+        const mediaFiles = Array.isArray(lead.media_files) ? lead.media_files : [];
+
+        const signedMedia = [];
+
+        for (const media of mediaFiles) {
+          if (!media.storage_path) continue;
+
+          const { data, error } = await supabaseClient
+            .storage
+            .from(STORAGE_BUCKET)
+            .createSignedUrl(media.storage_path, 60 * 60);
+
+          signedMedia.push({
+            ...media,
+            signed_url: error ? null : data.signedUrl,
+            signed_error: error ? error.message : null
+          });
+        }
+
+        enriched.push({
+          ...lead,
+          signed_media: signedMedia
+        });
+      }
+
+      return enriched;
+    }
+
+    async function loadLeads() {
+      hideAlert(dashboardError);
+      setLoading(true);
+      leadsGrid.innerHTML = "";
+
+      const { data, error } = await supabaseClient
+        .from("leads")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      setLoading(false);
+
+      if (error) {
+        console.error(error);
+        showAlert(dashboardError, "لم نستطع تحميل الطلبات. افحصي صلاحيات RLS أو تأكدي أن المستخدم أدمن.");
+        return;
+      }
+
+      allLeads = await enrichMediaFiles(data || []);
+      renderLeads();
+    }
+
+    function statusLabel(status) {
+      const labels = {
+        new: "جديد",
+        contacted: "تم التواصل",
+        converted: "تم التحويل",
+        lost: "غير مناسب"
+      };
+      return labels[status] || status || "—";
+    }
+
+    function renderMedia(mediaFiles) {
+      if (!mediaFiles || mediaFiles.length === 0) {
+        return `
+          <div class="empty-state" style="padding:22px;">
+            <h2 style="font-size:18px;">لا توجد ملفات</h2>
+            <p>لم يرفق العميل صورًا أو فيديوهات.</p>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="media-grid">
+          ${mediaFiles.map(media => {
+            const url = media.signed_url;
+            const name = escapeHtml(media.original_name || "media");
+            const type = media.media_type || media.mime_type || "";
+
+            if (!url) {
+              return `
+                <div class="media-item">
+                  <span style="padding:16px;text-align:center;color:#991B1B;font-weight:900;">
+                    تعذر فتح الملف
+                  </span>
+                </div>
+              `;
+            }
+
+            if (String(type).includes("video")) {
+              return `
+                <div class="media-item">
+                  <video src="${url}" controls playsinline></video>
+                  <a href="${url}" target="_blank">فتح</a>
+                </div>
+              `;
+            }
+
+            return `
+              <div class="media-item">
+                <img src="${url}" alt="${name}">
+                <a href="${url}" target="_blank">فتح</a>
+              </div>
+            `;
+          }).join("")}
+        </div>
+      `;
+    }
+
+    function renderLeads() {
+      const leads = getFilteredLeads();
+      updateStats(allLeads);
+
+      if (leads.length === 0) {
+        leadsGrid.innerHTML = `
+          <div class="empty-state">
+            <h2>لا توجد طلبات مطابقة</h2>
+            <p>جربي تغيير الفلاتر أو اضغطي تحديث.</p>
+          </div>
+        `;
+        return;
+      }
+
+      leadsGrid.innerHTML = leads.map(lead => {
+        const phone = escapeHtml(lead.phone || "");
+        const phoneForWhatsapp = phone.replace(/[^\d]/g, "").replace(/^0/, "972");
+        const status = escapeHtml(lead.status || "new");
+        const statusClass = `status-${status}`;
+
+        return `
+          <article class="lead-card" data-lead-id="${lead.id}">
+            <div class="lead-head">
+              <div class="lead-title">
+                <h2>${escapeHtml(lead.full_name || "بدون اسم")}</h2>
+                <div class="lead-sub">
+                  ${escapeHtml(lead.service_needed || "بدون خدمة")} · ${formatDate(lead.created_at)}
+                </div>
+              </div>
+
+              <div class="badges-row">
+                <span class="pill ${statusClass}">${statusLabel(status)}</span>
+                ${lead.is_emergency ? `<span class="pill emergency">طارئ</span>` : ""}
+                <span class="pill status-new">${escapeHtml(lead.source || "website")}</span>
+              </div>
+            </div>
+
+            <div class="lead-content">
+              <div style="display:grid; gap:14px;">
+                <div class="info-grid">
+                  <div class="info-box">
+                    <span>الهاتف</span>
+                    <a href="tel:${phone}">${phone || "—"}</a>
+                  </div>
+
+                  <div class="info-box">
+                    <span>واتساب</span>
+                    <a href="https://wa.me/${phoneForWhatsapp}" target="_blank">فتح واتساب</a>
+                  </div>
+
+                  <div class="info-box">
+                    <span>المدينة</span>
+                    <strong>${escapeHtml(lead.city || "—")}</strong>
+                  </div>
+
+                  <div class="info-box">
+                    <span>المنطقة</span>
+                    <strong>${escapeHtml(lead.area || "—")}</strong>
+                  </div>
+
+                  <div class="info-box">
+                    <span>تاريخ مفضل</span>
+                    <strong>${escapeHtml(lead.preferred_date || "—")}</strong>
+                  </div>
+
+                  <div class="info-box">
+                    <span>وقت مفضل</span>
+                    <strong>${escapeHtml(lead.preferred_time_window || "—")}</strong>
+                  </div>
+
+                  <div class="info-box">
+                    <span>مصدر التسويق</span>
+                    <strong>${escapeHtml(lead.marketing_source || lead.source || "—")}</strong>
+                  </div>
+
+                  <div class="info-box">
+                    <span>لغة الفورم</span>
+                    <strong>${escapeHtml(lead.form_language || "—")}</strong>
+                  </div>
+                </div>
+
+                <div class="message-box">
+                  <span>وصف المشكلة</span>
+                  <p>${escapeHtml(lead.message || "—")}</p>
+                </div>
+
+                <div class="message-box">
+                  <span>ملاحظات إضافية</span>
+                  <p>${escapeHtml(lead.additional_notes || "—")}</p>
+                </div>
+              </div>
+
+              <div>
+                ${renderMedia(lead.signed_media)}
+              </div>
+            </div>
+
+            <div class="lead-actions">
+              <div class="status-control">
+                <label style="font-weight:900;color:var(--navy);">تغيير الحالة:</label>
+                <select data-status-select="${lead.id}">
+                  <option value="new" ${lead.status === "new" ? "selected" : ""}>جديد</option>
+                  <option value="contacted" ${lead.status === "contacted" ? "selected" : ""}>تم التواصل</option>
+                  <option value="converted" ${lead.status === "converted" ? "selected" : ""}>تم التحويل</option>
+                  <option value="lost" ${lead.status === "lost" ? "selected" : ""}>غير مناسب</option>
+                </select>
+                <button class="btn btn-dark" type="button" data-save-status="${lead.id}">
+                  حفظ الحالة
+                </button>
+              </div>
+
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <a class="btn btn-soft" href="tel:${phone}">اتصال</a>
+                <a class="btn btn-primary" href="https://wa.me/${phoneForWhatsapp}" target="_blank">واتساب</a>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      document.querySelectorAll("[data-save-status]").forEach(button => {
+        button.addEventListener("click", async () => {
+          const leadId = button.dataset.saveStatus;
+          const select = document.querySelector(`[data-status-select="${leadId}"]`);
+          await updateLeadStatus(leadId, select.value, button);
+        });
+      });
+    }
+
+    async function updateLeadStatus(leadId, newStatus, button) {
+      hideAlert(dashboardError);
+      hideAlert(dashboardSuccess);
+
+      button.disabled = true;
+      const originalText = button.textContent;
+      button.textContent = "جاري الحفظ...";
+
+      const { error } = await supabaseClient
+        .from("leads")
+        .update({ status: newStatus })
+        .eq("id", leadId);
+
+      button.disabled = false;
+      button.textContent = originalText;
+
+      if (error) {
+        console.error(error);
+        showAlert(dashboardError, "فشل تحديث الحالة.");
+        return;
+      }
+
+      allLeads = allLeads.map(lead =>
+        lead.id === leadId ? { ...lead, status: newStatus } : lead
+      );
+
+      showAlert(dashboardSuccess, "تم تحديث حالة الطلب.");
+      renderLeads();
+    }
+
+    loginForm.addEventListener("submit", async event => {
+      event.preventDefault();
+      const email = document.getElementById("adminEmail").value.trim();
+      const password = document.getElementById("adminPassword").value;
+      await login(email, password);
+    });
+
+    logoutBtn.addEventListener("click", logout);
+
+    refreshBtn.addEventListener("click", async () => {
+      if (await requireAdmin()) {
+        await loadLeads();
+      }
+    });
+
+    applyFiltersBtn.addEventListener("click", renderLeads);
+    searchInput.addEventListener("input", renderLeads);
+    statusFilter.addEventListener("change", renderLeads);
+    sourceFilter.addEventListener("change", renderLeads);
+
+    async function boot() {
+      const isAdmin = await requireAdmin();
+      if (isAdmin) {
+        await loadLeads();
+      }
+    }
+
+    boot();
+  </script>
+</body>
+</html>
