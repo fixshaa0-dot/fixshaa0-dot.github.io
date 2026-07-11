@@ -912,6 +912,328 @@
       font-weight: 900;
       z-index: 2;
     }
+    .lead-section {
+  background:
+    radial-gradient(circle at 10% 10%, rgba(0, 199, 217, 0.12), transparent 30%),
+    radial-gradient(circle at 90% 20%, rgba(6, 27, 51, 0.08), transparent 26%),
+    var(--bg);
+}
+
+.lead-container {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 42px;
+  align-items: start;
+}
+
+.lead-copy h2 {
+  font-size: clamp(34px, 5vw, 58px);
+  line-height: 1.08;
+  margin-bottom: 16px;
+}
+
+.lead-copy p {
+  color: var(--gray);
+  font-size: 19px;
+  margin-bottom: 24px;
+}
+
+.lead-trust-card {
+  display: grid;
+  gap: 12px;
+  padding: 24px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(230, 238, 242, 0.9);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(14px);
+  color: var(--gray);
+  font-weight: 800;
+}
+
+.lead-panel {
+  position: relative;
+}
+
+.lead-form,
+.lead-success {
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(230, 238, 242, 0.95);
+  border-radius: 34px;
+  padding: 32px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.field label {
+  color: var(--navy);
+  font-weight: 900;
+  font-size: 14px;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  background: rgba(248, 251, 252, 0.96);
+  border-radius: 17px;
+  padding: 14px;
+  color: var(--text);
+  outline: none;
+  font: inherit;
+  transition: 0.18s ease;
+}
+
+.field textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--turquoise);
+  box-shadow: 0 0 0 4px rgba(0, 199, 217, 0.12);
+  background: white;
+}
+
+.form-error {
+  display: none;
+  padding: 14px 16px;
+  border-radius: 17px;
+  background: rgba(239, 68, 68, 0.10);
+  border: 1px solid rgba(239, 68, 68, 0.22);
+  color: #991B1B;
+  font-weight: 900;
+  margin-bottom: 16px;
+}
+
+.form-error.active {
+  display: block;
+}
+
+.upload-zone {
+  min-height: 156px;
+  border: 1.5px dashed rgba(0, 199, 217, 0.55);
+  border-radius: 24px;
+  display: grid;
+  place-items: center;
+  gap: 6px;
+  text-align: center;
+  padding: 24px;
+  cursor: pointer;
+  background: rgba(0, 199, 217, 0.06);
+  transition: 0.2s ease;
+}
+
+.upload-zone:hover,
+.upload-zone.dragging {
+  background: rgba(0, 199, 217, 0.11);
+  transform: translateY(-2px);
+}
+
+.upload-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  background: var(--navy);
+  color: white;
+  font-size: 28px;
+  font-weight: 900;
+}
+
+.upload-zone strong {
+  color: var(--navy);
+  font-size: 16px;
+}
+
+.upload-zone span {
+  color: var(--gray);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.file-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.file-preview {
+  border: 1px solid var(--border);
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+
+.file-thumb {
+  height: 128px;
+  background: #EEF5F7;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.file-thumb img,
+.file-thumb video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.file-info {
+  padding: 12px;
+}
+
+.file-name {
+  color: var(--navy);
+  font-weight: 900;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-meta {
+  color: var(--gray);
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+.progress-track {
+  height: 7px;
+  border-radius: 999px;
+  background: #E6EEF2;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  border-radius: inherit;
+  background: var(--turquoise);
+  transition: width 0.2s ease;
+}
+
+.remove-file {
+  width: 100%;
+  border: 0;
+  border-radius: 999px;
+  margin-top: 10px;
+  padding: 8px 10px;
+  background: rgba(239, 68, 68, 0.10);
+  color: #991B1B;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.lead-submit {
+  width: 100%;
+  min-height: 58px;
+  font-size: 17px;
+}
+
+.lead-submit:disabled {
+  opacity: 0.72;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-spinner {
+  display: none;
+  width: 18px;
+  height: 18px;
+  border: 3px solid rgba(6, 27, 51, 0.25);
+  border-top-color: var(--navy);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.lead-submit.loading .btn-spinner {
+  display: inline-block;
+}
+
+.lead-success {
+  text-align: center;
+  animation: successIn 0.35s ease both;
+}
+
+.success-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 18px;
+  background: rgba(34, 197, 94, 0.14);
+  color: #15803D;
+  font-size: 36px;
+  font-weight: 900;
+}
+
+.lead-success h3 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.lead-success p {
+  color: var(--gray);
+  font-size: 18px;
+  margin-bottom: 22px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes successIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 900px) {
+  .lead-container,
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .lead-form,
+  .lead-success {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 560px) {
+  .file-preview-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
     @media (max-width: 1100px) {
       .nav-links,
@@ -1047,6 +1369,8 @@
       }
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js"></script>
 </head>
 
 <body>
@@ -1212,7 +1536,7 @@
       </div>
     </section>
 
-    <section class="section" id="contact">
+    <!-- <section class="section" id="contact">
       <div class="container">
         <div class="final-cta">
           <h2 data-i18n="finalTitle">צריכים בעל מקצוע אמין לבית?</h2>
@@ -1228,7 +1552,144 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
+    <section class="section lead-section" id="contact">
+  <div class="container lead-container">
+    <div class="lead-copy">
+      <div class="kicker" data-i18n="leadKicker">בקשה להצעת מחיר</div>
+      <h2 data-i18n="leadTitle">קבלו הצעת מחיר חינם לתיקון הבית</h2>
+      <p data-i18n="leadSubtitle">ספרו לנו על הבעיה ונחזור אליכם בהקדם.</p>
+
+      <div class="lead-trust-card">
+        <div data-i18n="leadTrust1">✓ הטופס מיועד לבדיקה ראשונית בלבד</div>
+        <div data-i18n="leadTrust2">✓ לא נוצרת הזמנת עבודה לפני שיחה עם הצוות</div>
+        <div data-i18n="leadTrust3">✓ אפשר לצרף תמונות או וידאו להבנה מהירה יותר</div>
+      </div>
+    </div>
+
+    <div class="lead-panel">
+      <form class="lead-form" id="leadForm" novalidate>
+        <div class="form-error" id="formError"></div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="leadFullName" data-i18n="labelFullName">שם מלא</label>
+            <input id="leadFullName" name="fullName" type="text" autocomplete="name" data-placeholder-i18n="placeholderFullName" required>
+          </div>
+
+          <div class="field">
+            <label for="leadPhone" data-i18n="labelPhone">טלפון</label>
+            <input id="leadPhone" name="phone" type="tel" autocomplete="tel" inputmode="tel" data-placeholder-i18n="placeholderPhone" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="leadCity" data-i18n="labelCity">עיר</label>
+            <input id="leadCity" name="city" type="text" data-placeholder-i18n="placeholderCity" required>
+          </div>
+
+          <div class="field">
+            <label for="leadArea" data-i18n="labelArea">אזור / שכונה</label>
+            <input id="leadArea" name="area" type="text" data-placeholder-i18n="placeholderArea">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="leadService" data-i18n="labelServiceCategory">סוג שירות</label>
+            <select id="leadService" name="serviceCategory" required>
+              <option value="" data-i18n="optionChooseService">בחרו שירות</option>
+              <option value="Small Repairs" data-i18n="serviceSmallRepairs">Small Repairs</option>
+              <option value="Flooring & Tile Repair" data-i18n="serviceFlooring">Flooring & Tile Repair</option>
+              <option value="Bathroom Repairs" data-i18n="serviceBathroom">Bathroom Repairs</option>
+              <option value="Painting & Wall Repair" data-i18n="servicePainting">Painting & Wall Repair</option>
+              <option value="Light Plumbing" data-i18n="servicePlumbing">Light Plumbing</option>
+              <option value="Installations" data-i18n="serviceInstallations">Installations</option>
+              <option value="Emergency Work" data-i18n="serviceEmergency">Emergency Work</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="leadEmergency" data-i18n="labelEmergency">האם זה דחוף?</label>
+            <select id="leadEmergency" name="isEmergency">
+              <option value="no" data-i18n="optionNo">No</option>
+              <option value="yes" data-i18n="optionYes">Yes</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="leadProblem" data-i18n="labelProblem">תיאור הבעיה</label>
+          <textarea id="leadProblem" name="problemDescription" data-placeholder-i18n="placeholderProblem" required></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="leadPreferredDate" data-i18n="labelPreferredDate">תאריך מועדף</label>
+            <input id="leadPreferredDate" name="preferredDate" type="date">
+          </div>
+
+          <div class="field">
+            <label for="leadPreferredTime" data-i18n="labelPreferredTime">זמן מועדף</label>
+            <select id="leadPreferredTime" name="preferredTimeWindow">
+              <option value="" data-i18n="optionFlexible">Flexible</option>
+              <option value="morning" data-i18n="optionMorning">Morning</option>
+              <option value="afternoon" data-i18n="optionAfternoon">Afternoon</option>
+              <option value="evening" data-i18n="optionEvening">Evening</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="leadMarketingSource" data-i18n="labelMarketingSource">איך שמעתם עלינו?</label>
+          <select id="leadMarketingSource" name="marketingSource">
+            <option value="Website">Website</option>
+            <option value="Facebook">Facebook</option>
+            <option value="Instagram">Instagram</option>
+            <option value="WhatsApp">WhatsApp</option>
+            <option value="TikTok">TikTok</option>
+            <option value="Google">Google</option>
+            <option value="Referral">Referral</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="leadNotes" data-i18n="labelAdditionalNotes">הערות נוספות</label>
+          <textarea id="leadNotes" name="additionalNotes" data-placeholder-i18n="placeholderNotes"></textarea>
+        </div>
+
+        <div class="field">
+          <label data-i18n="labelUpload">תמונות / וידאו</label>
+
+          <div class="upload-zone" id="uploadZone">
+            <input id="leadFiles" name="files" type="file" accept="image/*,video/*" multiple hidden>
+            <div class="upload-icon">＋</div>
+            <strong data-i18n="uploadTitle">גררו לכאן קבצים או לחצו להעלאה</strong>
+            <span data-i18n="uploadHint">Images and videos only. Max 50MB per file.</span>
+          </div>
+
+          <div class="file-preview-grid" id="filePreviewGrid"></div>
+        </div>
+
+        <button class="btn btn-turquoise lead-submit" id="leadSubmitBtn" type="submit">
+          <span class="btn-spinner" id="leadSpinner"></span>
+          <span data-i18n="leadSubmit">שלח בקשה</span>
+        </button>
+      </form>
+
+      <div class="lead-success" id="leadSuccess" hidden>
+        <div class="success-icon">✓</div>
+        <h3 data-i18n="successTitle">הבקשה התקבלה בהצלחה.</h3>
+        <p data-i18n="successText">ניצור איתך קשר בקרוב.</p>
+        <a href="https://wa.me/972528767577" target="_blank" class="btn btn-secondary whatsapp-link" data-i18n="whatsappBtn">
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
   </main>
 
   <footer>
@@ -1299,6 +1760,14 @@
     const LINKEDIN_URL = "https://www.linkedin.com/company/fixsha-a/";
     const TIKTOK_URL = "https://www.tiktok.com/@fixshaa3?_r=1&_t=ZS-97msyZxbT62";
     const EMAIL_ADDRESS = "fixshaa0@gmail.com";
+    const SUPABASE_URL = "https://brksmrurhzvlhiqxvbvs.supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_W1Mojtc5f0r-jxJ69ANZxw_Qj-aj1Gh";
+    const STORAGE_BUCKET = "job-media";
+    const MAX_FILE_SIZE = 50 * 1024 * 1024;
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+let selectedLeadFiles = [];
+let isLeadSubmitting = false;
 
     const translations = {
       he: {
@@ -1433,6 +1902,169 @@
         whatsappFloat: "WhatsApp"
       }
     };
+    const leadTranslations = {
+  he: {
+    leadKicker: "בקשה להצעת מחיר",
+    leadTitle: "קבלו הצעת מחיר חינם לתיקון הבית",
+    leadSubtitle: "ספרו לנו על הבעיה ונחזור אליכם בהקדם.",
+    leadTrust1: "✓ הטופס מיועד לבדיקה ראשונית בלבד",
+    leadTrust2: "✓ לא נוצרת הזמנת עבודה לפני שיחה עם הצוות",
+    leadTrust3: "✓ אפשר לצרף תמונות או וידאו להבנה מהירה יותר",
+    labelFullName: "שם מלא",
+    labelPhone: "טלפון",
+    labelCity: "עיר",
+    labelArea: "אזור / שכונה",
+    labelServiceCategory: "סוג שירות",
+    labelEmergency: "האם זה דחוף?",
+    labelProblem: "תיאור הבעיה",
+    labelPreferredDate: "תאריך מועדף",
+    labelPreferredTime: "זמן מועדף",
+    labelMarketingSource: "איך שמעתם עלינו?",
+    labelAdditionalNotes: "הערות נוספות",
+    labelUpload: "תמונות / וידאו",
+    placeholderFullName: "השם שלכם",
+    placeholderPhone: "052-000-0000",
+    placeholderCity: "ירושלים",
+    placeholderArea: "בית חנינא / מרכז העיר...",
+    placeholderProblem: "תארו בקצרה מה צריך לתקן",
+    placeholderNotes: "כל פרט נוסף שיכול לעזור לנו",
+    optionChooseService: "בחרו שירות",
+    optionYes: "כן",
+    optionNo: "לא",
+    optionFlexible: "גמיש",
+    optionMorning: "בוקר",
+    optionAfternoon: "צהריים",
+    optionEvening: "ערב",
+    uploadTitle: "גררו לכאן קבצים או לחצו להעלאה",
+    uploadHint: "תמונות ווידאו בלבד. עד 50MB לקובץ.",
+    leadSubmit: "שלח בקשה",
+    successTitle: "הבקשה התקבלה בהצלחה.",
+    successText: "ניצור איתך קשר בקרוב.",
+    requiredError: "נא למלא את כל שדות החובה.",
+    phoneError: "נא להזין מספר טלפון תקין.",
+    fileTypeError: "אפשר להעלות רק תמונות או וידאו.",
+    fileSizeError: "קובץ אחד גדול מדי. המקסימום הוא 50MB.",
+    submitError: "משהו השתבש. נסו שוב או פנו אלינו בוואטסאפ.",
+    uploadingText: "מעלה קבצים...",
+    submittingText: "שולח בקשה...",
+    removeFile: "הסרה",
+    serviceSmallRepairs: "תיקונים קטנים",
+    serviceFlooring: "תיקון ריצוף ואריחים",
+    serviceBathroom: "תיקוני אמבטיה",
+    servicePainting: "צביעה ותיקוני קירות",
+    servicePlumbing: "אינסטלציה קלה",
+    serviceInstallations: "התקנות",
+    serviceEmergency: "עבודת חירום"
+  },
+
+  ar: {
+    leadKicker: "طلب تقدير سعر",
+    leadTitle: "احصل على تقدير مجاني لتصليح منزلك",
+    leadSubtitle: "اشرح المشكلة وسنتواصل معك خلال وقت قصير.",
+    leadTrust1: "✓ النموذج للفحص الأولي فقط",
+    leadTrust2: "✓ لا يتم إنشاء طلب عمل قبل تواصل الفريق معك",
+    leadTrust3: "✓ يمكنك إرفاق صور أو فيديو لتوضيح المشكلة",
+    labelFullName: "الاسم الكامل",
+    labelPhone: "رقم الهاتف",
+    labelCity: "المدينة",
+    labelArea: "المنطقة / الحي",
+    labelServiceCategory: "نوع الخدمة",
+    labelEmergency: "هل الحالة طارئة؟",
+    labelProblem: "وصف المشكلة",
+    labelPreferredDate: "التاريخ المفضل",
+    labelPreferredTime: "الوقت المفضل",
+    labelMarketingSource: "كيف سمعت عنا؟",
+    labelAdditionalNotes: "ملاحظات إضافية",
+    labelUpload: "صور / فيديو",
+    placeholderFullName: "اسمك الكامل",
+    placeholderPhone: "052-000-0000",
+    placeholderCity: "القدس",
+    placeholderArea: "بيت حنينا / مركز المدينة...",
+    placeholderProblem: "اشرح باختصار ماذا يحتاج إلى تصليح",
+    placeholderNotes: "أي تفاصيل إضافية تساعدنا",
+    optionChooseService: "اختر الخدمة",
+    optionYes: "نعم",
+    optionNo: "لا",
+    optionFlexible: "مرن",
+    optionMorning: "صباحًا",
+    optionAfternoon: "ظهرًا",
+    optionEvening: "مساءً",
+    uploadTitle: "اسحب الملفات هنا أو اضغط للرفع",
+    uploadHint: "صور وفيديو فقط. حتى 50MB لكل ملف.",
+    leadSubmit: "إرسال الطلب",
+    successTitle: "تم استلام طلبك بنجاح.",
+    successText: "سنتواصل معك قريباً.",
+    requiredError: "يرجى تعبئة جميع الحقول المطلوبة.",
+    phoneError: "يرجى إدخال رقم هاتف صحيح.",
+    fileTypeError: "يمكن رفع صور أو فيديو فقط.",
+    fileSizeError: "أحد الملفات كبير جدًا. الحد الأقصى 50MB.",
+    submitError: "حدث خطأ. جرّبي مرة أخرى أو تواصلي معنا عبر واتساب.",
+    uploadingText: "جارٍ رفع الملفات...",
+    submittingText: "جارٍ إرسال الطلب...",
+    removeFile: "إزالة",
+    serviceSmallRepairs: "تصليحات صغيرة",
+    serviceFlooring: "تصليح أرضيات وبلاط",
+    serviceBathroom: "تصليحات حمامات",
+    servicePainting: "دهان وتصليح جدران",
+    servicePlumbing: "سباكة خفيفة",
+    serviceInstallations: "تركيبات",
+    serviceEmergency: "عمل طارئ"
+  },
+
+  en: {
+    leadKicker: "Estimate request",
+    leadTitle: "Request a Free Home Repair Estimate",
+    leadSubtitle: "Describe your problem and we'll contact you shortly.",
+    leadTrust1: "✓ This form is only for initial review",
+    leadTrust2: "✓ No job request is created before our team contacts you",
+    leadTrust3: "✓ You can attach images or video to explain the issue",
+    labelFullName: "Full Name",
+    labelPhone: "Phone Number",
+    labelCity: "City",
+    labelArea: "Area / Neighborhood",
+    labelServiceCategory: "Service Category",
+    labelEmergency: "Is this an emergency?",
+    labelProblem: "Describe your problem",
+    labelPreferredDate: "Preferred Date",
+    labelPreferredTime: "Preferred Time Window",
+    labelMarketingSource: "How did you hear about us?",
+    labelAdditionalNotes: "Additional Notes",
+    labelUpload: "Images / Videos",
+    placeholderFullName: "Your full name",
+    placeholderPhone: "052-000-0000",
+    placeholderCity: "Jerusalem",
+    placeholderArea: "Beit Hanina / City Center...",
+    placeholderProblem: "Briefly describe what needs fixing",
+    placeholderNotes: "Any extra details that can help us",
+    optionChooseService: "Choose service",
+    optionYes: "Yes",
+    optionNo: "No",
+    optionFlexible: "Flexible",
+    optionMorning: "Morning",
+    optionAfternoon: "Afternoon",
+    optionEvening: "Evening",
+    uploadTitle: "Drag files here or click to upload",
+    uploadHint: "Images and videos only. Max 50MB per file.",
+    leadSubmit: "Request Free Estimate",
+    successTitle: "Thank you.",
+    successText: "We received your request successfully. Our team will contact you shortly.",
+    requiredError: "Please fill all required fields.",
+    phoneError: "Please enter a valid phone number.",
+    fileTypeError: "Only images and videos are allowed.",
+    fileSizeError: "One file is too large. Max size is 50MB.",
+    submitError: "Something went wrong. Please try again or contact us on WhatsApp.",
+    uploadingText: "Uploading files...",
+    submittingText: "Submitting request...",
+    removeFile: "Remove",
+    serviceSmallRepairs: "Small Repairs",
+    serviceFlooring: "Flooring & Tile Repair",
+    serviceBathroom: "Bathroom Repairs",
+    servicePainting: "Painting & Wall Repair",
+    servicePlumbing: "Light Plumbing",
+    serviceInstallations: "Installations",
+    serviceEmergency: "Emergency Work"
+  }
+};
 
     const data = {
       badges: {
@@ -1666,7 +2298,7 @@
     }
 
     function applyLanguage(lang) {
-      const t = translations[lang];
+  const t = { ...translations[lang], ...leadTranslations[lang] };
 
       document.documentElement.lang = lang;
       document.documentElement.dir = t.dir;
@@ -1676,6 +2308,10 @@
         const key = el.dataset.i18n;
         if (t[key]) el.textContent = t[key];
       });
+      document.querySelectorAll("[data-placeholder-i18n]").forEach(el => {
+  const key = el.dataset.placeholderI18n;
+  if (t[key]) el.placeholder = t[key];
+});
 
       document.querySelectorAll(".lang-btn").forEach(btn => {
         btn.classList.toggle("active", btn.dataset.lang === lang);
@@ -1777,7 +2413,355 @@ function setupServiceModalClose() {
     // });
 
     // document.getElementById("serviceModalCTA").addEventListener("click", closeServiceModal);
+    function getCurrentLeadText() {
+  const lang = document.documentElement.lang || "he";
+  return { lang, t: { ...translations[lang], ...leadTranslations[lang] } };
+}
+
+function trackEvent(eventName, payload = {}) {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: eventName,
+    ...payload,
+    timestamp: new Date().toISOString()
+  });
+  console.log("[Analytics]", eventName, payload);
+}
+
+function formatBytes(bytes) {
+  if (!bytes) return "0 KB";
+  const sizes = ["Bytes", "KB", "MB", "GB"];
+  const index = Math.floor(Math.log(bytes) / Math.log(1024));
+  return `${(bytes / Math.pow(1024, index)).toFixed(1)} ${sizes[index]}`;
+}
+
+function isAllowedLeadFile(file) {
+  return file.type.startsWith("image/") || file.type.startsWith("video/");
+}
+
+function getSafeFileName(file) {
+  const extension = file.name.includes(".") ? file.name.split(".").pop().toLowerCase() : "file";
+  return `${Date.now()}-${crypto.randomUUID()}.${extension}`;
+}
+
+function showLeadError(message) {
+  const errorBox = document.getElementById("formError");
+  errorBox.textContent = message;
+  errorBox.classList.add("active");
+  errorBox.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+function clearLeadError() {
+  const errorBox = document.getElementById("formError");
+  errorBox.textContent = "";
+  errorBox.classList.remove("active");
+}
+
+function validateLeadForm(formData) {
+  const { t } = getCurrentLeadText();
+
+  const requiredFields = [
+    "fullName",
+    "phone",
+    "city",
+    "serviceCategory",
+    "problemDescription"
+  ];
+
+  const missingRequired = requiredFields.some(field => !String(formData.get(field) || "").trim());
+
+  if (missingRequired) {
+    return t.requiredError;
+  }
+
+  const phone = String(formData.get("phone") || "").trim();
+  const phoneRegex = /^(\+972|972|0)?5\d{8}$/;
+
+  if (!phoneRegex.test(phone.replace(/[\s-]/g, ""))) {
+    return t.phoneError;
+  }
+
+  for (const item of selectedLeadFiles) {
+    if (!isAllowedLeadFile(item.file)) return t.fileTypeError;
+    if (item.file.size > MAX_FILE_SIZE) return t.fileSizeError;
+  }
+
+  return null;
+}
+
+function renderLeadFilePreviews() {
+  const { t } = getCurrentLeadText();
+  const grid = document.getElementById("filePreviewGrid");
+
+  grid.innerHTML = selectedLeadFiles.map(item => {
+    const isImage = item.file.type.startsWith("image/");
+    const isVideo = item.file.type.startsWith("video/");
+
+    return `
+      <div class="file-preview" data-file-id="${item.id}">
+        <div class="file-thumb">
+          ${isImage ? `<img src="${item.previewUrl}" alt="">` : ""}
+          ${isVideo ? `<video src="${item.previewUrl}" muted playsinline></video>` : ""}
+        </div>
+
+        <div class="file-info">
+          <div class="file-name">${item.file.name}</div>
+          <div class="file-meta">${formatBytes(item.file.size)}</div>
+
+          <div class="progress-track">
+            <div class="progress-bar" style="width:${item.progress || 0}%"></div>
+          </div>
+
+          <button class="remove-file" type="button" data-remove-file="${item.id}">
+            ${t.removeFile}
+          </button>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  document.querySelectorAll("[data-remove-file]").forEach(button => {
+    button.addEventListener("click", () => {
+      const fileId = button.dataset.removeFile;
+      const item = selectedLeadFiles.find(fileItem => fileItem.id === fileId);
+      if (item && item.previewUrl) URL.revokeObjectURL(item.previewUrl);
+
+      selectedLeadFiles = selectedLeadFiles.filter(fileItem => fileItem.id !== fileId);
+      renderLeadFilePreviews();
+    });
+  });
+}
+
+function setFileProgress(fileId, progress) {
+  const fileCard = document.querySelector(`[data-file-id="${fileId}"]`);
+  if (!fileCard) return;
+
+  const bar = fileCard.querySelector(".progress-bar");
+  if (bar) {
+    bar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+  }
+}
+
+function addLeadFiles(files) {
+  const { t } = getCurrentLeadText();
+  clearLeadError();
+
+  const fileList = Array.from(files || []);
+
+  for (const file of fileList) {
+    if (!isAllowedLeadFile(file)) {
+      showLeadError(t.fileTypeError);
+      continue;
+    }
+
+    if (file.size > MAX_FILE_SIZE) {
+      showLeadError(t.fileSizeError);
+      continue;
+    }
+
+    selectedLeadFiles.push({
+      id: crypto.randomUUID(),
+      file,
+      previewUrl: URL.createObjectURL(file),
+      progress: 0
+    });
+  }
+
+  renderLeadFilePreviews();
+}
+
+function uploadLeadFileWithTus(fileItem, leadId) {
+  const file = fileItem.file;
+  const objectPath = `${leadId}/${getSafeFileName(file)}`;
+
+  trackEvent("Upload Started", {
+    file_name: file.name,
+    file_type: file.type,
+    file_size: file.size
+  });
+
+  return new Promise((resolve, reject) => {
+    const upload = new tus.Upload(file, {
+      endpoint: `${SUPABASE_URL}/storage/v1/upload/resumable`,
+      retryDelays: [0, 3000, 5000, 10000, 20000],
+      headers: {
+        apikey: SUPABASE_ANON_KEY,
+        authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+        "x-upsert": "false"
+      },
+      uploadDataDuringCreation: true,
+      removeFingerprintOnSuccess: true,
+      chunkSize: 6 * 1024 * 1024,
+      metadata: {
+        bucketName: STORAGE_BUCKET,
+        objectName: objectPath,
+        contentType: file.type,
+        cacheControl: "3600"
+      },
+      onError(error) {
+        trackEvent("Upload Failed", {
+          file_name: file.name,
+          message: error.message
+        });
+        reject(error);
+      },
+      onProgress(bytesUploaded, bytesTotal) {
+        const percentage = bytesTotal ? Math.round((bytesUploaded / bytesTotal) * 100) : 0;
+        setFileProgress(fileItem.id, percentage);
+      },
+      onSuccess() {
+        setFileProgress(fileItem.id, 100);
+
+        const mediaItem = {
+          bucket: STORAGE_BUCKET,
+          storage_path: objectPath,
+          original_name: file.name,
+          mime_type: file.type,
+          size_bytes: file.size,
+          media_type: file.type.startsWith("image/") ? "image" : "video",
+          uploaded_at: new Date().toISOString()
+        };
+
+        trackEvent("Upload Completed", mediaItem);
+        resolve(mediaItem);
+      }
+    });
+
+    upload.start();
+  });
+}
+
+async function setupLeadForm() {
+  const leadForm = document.getElementById("leadForm");
+  const fileInput = document.getElementById("leadFiles");
+  const uploadZone = document.getElementById("uploadZone");
+  const submitButton = document.getElementById("leadSubmitBtn");
+  const leadSuccess = document.getElementById("leadSuccess");
+
+  if (!leadForm || !fileInput || !uploadZone || !submitButton) return;
+
+  uploadZone.addEventListener("click", () => fileInput.click());
+
+  fileInput.addEventListener("change", event => {
+    addLeadFiles(event.target.files);
+    fileInput.value = "";
+  });
+
+  ["dragenter", "dragover"].forEach(eventName => {
+    uploadZone.addEventListener(eventName, event => {
+      event.preventDefault();
+      uploadZone.classList.add("dragging");
+    });
+  });
+
+  ["dragleave", "drop"].forEach(eventName => {
+    uploadZone.addEventListener(eventName, event => {
+      event.preventDefault();
+      uploadZone.classList.remove("dragging");
+    });
+  });
+
+  uploadZone.addEventListener("drop", event => {
+    addLeadFiles(event.dataTransfer.files);
+  });
+
+  submitButton.addEventListener("click", () => {
+    trackEvent("CTA Click", { location: "lead_form_submit" });
+  });
+
+  leadForm.addEventListener("submit", async event => {
+    event.preventDefault();
+
+    if (isLeadSubmitting) return;
+
+    const { lang, t } = getCurrentLeadText();
+    const formData = new FormData(leadForm);
+    const validationError = validateLeadForm(formData);
+
+    if (validationError) {
+      showLeadError(validationError);
+      return;
+    }
+
+    clearLeadError();
+    isLeadSubmitting = true;
+
+    submitButton.disabled = true;
+    submitButton.classList.add("loading");
+
+    const submitText = submitButton.querySelector("[data-i18n='leadSubmit']");
+    const originalSubmitText = submitText.textContent;
+
+    try {
+      const leadId = crypto.randomUUID();
+      const uploadedMedia = [];
+
+      if (selectedLeadFiles.length > 0) {
+        submitText.textContent = t.uploadingText;
+
+        for (const fileItem of selectedLeadFiles) {
+          const uploadedFile = await uploadLeadFileWithTus(fileItem, leadId);
+          uploadedMedia.push(uploadedFile);
+        }
+      }
+
+      submitText.textContent = t.submittingText;
+
+      const leadPayload = {
+        id: leadId,
+        full_name: String(formData.get("fullName") || "").trim(),
+        phone: String(formData.get("phone") || "").trim(),
+        source: "website",
+        city: String(formData.get("city") || "").trim(),
+        area: String(formData.get("area") || "").trim() || null,
+        service_needed: String(formData.get("serviceCategory") || "").trim(),
+        message: String(formData.get("problemDescription") || "").trim(),
+        status: "new",
+        preferred_date: formData.get("preferredDate") || null,
+        preferred_time_window: formData.get("preferredTimeWindow") || null,
+        is_emergency: formData.get("isEmergency") === "yes",
+        additional_notes: String(formData.get("additionalNotes") || "").trim() || null,
+        marketing_source: formData.get("marketingSource") || "Website",
+        media_files: uploadedMedia,
+        form_language: lang,
+        lead_origin: "landing_page",
+        user_agent: navigator.userAgent,
+        created_at: new Date().toISOString()
+      };
+
+      const { error } = await supabaseClient
+        .from("leads")
+        .insert([leadPayload]);
+
+      if (error) throw error;
+
+      trackEvent("Lead Submitted", {
+        lead_id: leadId,
+        service_category: leadPayload.service_needed,
+        is_emergency: leadPayload.is_emergency,
+        marketing_source: leadPayload.marketing_source,
+        files_count: uploadedMedia.length
+      });
+
+      leadForm.hidden = true;
+      leadSuccess.hidden = false;
+      leadSuccess.scrollIntoView({ behavior: "smooth", block: "center" });
+    } catch (error) {
+      console.error(error);
+      showLeadError(t.submitError);
+      submitText.textContent = originalSubmitText;
+      submitButton.disabled = false;
+      submitButton.classList.remove("loading");
+      isLeadSubmitting = false;
+    }
+  });
+}
     setupServiceModalClose();
+    setupLeadForm();
+
+if (typeof setupServiceModalClose === "function") {
+  setupServiceModalClose();
+}
     setContactLinks();
     applyLanguage("he");
   </script>
