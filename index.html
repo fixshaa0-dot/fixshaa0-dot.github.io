@@ -2386,33 +2386,33 @@ function setupServiceModalClose() {
   });
 }
 
-    // function closeServiceModal() {
-    //   document.getElementById("serviceModal").classList.remove("active");
-    // }
+    function setupPageInteractions() {
+      document.querySelectorAll(".lang-btn, .footer-lang button").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const lang = btn.dataset.lang;
+          if (!translations[lang] || !leadTranslations[lang]) return;
 
-    // document.querySelectorAll(".lang-btn, .footer-lang button").forEach(btn => {
-    //   btn.addEventListener("click", () => applyLanguage(btn.dataset.lang));
-    // });
+          applyLanguage(lang);
+          localStorage.setItem("fixshaa-language", lang);
+        });
+      });
 
-    // document.getElementById("menuBtn").addEventListener("click", () => {
-    //   document.getElementById("nav").classList.toggle("menu-open");
-    // });
+      const menuBtn = document.getElementById("menuBtn");
+      const nav = document.getElementById("nav");
 
-    // document.querySelectorAll(".nav-links a").forEach(link => {
-    //   link.addEventListener("click", () => {
-    //     document.getElementById("nav").classList.remove("menu-open");
-    //   });
-    // });
+      if (menuBtn && nav) {
+        menuBtn.addEventListener("click", () => {
+          nav.classList.toggle("menu-open");
+        });
+      }
 
-    // document.getElementById("closeServiceModal").addEventListener("click", closeServiceModal);
+      document.querySelectorAll(".nav-links a").forEach(link => {
+        link.addEventListener("click", () => {
+          if (nav) nav.classList.remove("menu-open");
+        });
+      });
+    }
 
-    // document.getElementById("serviceModal").addEventListener("click", function(event) {
-    //   if (event.target.id === "serviceModal") {
-    //     closeServiceModal();
-    //   }
-    // });
-
-    // document.getElementById("serviceModalCTA").addEventListener("click", closeServiceModal);
     function getCurrentLeadText() {
   const lang = document.documentElement.lang || "he";
   return { lang, t: { ...translations[lang], ...leadTranslations[lang] } };
@@ -2756,14 +2756,19 @@ async function setupLeadForm() {
     }
   });
 }
-    setupServiceModalClose();
-    setupLeadForm();
+    document.addEventListener("DOMContentLoaded", () => {
+      setupPageInteractions();
+      setupServiceModalClose();
+      setupLeadForm();
+      setContactLinks();
 
-if (typeof setupServiceModalClose === "function") {
-  setupServiceModalClose();
-}
-    setContactLinks();
-    applyLanguage("he");
+      const savedLanguage = localStorage.getItem("fixshaa-language");
+      const initialLanguage = ["he", "ar", "en"].includes(savedLanguage)
+        ? savedLanguage
+        : "he";
+
+      applyLanguage(initialLanguage);
+    });
   </script>
 </body>
 </html>
