@@ -1,0 +1,2625 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="انضم إلى شبكة المهنيين في FixSha’a وسجّل طلبك للعمل بمرونة وشفافية." />
+  <title>انضم كمهني | FixSha’a</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    :root {
+      --navy: #061b33;
+      --navy-2: #0b2b4d;
+      --turquoise: #00c7d9;
+      --turquoise-dark: #00aab9;
+      --turquoise-soft: #e7fbfd;
+      --off-white: #f8fbfc;
+      --white: #ffffff;
+      --text: #102238;
+      --muted: #64748b;
+      --line: #dbe7ec;
+      --success: #0f9f6e;
+      --danger: #dc3545;
+      --warning: #f5a524;
+      --shadow: 0 24px 70px rgba(6, 27, 51, 0.12);
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Cairo", "Heebo", Arial, sans-serif;
+      color: var(--text);
+      background: var(--off-white);
+      line-height: 1.7;
+    }
+
+    html[lang="he"] body,
+    html[lang="en"] body {
+      font-family: "Heebo", "Cairo", Arial, sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 34px));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(248, 251, 252, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(219, 231, 236, 0.8);
+    }
+
+    .header-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+    }
+
+    .brand-mark {
+      width: 46px;
+      height: 46px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      background: var(--navy);
+      color: var(--turquoise);
+      box-shadow: 0 10px 22px rgba(6, 27, 51, 0.16);
+      font-size: 23px;
+      font-weight: 800;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border: 3px solid var(--white);
+      border-radius: 50%;
+      inset-inline-end: 5px;
+      bottom: 5px;
+      opacity: 0.95;
+    }
+
+    .brand-mark span {
+      position: relative;
+      z-index: 1;
+      transform: translateY(-2px);
+    }
+
+    .brand-name {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .brand-name strong {
+      font-size: 20px;
+    }
+
+    .brand-name small {
+      margin-top: 5px;
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #38516b;
+    }
+
+    .header-nav a:hover {
+      color: var(--turquoise-dark);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .language-switcher {
+      display: flex;
+      gap: 4px;
+      padding: 4px;
+      border: 1px solid var(--line);
+      background: var(--white);
+      border-radius: 999px;
+    }
+
+    .lang-btn {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      border-radius: 999px;
+      min-width: 42px;
+      height: 34px;
+      padding: 0 10px;
+      font-weight: 800;
+      font-size: 12px;
+    }
+
+    .lang-btn.active {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .primary-btn,
+    .secondary-btn,
+    .ghost-btn {
+      border-radius: 14px;
+      border: 0;
+      padding: 13px 22px;
+      font-weight: 800;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .primary-btn {
+      background: var(--turquoise);
+      color: var(--navy);
+      box-shadow: 0 14px 30px rgba(0, 199, 217, 0.25);
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-2px);
+      background: #13d3e2;
+    }
+
+    .secondary-btn {
+      background: var(--navy);
+      color: var(--white);
+      box-shadow: 0 14px 30px rgba(6, 27, 51, 0.18);
+    }
+
+    .secondary-btn:hover {
+      transform: translateY(-2px);
+      background: var(--navy-2);
+    }
+
+    .ghost-btn {
+      background: #eef5f7;
+      color: var(--navy);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 78px 0 64px;
+      background:
+        radial-gradient(circle at 12% 20%, rgba(0, 199, 217, 0.14), transparent 34%),
+        radial-gradient(circle at 90% 12%, rgba(0, 199, 217, 0.1), transparent 28%),
+        linear-gradient(180deg, #ffffff 0%, #f4fafb 100%);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border: 1px solid rgba(0, 199, 217, 0.15);
+      border-radius: 50%;
+      left: -180px;
+      top: -130px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 54px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: var(--turquoise-soft);
+      color: #087f8a;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--turquoise);
+      box-shadow: 0 0 0 5px rgba(0, 199, 217, 0.14);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 22px;
+      color: var(--navy);
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 1.08;
+      letter-spacing: -0.045em;
+    }
+
+    .hero-highlight {
+      color: var(--turquoise-dark);
+    }
+
+    .hero-copy {
+      max-width: 690px;
+      color: #4b6077;
+      font-size: 18px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      color: #4b6077;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .trust-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .check-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #dff8ee;
+      color: var(--success);
+      font-weight: 900;
+      font-size: 13px;
+    }
+
+    .hero-card {
+      background: var(--navy);
+      color: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: rgba(0, 199, 217, 0.12);
+      inset-inline-end: -110px;
+      bottom: -120px;
+    }
+
+    .mock-phone {
+      position: relative;
+      z-index: 1;
+      padding: 21px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .mock-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .mock-title {
+      font-weight: 800;
+      font-size: 17px;
+    }
+
+    .status-pill {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(0, 199, 217, 0.18);
+      color: #8af4fd;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .job-card {
+      background: var(--white);
+      color: var(--text);
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 14px;
+    }
+
+    .job-card:last-child {
+      margin-bottom: 0;
+    }
+
+    .job-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .job-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: var(--turquoise-soft);
+      font-size: 23px;
+    }
+
+    .job-meta {
+      flex: 1;
+    }
+
+    .job-meta strong {
+      display: block;
+      color: var(--navy);
+      font-size: 15px;
+    }
+
+    .job-meta span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .job-price {
+      color: var(--turquoise-dark);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .job-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .mini-pill {
+      background: #f0f5f7;
+      color: #52677c;
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .mock-action {
+      width: 100%;
+      border: 0;
+      border-radius: 12px;
+      padding: 11px;
+      background: var(--turquoise);
+      color: var(--navy);
+      font-weight: 800;
+    }
+
+    .section {
+      padding: 86px 0;
+    }
+
+    .section-header {
+      max-width: 730px;
+      margin: 0 auto 46px;
+      text-align: center;
+    }
+
+    .section-header h2 {
+      color: var(--navy);
+      font-size: clamp(31px, 4vw, 48px);
+      line-height: 1.2;
+      letter-spacing: -0.035em;
+      margin-bottom: 14px;
+    }
+
+    .section-header p {
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .steps-grid,
+    .benefits-grid,
+    .requirements-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .step-card,
+    .benefit-card,
+    .requirement-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: 0 14px 36px rgba(6, 27, 51, 0.06);
+    }
+
+    .step-number {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: var(--navy);
+      color: var(--turquoise);
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+
+    .step-card h3,
+    .benefit-card h3,
+    .requirement-card h3 {
+      color: var(--navy);
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .step-card p,
+    .benefit-card p,
+    .requirement-card p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+
+    .benefits-section {
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .benefits-section .section-header h2,
+    .benefits-section .section-header p {
+      color: var(--white);
+    }
+
+    .benefits-section .section-header p {
+      opacity: 0.72;
+    }
+
+    .benefits-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .benefit-card {
+      border-color: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.07);
+      box-shadow: none;
+      color: var(--white);
+    }
+
+    .benefit-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      background: rgba(0, 199, 217, 0.15);
+      color: var(--turquoise);
+      font-size: 24px;
+      margin-bottom: 18px;
+    }
+
+    .benefit-card h3 {
+      color: var(--white);
+    }
+
+    .benefit-card p {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .requirements-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .requirement-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .requirement-check {
+      flex: 0 0 auto;
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: var(--turquoise-soft);
+      color: var(--turquoise-dark);
+      font-weight: 900;
+    }
+
+    .application-section {
+      padding-top: 40px;
+      background:
+        linear-gradient(180deg, var(--off-white) 0%, #ffffff 100%);
+    }
+
+    .form-shell {
+      max-width: 940px;
+      margin: 0 auto;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .form-top {
+      padding: 28px 32px 24px;
+      background: linear-gradient(135deg, var(--navy), #0b3158);
+      color: var(--white);
+    }
+
+    .form-top-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .form-top h2 {
+      margin-bottom: 6px;
+      font-size: 28px;
+    }
+
+    .form-top p {
+      margin-bottom: 0;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 14px;
+    }
+
+    .step-counter {
+      flex: 0 0 auto;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.09);
+      padding: 7px 12px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .progress-track {
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 25%;
+      background: var(--turquoise);
+      border-radius: inherit;
+      transition: width 0.3s ease;
+    }
+
+    .form-body {
+      padding: 34px 32px 30px;
+    }
+
+    .form-step {
+      display: none;
+      animation: fadeUp 0.32s ease;
+    }
+
+    .form-step.active {
+      display: block;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .step-heading {
+      margin-bottom: 26px;
+    }
+
+    .step-heading h3 {
+      color: var(--navy);
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+
+    .step-heading p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .field label,
+    .field legend {
+      color: var(--navy);
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .required::after {
+      content: " *";
+      color: var(--danger);
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    input[type="number"],
+    input[type="url"],
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid #cfdde3;
+      border-radius: 13px;
+      background: #fbfdfe;
+      color: var(--text);
+      padding: 13px 14px;
+      outline: none;
+      transition: border 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    textarea {
+      min-height: 118px;
+      resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--turquoise);
+      background: var(--white);
+      box-shadow: 0 0 0 4px rgba(0, 199, 217, 0.12);
+    }
+
+    input.invalid,
+    select.invalid,
+    textarea.invalid {
+      border-color: var(--danger);
+      box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.08);
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: -2px;
+    }
+
+    .choice-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .choice-grid.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .choice-card {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      border: 1px solid #d5e2e7;
+      border-radius: 13px;
+      padding: 12px 13px;
+      background: #fbfdfe;
+      cursor: pointer;
+      color: #40566d;
+      font-size: 13px;
+      font-weight: 700;
+      transition: border 0.2s ease, background 0.2s ease, transform 0.2s ease;
+    }
+
+    .choice-card:hover {
+      transform: translateY(-1px);
+      border-color: #9fdde4;
+    }
+
+    .choice-card input {
+      accent-color: var(--turquoise-dark);
+      width: 17px;
+      height: 17px;
+      flex: 0 0 auto;
+    }
+
+    .choice-card:has(input:checked) {
+      border-color: var(--turquoise);
+      background: var(--turquoise-soft);
+      color: var(--navy);
+    }
+
+    .yes-no {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .upload-box {
+      border: 1.5px dashed #9fb8c4;
+      border-radius: 16px;
+      padding: 22px;
+      background: #f8fcfd;
+      text-align: center;
+    }
+
+    .upload-box input[type="file"] {
+      width: 100%;
+      margin-top: 12px;
+    }
+
+    .upload-icon {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .consent-list {
+      display: grid;
+      gap: 11px;
+    }
+
+    .consent-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      padding: 13px;
+      background: #fbfdfe;
+      font-size: 13px;
+      color: #40566d;
+    }
+
+    .consent-item input {
+      margin-top: 4px;
+      accent-color: var(--turquoise-dark);
+      width: 17px;
+      height: 17px;
+      flex: 0 0 auto;
+    }
+
+    .form-alert {
+      display: none;
+      margin: 0 32px 22px;
+      border-radius: 14px;
+      padding: 13px 15px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .form-alert.show {
+      display: block;
+    }
+
+    .form-alert.error {
+      background: #fff0f2;
+      color: #b72b3a;
+      border: 1px solid #f4c2c8;
+    }
+
+    .form-alert.success {
+      background: #eafbf4;
+      color: #087650;
+      border: 1px solid #b6e8d2;
+    }
+
+    .form-navigation {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 28px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+    }
+
+    .nav-spacer {
+      flex: 1;
+    }
+
+    .submit-btn[disabled],
+    .next-btn[disabled] {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .success-screen {
+      display: none;
+      padding: 52px 30px 58px;
+      text-align: center;
+    }
+
+    .success-screen.show {
+      display: block;
+    }
+
+    .success-badge {
+      width: 82px;
+      height: 82px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 22px;
+      background: #dff8ee;
+      color: var(--success);
+      font-size: 38px;
+      font-weight: 900;
+    }
+
+    .success-screen h3 {
+      color: var(--navy);
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .success-screen p {
+      max-width: 560px;
+      margin: 0 auto 24px;
+      color: var(--muted);
+    }
+
+    .privacy-note {
+      max-width: 860px;
+      margin: 22px auto 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .site-footer {
+      margin-top: 86px;
+      background: #041426;
+      color: var(--white);
+      padding: 34px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .footer-inner p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 13px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .hidden-honeypot {
+      position: absolute;
+      left: -9999px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    @media (max-width: 980px) {
+      .header-nav {
+        display: none;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        max-width: 680px;
+      }
+
+      .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .benefits-grid,
+      .requirements-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        width: min(100% - 22px, 1180px);
+      }
+
+      .site-header {
+        position: static;
+      }
+
+      .header-inner {
+        min-height: 68px;
+      }
+
+      .brand-name small,
+      .header-cta {
+        display: none;
+      }
+
+      .hero {
+        padding: 52px 0 38px;
+      }
+
+      h1 {
+        font-size: 43px;
+      }
+
+      .hero-copy {
+        font-size: 16px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .hero-actions a,
+      .hero-actions button {
+        width: 100%;
+        text-align: center;
+      }
+
+      .section {
+        padding: 64px 0;
+      }
+
+      .steps-grid,
+      .benefits-grid,
+      .requirements-grid,
+      .field-grid,
+      .choice-grid,
+      .choice-grid.two {
+        grid-template-columns: 1fr;
+      }
+
+      .form-top,
+      .form-body {
+        padding-inline: 20px;
+      }
+
+      .form-top-row {
+        flex-direction: column;
+      }
+
+      .form-alert {
+        margin-inline: 20px;
+      }
+
+      .form-navigation {
+        flex-wrap: wrap;
+      }
+
+      .form-navigation button {
+        flex: 1;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="FixSha’a">
+        <div class="brand-mark"><span>F</span></div>
+        <div class="brand-name">
+          <strong>FixSha’a</strong>
+          <small data-i18n="brandTagline">עבודה לפי שעה · شغل حسب الساعة</small>
+        </div>
+      </a>
+
+      <nav class="header-nav" aria-label="Main navigation">
+        <a href="#how" data-i18n="navHow">كيف يعمل؟</a>
+        <a href="#benefits" data-i18n="navBenefits">الامتيازات</a>
+        <a href="#requirements" data-i18n="navRequirements">شروط الانضمام</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="language-switcher" aria-label="Language switcher">
+          <button class="lang-btn active" type="button" data-lang="ar">AR</button>
+          <button class="lang-btn" type="button" data-lang="he">HE</button>
+          <button class="lang-btn" type="button" data-lang="en">EN</button>
+        </div>
+        <a class="primary-btn header-cta" href="#application" data-i18n="joinNow">سجّل الآن</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            <span data-i18n="heroEyebrow">انضم إلى شبكة المهنيين في القدس والمنطقة</span>
+          </div>
+          <h1 data-i18n-html="heroTitle">اشتغل بمهنتك، <span class="hero-highlight">بوقتك</span>، وبوضوح.</h1>
+          <p class="hero-copy" data-i18n="heroCopy">
+            FixSha’a تربطك بطلبات صيانة وترميم مناسبة لتخصصك ومنطقتك. أنت تشاهد تفاصيل العمل أولًا، ثم تختار إن كان الطلب مناسبًا لك.
+          </p>
+
+          <div class="hero-actions">
+            <a class="primary-btn" href="#application" data-i18n="startApplication">ابدأ طلب الانضمام</a>
+            <a class="ghost-btn" href="#how" data-i18n="learnHow">اعرف كيف يعمل</a>
+          </div>
+
+          <div class="trust-row">
+            <div class="trust-item"><span class="check-icon">✓</span><span data-i18n="trust1">اختيار الطلب المناسب</span></div>
+            <div class="trust-item"><span class="check-icon">✓</span><span data-i18n="trust2">معلومات واضحة قبل القبول</span></div>
+            <div class="trust-item"><span class="check-icon">✓</span><span data-i18n="trust3">لا يوجد التزام بعدد ساعات ثابت</span></div>
+          </div>
+        </div>
+
+        <div class="hero-card" aria-label="Example job card">
+          <div class="mock-phone">
+            <div class="mock-top">
+              <div class="mock-title" data-i18n="newJobs">طلبات مناسبة لك</div>
+              <span class="status-pill" data-i18n="availableNow">متاح الآن</span>
+            </div>
+
+            <article class="job-card">
+              <div class="job-head">
+                <div class="job-icon">🔧</div>
+                <div class="job-meta">
+                  <strong data-i18n="job1Title">إصلاح تسريب تحت المغسلة</strong>
+                  <span data-i18n="job1Area">بيت حنينا · اليوم مساءً</span>
+                </div>
+                <div class="job-price" data-i18n="hourly">حسب الساعة</div>
+              </div>
+              <div class="job-details">
+                <span class="mini-pill" data-i18n="withPhotos">مع صور</span>
+                <span class="mini-pill" data-i18n="distance">4 كم</span>
+                <span class="mini-pill" data-i18n="estimated">تقدير: 1–2 ساعة</span>
+              </div>
+              <button class="mock-action" type="button" data-i18n="viewRequest">عرض تفاصيل الطلب</button>
+            </article>
+
+            <article class="job-card">
+              <div class="job-head">
+                <div class="job-icon">🎨</div>
+                <div class="job-meta">
+                  <strong data-i18n="job2Title">دهان غرفة نوم</strong>
+                  <span data-i18n="job2Area">شعفاط · الجمعة صباحًا</span>
+                </div>
+                <div class="job-price" data-i18n="hourly">حسب الساعة</div>
+              </div>
+              <div class="job-details">
+                <span class="mini-pill" data-i18n="materialsReady">المواد جاهزة</span>
+                <span class="mini-pill" data-i18n="distance2">7 كم</span>
+                <span class="mini-pill" data-i18n="estimated2">تقدير: 3–4 ساعات</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow"><span class="eyebrow-dot"></span><span data-i18n="howEyebrow">طريقة العمل</span></div>
+          <h2 data-i18n="howTitle">من وصول الطلب حتى إنهاء العمل</h2>
+          <p data-i18n="howCopy">المنصة تساعدك على فهم الطلب قبل الالتزام به، وتوثيق العمل بطريقة تحميك وتحمي الزبون.</p>
+        </div>
+
+        <div class="steps-grid">
+          <article class="step-card">
+            <div class="step-number">1</div>
+            <h3 data-i18n="step1Title">يصل طلب واضح</h3>
+            <p data-i18n="step1Copy">تشاهد نوع المشكلة، المنطقة، الموعد، والصور أو الفيديو عندما تكون متوفرة.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-number">2</div>
+            <h3 data-i18n="step2Title">تقرر إن كان مناسبًا</h3>
+            <p data-i18n="step2Copy">تختار الأعمال التي تناسب تخصصك، وقتك، والمسافة التي تستطيع السفر إليها.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-number">3</div>
+            <h3 data-i18n="step3Title">تنفيذ وتوقيت واضح</h3>
+            <p data-i18n="step3Copy">يتم تسجيل بداية ونهاية العمل بطريقة واضحة ومتفق عليها مع الزبون.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-number">4</div>
+            <h3 data-i18n="step4Title">توثيق وتقييم</h3>
+            <p data-i18n="step4Copy">صور قبل وبعد وتقييمات الزبائن تساعدك على بناء سمعة مهنية قوية.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section benefits-section" id="benefits">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow"><span class="eyebrow-dot"></span><span data-i18n="benefitsEyebrow">لماذا FixSha’a؟</span></div>
+          <h2 data-i18n="benefitsTitle">امتيازات عملية للمهني</h2>
+          <p data-i18n="benefitsCopy">لا نعدك بدخل مضمون، لكننا نعمل على جعل الوصول إلى طلبات مناسبة أوضح وأسهل.</p>
+        </div>
+
+        <div class="benefits-grid">
+          <article class="benefit-card">
+            <div class="benefit-icon">🕒</div>
+            <h3 data-i18n="benefit1Title">مرونة في الوقت</h3>
+            <p data-i18n="benefit1Copy">حدّد الأيام والأوقات التي تناسبك دون التزام بدوام ثابت.</p>
+          </article>
+          <article class="benefit-card">
+            <div class="benefit-icon">📍</div>
+            <h3 data-i18n="benefit2Title">طلبات حسب المنطقة</h3>
+            <p data-i18n="benefit2Copy">نحاول مطابقة الطلبات مع تخصصك والمناطق التي تستطيع الوصول إليها.</p>
+          </article>
+          <article class="benefit-card">
+            <div class="benefit-icon">✅</div>
+            <h3 data-i18n="benefit3Title">حرية القبول</h3>
+            <p data-i18n="benefit3Copy">شاهد التفاصيل أولًا ثم اقبل أو ارفض حسب ملاءمة العمل لك.</p>
+          </article>
+          <article class="benefit-card">
+            <div class="benefit-icon">📷</div>
+            <h3 data-i18n="benefit4Title">توثيق يحميك</h3>
+            <p data-i18n="benefit4Copy">صور قبل وبعد تساعد على تقليل الخلافات وتوضيح جودة التنفيذ.</p>
+          </article>
+          <article class="benefit-card">
+            <div class="benefit-icon">⭐</div>
+            <h3 data-i18n="benefit5Title">ملف مهني وتقييمات</h3>
+            <p data-i18n="benefit5Copy">ابنِ سجل أعمال وتقييمات تساعد الزبائن على الثقة بك.</p>
+          </article>
+          <article class="benefit-card">
+            <div class="benefit-icon">🤝</div>
+            <h3 data-i18n="benefit6Title">دعم وتنسيق</h3>
+            <p data-i18n="benefit6Copy">فريق FixSha’a يساعد في التنسيق ومتابعة المشكلات التشغيلية.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="requirements">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow"><span class="eyebrow-dot"></span><span data-i18n="requirementsEyebrow">شروط أساسية</span></div>
+          <h2 data-i18n="requirementsTitle">من نبحث عنه؟</h2>
+          <p data-i18n="requirementsCopy">العمر وحده لا يحدد الخبرة. الأهم هو الالتزام، المهارة، والقدرة على تقديم خدمة محترمة وآمنة.</p>
+        </div>
+
+        <div class="requirements-grid">
+          <article class="requirement-card"><div class="requirement-check">✓</div><div><h3 data-i18n="req1Title">18 سنة أو أكثر</h3><p data-i18n="req1Copy">وإمكانية العمل بصورة قانونية حسب الحالة الشخصية.</p></div></article>
+          <article class="requirement-card"><div class="requirement-check">✓</div><div><h3 data-i18n="req2Title">خبرة عملية</h3><p data-i18n="req2Copy">خبرة حقيقية في تخصص واحد على الأقل، مع صور أو توصيات عند الإمكان.</p></div></article>
+          <article class="requirement-card"><div class="requirement-check">✓</div><div><h3 data-i18n="req3Title">التزام بالمواعيد</h3><p data-i18n="req3Copy">التواصل الواضح والوصول في الوقت أو التحديث المبكر عند التأخير.</p></div></article>
+          <article class="requirement-card"><div class="requirement-check">✓</div><div><h3 data-i18n="req4Title">أدوات مناسبة</h3><p data-i18n="req4Copy">امتلاك الأدوات الأساسية اللازمة للأعمال التي تقبلها.</p></div></article>
+          <article class="requirement-card"><div class="requirement-check">✓</div><div><h3 data-i18n="req5Title">توثيق العمل</h3><p data-i18n="req5Copy">الاستعداد لتصوير الحالة قبل وبعد بما يحفظ حقوق الطرفين.</p></div></article>
+          <article class="requirement-card"><div class="requirement-check">✓</div><div><h3 data-i18n="req6Title">التحقق والمراجعة</h3><p data-i18n="req6Copy">الموافقة على تقديم المستندات المطلوبة في مرحلة القبول، وليس في الطلب الأولي.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section application-section" id="application">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow"><span class="eyebrow-dot"></span><span data-i18n="formEyebrow">طلب الانضمام</span></div>
+          <h2 data-i18n="formSectionTitle">عرّفنا عنك وعن خبرتك</h2>
+          <p data-i18n="formSectionCopy">التعبئة تستغرق عدة دقائق. تقديم الطلب لا يعني القبول التلقائي، وسيتم التواصل مع المرشحين المناسبين.</p>
+        </div>
+
+        <div class="form-shell">
+          <div id="formContent">
+            <div class="form-top">
+              <div class="form-top-row">
+                <div>
+                  <h2 data-i18n="formTitle">استبيان المهنيين</h2>
+                  <p data-i18n="formSubtitle">أكمل الخطوات الأربع ثم أرسل الطلب للمراجعة.</p>
+                </div>
+                <div class="step-counter"><span data-i18n="stepLabel">الخطوة</span> <span id="currentStepText">1</span> / 4</div>
+              </div>
+              <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+            </div>
+
+            <div id="formAlert" class="form-alert" role="alert"></div>
+
+            <form id="workerApplicationForm" novalidate>
+              <div class="form-body">
+                <input class="hidden-honeypot" type="text" name="website" id="website" autocomplete="off" tabindex="-1" />
+
+                <section class="form-step active" data-step="1">
+                  <div class="step-heading">
+                    <h3 data-i18n="personalTitle">1. معلومات شخصية</h3>
+                    <p data-i18n="personalCopy">هذه المعلومات تساعدنا على التواصل معك وفهم منطقتك ولغتك المفضلة.</p>
+                  </div>
+
+                  <div class="field-grid">
+                    <div class="field">
+                      <label class="required" for="full_name" data-i18n="fullName">الاسم الكامل</label>
+                      <input id="full_name" name="full_name" type="text" required autocomplete="name" data-i18n-placeholder="fullNamePlaceholder" placeholder="مثال: أحمد محمد" />
+                    </div>
+
+                    <div class="field">
+                      <label class="required" for="phone" data-i18n="phone">رقم الهاتف</label>
+                      <input id="phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" data-i18n-placeholder="phonePlaceholder" placeholder="05X-XXXXXXX" />
+                    </div>
+
+                    <div class="field">
+                      <label for="email" data-i18n="email">البريد الإلكتروني</label>
+                      <input id="email" name="email" type="email" autocomplete="email" data-i18n-placeholder="emailPlaceholder" placeholder="name@example.com" />
+                    </div>
+
+                    <div class="field">
+                      <label class="required" for="city" data-i18n="city">المدينة أو البلدة</label>
+                      <input id="city" name="city" type="text" required autocomplete="address-level2" data-i18n-placeholder="cityPlaceholder" placeholder="مثال: القدس" />
+                    </div>
+
+                    <div class="field">
+                      <label class="required" for="preferred_language" data-i18n="preferredLanguage">لغة التواصل المفضلة</label>
+                      <select id="preferred_language" name="preferred_language" required>
+                        <option value="" data-i18n="chooseOption">اختر...</option>
+                        <option value="ar" data-i18n="arabic">العربية</option>
+                        <option value="he" data-i18n="hebrew">العبرية</option>
+                        <option value="en" data-i18n="english">الإنجليزية</option>
+                      </select>
+                    </div>
+
+                    <div class="field">
+                      <label class="required" data-i18n="over18">هل عمرك 18 سنة أو أكثر؟</label>
+                      <div class="yes-no">
+                        <label class="choice-card"><input type="radio" name="is_over_18" value="true" required /><span data-i18n="yes">نعم</span></label>
+                        <label class="choice-card"><input type="radio" name="is_over_18" value="false" required /><span data-i18n="no">لا</span></label>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="form-step" data-step="2">
+                  <div class="step-heading">
+                    <h3 data-i18n="professionalTitle">2. خبرتك المهنية</h3>
+                    <p data-i18n="professionalCopy">اختر تخصصك الأساسي وأضف أي مهارات أو خبرات مهمة.</p>
+                  </div>
+
+                  <div class="field-grid">
+                    <div class="field">
+                      <label class="required" for="primary_profession" data-i18n="primaryProfession">التخصص الرئيسي</label>
+                      <select id="primary_profession" name="primary_profession" required>
+                        <option value="" data-i18n="chooseOption">اختر...</option>
+                        <option value="plumbing" data-i18n="plumbing">سباكة</option>
+                        <option value="electricity" data-i18n="electricity">كهرباء</option>
+                        <option value="air_conditioning" data-i18n="airConditioning">تكييف</option>
+                        <option value="painting" data-i18n="painting">دهان</option>
+                        <option value="tiling" data-i18n="tiling">بلاط</option>
+                        <option value="carpentry" data-i18n="carpentry">نجارة</option>
+                        <option value="gypsum" data-i18n="gypsum">جبس</option>
+                        <option value="aluminum" data-i18n="aluminum">ألمنيوم</option>
+                        <option value="general_renovation" data-i18n="generalRenovation">ترميمات عامة</option>
+                        <option value="minor_repairs" data-i18n="minorRepairs">أعمال صغيرة وصيانة</option>
+                        <option value="post_renovation_cleaning" data-i18n="cleaning">تنظيف بعد ترميم</option>
+                        <option value="other" data-i18n="other">أخرى</option>
+                      </select>
+                    </div>
+
+                    <div class="field">
+                      <label class="required" for="years_of_experience" data-i18n="yearsExperience">سنوات الخبرة</label>
+                      <input id="years_of_experience" name="years_of_experience" type="number" min="0" max="60" required placeholder="0" />
+                    </div>
+
+                    <fieldset class="field full" style="border:0;padding:0;margin:0;">
+                      <legend data-i18n="additionalProfessions">تخصصات إضافية</legend>
+                      <div class="choice-grid">
+                        <label class="choice-card"><input type="checkbox" name="additional_professions" value="plumbing" /><span data-i18n="plumbing">سباكة</span></label>
+                        <label class="choice-card"><input type="checkbox" name="additional_professions" value="electricity" /><span data-i18n="electricity">كهرباء</span></label>
+                        <label class="choice-card"><input type="checkbox" name="additional_professions" value="air_conditioning" /><span data-i18n="airConditioning">تكييف</span></label>
+                        <label class="choice-card"><input type="checkbox" name="additional_professions" value="painting" /><span data-i18n="painting">دهان</span></label>
+                        <label class="choice-card"><input type="checkbox" name="additional_professions" value="tiling" /><span data-i18n="tiling">بلاط</span></label>
+                        <label class="choice-card"><input type="checkbox" name="additional_professions" value="carpentry" /><span data-i18n="carpentry">نجارة</span></label>
+                        <label class="choice-card"><input type="checkbox" name="additional_professions" value="gypsum" /><span data-i18n="gypsum">جبس</span></label>
+                        <label class="choice-card"><input type="checkbox" name="additional_professions" value="general_renovation" /><span data-i18n="generalRenovation">ترميمات عامة</span></label>
+                        <label class="choice-card"><input type="checkbox" name="additional_professions" value="minor_repairs" /><span data-i18n="minorRepairs">صيانة عامة</span></label>
+                      </div>
+                    </fieldset>
+
+                    <div class="field full">
+                      <label for="experience_description" data-i18n="experienceDescription">صف خبرتك باختصار</label>
+                      <textarea id="experience_description" name="experience_description" maxlength="1000" data-i18n-placeholder="experiencePlaceholder" placeholder="ما نوع الأعمال التي تنفذها عادة؟ وما الذي يميز خبرتك؟"></textarea>
+                    </div>
+
+                    <div class="field">
+                      <label data-i18n="workedIndependently">هل عملت سابقًا بشكل مستقل؟</label>
+                      <div class="yes-no">
+                        <label class="choice-card"><input type="radio" name="worked_independently" value="true" /><span data-i18n="yes">نعم</span></label>
+                        <label class="choice-card"><input type="radio" name="worked_independently" value="false" /><span data-i18n="no">لا</span></label>
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <label data-i18n="references">هل تستطيع توفير توصيات من زبائن سابقين؟</label>
+                      <div class="yes-no">
+                        <label class="choice-card"><input type="radio" name="can_provide_references" value="true" /><span data-i18n="yes">نعم</span></label>
+                        <label class="choice-card"><input type="radio" name="can_provide_references" value="false" /><span data-i18n="no">لا</span></label>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="form-step" data-step="3">
+                  <div class="step-heading">
+                    <h3 data-i18n="availabilityTitle">3. المناطق والتوفر</h3>
+                    <p data-i18n="availabilityCopy">هذه التفاصيل تساعدنا على إرسال الطلبات المناسبة لك فقط.</p>
+                  </div>
+
+                  <div class="field-grid">
+                    <fieldset class="field full" style="border:0;padding:0;margin:0;">
+                      <legend class="required" data-i18n="serviceAreas">المناطق التي تستطيع العمل بها</legend>
+                      <div class="choice-grid">
+                        <label class="choice-card"><input type="checkbox" name="service_areas" value="jerusalem" /><span data-i18n="jerusalem">القدس</span></label>
+                        <label class="choice-card"><input type="checkbox" name="service_areas" value="east_jerusalem" /><span data-i18n="eastJerusalem">القدس الشرقية</span></label>
+                        <label class="choice-card"><input type="checkbox" name="service_areas" value="north_jerusalem" /><span data-i18n="northJerusalem">شمال القدس</span></label>
+                        <label class="choice-card"><input type="checkbox" name="service_areas" value="ramallah" /><span data-i18n="ramallah">رام الله</span></label>
+                        <label class="choice-card"><input type="checkbox" name="service_areas" value="bethlehem" /><span data-i18n="bethlehem">بيت لحم</span></label>
+                        <label class="choice-card"><input type="checkbox" name="service_areas" value="other" /><span data-i18n="otherArea">منطقة أخرى</span></label>
+                      </div>
+                      <span class="hint" data-i18n="selectOneArea">اختر منطقة واحدة على الأقل.</span>
+                    </fieldset>
+
+                    <div class="field full">
+                      <label for="other_service_area" data-i18n="otherAreaField">اكتب أي مناطق إضافية</label>
+                      <input id="other_service_area" name="other_service_area" type="text" data-i18n-placeholder="otherAreaPlaceholder" placeholder="مثال: أبو ديس، الرام، معاليه أدوميم..." />
+                    </div>
+
+                    <div class="field">
+                      <label data-i18n="driverLicense">هل لديك رخصة قيادة؟</label>
+                      <div class="yes-no">
+                        <label class="choice-card"><input type="radio" name="has_driver_license" value="true" /><span data-i18n="yes">نعم</span></label>
+                        <label class="choice-card"><input type="radio" name="has_driver_license" value="false" /><span data-i18n="no">لا</span></label>
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <label data-i18n="vehicle">هل لديك سيارة؟</label>
+                      <div class="yes-no">
+                        <label class="choice-card"><input type="radio" name="has_vehicle" value="true" /><span data-i18n="yes">نعم</span></label>
+                        <label class="choice-card"><input type="radio" name="has_vehicle" value="false" /><span data-i18n="no">لا</span></label>
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <label class="required" data-i18n="tools">هل تمتلك أدوات العمل الأساسية؟</label>
+                      <div class="yes-no">
+                        <label class="choice-card"><input type="radio" name="has_tools" value="true" required /><span data-i18n="yes">نعم</span></label>
+                        <label class="choice-card"><input type="radio" name="has_tools" value="false" required /><span data-i18n="no">لا</span></label>
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <label for="maximum_travel_distance_km" data-i18n="maxDistance">أقصى مسافة للسفر (كم)</label>
+                      <input id="maximum_travel_distance_km" name="maximum_travel_distance_km" type="number" min="0" max="300" placeholder="20" />
+                    </div>
+
+                    <fieldset class="field full" style="border:0;padding:0;margin:0;">
+                      <legend class="required" data-i18n="availableDays">الأيام المتاحة</legend>
+                      <div class="choice-grid">
+                        <label class="choice-card"><input type="checkbox" name="available_days" value="sunday" /><span data-i18n="sunday">الأحد</span></label>
+                        <label class="choice-card"><input type="checkbox" name="available_days" value="monday" /><span data-i18n="monday">الاثنين</span></label>
+                        <label class="choice-card"><input type="checkbox" name="available_days" value="tuesday" /><span data-i18n="tuesday">الثلاثاء</span></label>
+                        <label class="choice-card"><input type="checkbox" name="available_days" value="wednesday" /><span data-i18n="wednesday">الأربعاء</span></label>
+                        <label class="choice-card"><input type="checkbox" name="available_days" value="thursday" /><span data-i18n="thursday">الخميس</span></label>
+                        <label class="choice-card"><input type="checkbox" name="available_days" value="friday" /><span data-i18n="friday">الجمعة</span></label>
+                        <label class="choice-card"><input type="checkbox" name="available_days" value="saturday" /><span data-i18n="saturday">السبت</span></label>
+                      </div>
+                    </fieldset>
+
+                    <fieldset class="field full" style="border:0;padding:0;margin:0;">
+                      <legend class="required" data-i18n="availableTimes">الأوقات المتاحة</legend>
+                      <div class="choice-grid">
+                        <label class="choice-card"><input type="checkbox" name="available_times" value="morning" /><span data-i18n="morning">صباحًا</span></label>
+                        <label class="choice-card"><input type="checkbox" name="available_times" value="afternoon" /><span data-i18n="afternoon">ظهرًا</span></label>
+                        <label class="choice-card"><input type="checkbox" name="available_times" value="evening" /><span data-i18n="evening">مساءً</span></label>
+                      </div>
+                    </fieldset>
+
+                    <div class="field">
+                      <label data-i18n="emergencyJobs">هل تقبل أعمالًا طارئة؟</label>
+                      <div class="yes-no">
+                        <label class="choice-card"><input type="radio" name="accepts_emergency_jobs" value="true" /><span data-i18n="yes">نعم</span></label>
+                        <label class="choice-card"><input type="radio" name="accepts_emergency_jobs" value="false" /><span data-i18n="no">لا</span></label>
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <label data-i18n="nightJobs">هل تقبل العمل ليلًا؟</label>
+                      <div class="yes-no">
+                        <label class="choice-card"><input type="radio" name="accepts_night_jobs" value="true" /><span data-i18n="yes">نعم</span></label>
+                        <label class="choice-card"><input type="radio" name="accepts_night_jobs" value="false" /><span data-i18n="no">لا</span></label>
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <label for="expected_hourly_rate" data-i18n="expectedRate">السعر المتوقع للساعة (₪)</label>
+                      <input id="expected_hourly_rate" name="expected_hourly_rate" type="number" min="0" max="5000" step="1" data-i18n-placeholder="ratePlaceholder" placeholder="مثال: 180" />
+                      <span class="hint" data-i18n="rateHint">هذا للتعرف على توقعات السوق، وليس سعرًا نهائيًا أو وعدًا.</span>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="form-step" data-step="4">
+                  <div class="step-heading">
+                    <h3 data-i18n="finalTitle">4. الحالة المهنية والمرفقات</h3>
+                    <p data-i18n="finalCopy">أضف ما يساعدنا على تقييم الطلب. لا نطلب هوية أو شهادة شرطة في هذه المرحلة.</p>
+                  </div>
+
+                  <div class="field-grid">
+                    <div class="field">
+                      <label for="business_status" data-i18n="businessStatus">الوضع المهني</label>
+                      <select id="business_status" name="business_status">
+                        <option value="" data-i18n="chooseOption">اختر...</option>
+                        <option value="osek_murshe">עוסק מורשה</option>
+                        <option value="osek_patur">עוסק פטור</option>
+                        <option value="company" data-i18n="company">شركة</option>
+                        <option value="employee" data-i18n="employee">موظف</option>
+                        <option value="no_tax_file" data-i18n="noTaxFile">لا يوجد ملف ضريبي حاليًا</option>
+                      </select>
+                    </div>
+
+                    <div class="field">
+                      <label data-i18n="invoice">هل تستطيع إصدار فاتورة أو إيصال؟</label>
+                      <div class="yes-no">
+                        <label class="choice-card"><input type="radio" name="can_issue_invoice" value="true" /><span data-i18n="yes">نعم</span></label>
+                        <label class="choice-card"><input type="radio" name="can_issue_invoice" value="false" /><span data-i18n="no">لا</span></label>
+                      </div>
+                    </div>
+
+                    <div class="field full">
+                      <label for="portfolio_url" data-i18n="portfolioUrl">رابط صفحة أعمال أو إنستغرام</label>
+                      <input id="portfolio_url" name="portfolio_url" type="url" placeholder="https://" />
+                    </div>
+
+                    <div class="field full">
+                      <label for="motivation" data-i18n="motivation">لماذا ترغب في الانضمام إلى FixSha’a؟</label>
+                      <textarea id="motivation" name="motivation" maxlength="1000" data-i18n-placeholder="motivationPlaceholder" placeholder="اكتب باختصار ما الذي تبحث عنه وكيف تحب أن تعمل..."></textarea>
+                    </div>
+
+                    <div class="field">
+                      <label for="source" data-i18n="source">كيف سمعت عنا؟</label>
+                      <select id="source" name="source">
+                        <option value="worker_landing_page" data-i18n="chooseOption">اختر...</option>
+                        <option value="facebook_group" data-i18n="facebookGroup">مجموعة فيسبوك</option>
+                        <option value="facebook_page" data-i18n="facebookPage">صفحة فيسبوك</option>
+                        <option value="instagram">Instagram</option>
+                        <option value="tiktok">TikTok</option>
+                        <option value="whatsapp">WhatsApp</option>
+                        <option value="friend" data-i18n="friend">صديق أو معرفة</option>
+                        <option value="other" data-i18n="other">أخرى</option>
+                      </select>
+                    </div>
+
+                    <div class="field full">
+                      <label for="portfolio_files" data-i18n="portfolioFiles">صور أعمال سابقة</label>
+                      <div class="upload-box">
+                        <div class="upload-icon">📸</div>
+                        <strong data-i18n="uploadPortfolioTitle">ارفع صورًا واضحة لأعمال نفذتها</strong>
+                        <div class="hint" data-i18n="uploadHint">JPG, PNG أو WEBP — حد أقصى 10MB لكل ملف</div>
+                        <input id="portfolio_files" name="portfolio_files" type="file" accept="image/jpeg,image/png,image/webp" multiple />
+                      </div>
+                    </div>
+
+                    <div class="field full">
+                      <label for="certificate_files" data-i18n="certificateFiles">شهادات مهنية أو توصيات</label>
+                      <div class="upload-box">
+                        <div class="upload-icon">📄</div>
+                        <strong data-i18n="uploadCertificateTitle">اختياري: أرفق شهادة أو توصية</strong>
+                        <div class="hint" data-i18n="uploadCertHint">PDF, JPG أو PNG — حد أقصى 10MB لكل ملف</div>
+                        <input id="certificate_files" name="certificate_files" type="file" accept="application/pdf,image/jpeg,image/png" multiple />
+                      </div>
+                    </div>
+
+                    <div class="field full">
+                      <div class="consent-list">
+                        <label class="consent-item">
+                          <input type="checkbox" id="agrees_to_verification" name="agrees_to_verification" required />
+                          <span data-i18n="verificationConsent">أوافق على تقديم المستندات المطلوبة والخضوع لعملية تحقق في حال الانتقال إلى مرحلة القبول.</span>
+                        </label>
+                        <label class="consent-item">
+                          <input type="checkbox" id="agrees_to_privacy_policy" name="agrees_to_privacy_policy" required />
+                          <span data-i18n="privacyConsent">أوافق على تخزين بيانات الطلب واستخدامها لمراجعته والتواصل معي بخصوص الانضمام.</span>
+                        </label>
+                        <label class="consent-item">
+                          <input type="checkbox" id="agrees_to_terms" name="agrees_to_terms" required />
+                          <span data-i18n="termsConsent">أفهم أن تقديم الطلب لا يعني القبول التلقائي أو ضمان عدد معين من طلبات العمل.</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <div class="form-navigation">
+                  <button type="button" class="ghost-btn prev-btn" id="prevBtn" data-i18n="previous">السابق</button>
+                  <div class="nav-spacer"></div>
+                  <button type="button" class="secondary-btn next-btn" id="nextBtn" data-i18n="next">التالي</button>
+                  <button type="submit" class="primary-btn submit-btn" id="submitBtn" style="display:none;" data-i18n="submitApplication">إرسال طلب الانضمام</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="success-screen" id="successScreen">
+            <div class="success-badge">✓</div>
+            <h3 data-i18n="successTitle">تم استلام طلبك بنجاح</h3>
+            <p data-i18n="successCopy">شكرًا لتسجيلك. سيقوم فريق FixSha’a بمراجعة التفاصيل والتواصل معك إذا كان الطلب مناسبًا لمرحلة التحقق.</p>
+            <button type="button" class="secondary-btn" id="newApplicationBtn" data-i18n="newApplication">إرسال طلب آخر</button>
+          </div>
+        </div>
+
+        <p class="privacy-note" data-i18n="privacyNote">لا ترفع صورة هوية أو معلومات حساسة في الطلب الأولي. سنطلب المستندات الضرورية فقط بعد مراجعة الطلب والتواصل معك.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="brand" href="#top">
+        <div class="brand-mark"><span>F</span></div>
+        <div class="brand-name"><strong style="color:white;">FixSha’a</strong></div>
+      </a>
+      <p>© <span id="currentYear"></span> FixSha’a. <span data-i18n="rights">جميع الحقوق محفوظة.</span></p>
+      <div class="footer-links">
+        <a href="#" data-i18n="privacyPolicy">سياسة الخصوصية</a>
+        <a href="#" data-i18n="contact">تواصل معنا</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ============================================================
+    // 1) SUPABASE SETTINGS
+    // ============================================================
+    const SUPABASE_URL = "https://brksmrurhzvlhiqxvbvs.supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_W1Mojtc5f0r-jxJ69ANZxw_Qj-aj1Gh";
+    const STORAGE_BUCKET = "worker-applications";
+    const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+    const MAX_FILES_PER_INPUT = 8;
+
+    const supabaseClient = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_ANON_KEY
+    );
+
+    // ============================================================
+    // 2) TRANSLATIONS
+    // ============================================================
+    const translations = {
+      ar: {
+        brandTagline: "עבודה לפי שעה · شغل حسب الساعة",
+        navHow: "كيف يعمل؟",
+        navBenefits: "الامتيازات",
+        navRequirements: "شروط الانضمام",
+        joinNow: "سجّل الآن",
+        heroEyebrow: "انضم إلى شبكة المهنيين في القدس والمنطقة",
+        heroTitle: 'اشتغل بمهنتك، <span class="hero-highlight">بوقتك</span>، وبوضوح.',
+        heroCopy: "FixSha’a تربطك بطلبات صيانة وترميم مناسبة لتخصصك ومنطقتك. أنت تشاهد تفاصيل العمل أولًا، ثم تختار إن كان الطلب مناسبًا لك.",
+        startApplication: "ابدأ طلب الانضمام",
+        learnHow: "اعرف كيف يعمل",
+        trust1: "اختيار الطلب المناسب",
+        trust2: "معلومات واضحة قبل القبول",
+        trust3: "لا يوجد التزام بعدد ساعات ثابت",
+        newJobs: "طلبات مناسبة لك",
+        availableNow: "متاح الآن",
+        job1Title: "إصلاح تسريب تحت المغسلة",
+        job1Area: "بيت حنينا · اليوم مساءً",
+        hourly: "حسب الساعة",
+        withPhotos: "مع صور",
+        distance: "4 كم",
+        estimated: "تقدير: 1–2 ساعة",
+        viewRequest: "عرض تفاصيل الطلب",
+        job2Title: "دهان غرفة نوم",
+        job2Area: "شعفاط · الجمعة صباحًا",
+        materialsReady: "المواد جاهزة",
+        distance2: "7 كم",
+        estimated2: "تقدير: 3–4 ساعات",
+        howEyebrow: "طريقة العمل",
+        howTitle: "من وصول الطلب حتى إنهاء العمل",
+        howCopy: "المنصة تساعدك على فهم الطلب قبل الالتزام به، وتوثيق العمل بطريقة تحميك وتحمي الزبون.",
+        step1Title: "يصل طلب واضح",
+        step1Copy: "تشاهد نوع المشكلة، المنطقة، الموعد، والصور أو الفيديو عندما تكون متوفرة.",
+        step2Title: "تقرر إن كان مناسبًا",
+        step2Copy: "تختار الأعمال التي تناسب تخصصك، وقتك، والمسافة التي تستطيع السفر إليها.",
+        step3Title: "تنفيذ وتوقيت واضح",
+        step3Copy: "يتم تسجيل بداية ونهاية العمل بطريقة واضحة ومتفق عليها مع الزبون.",
+        step4Title: "توثيق وتقييم",
+        step4Copy: "صور قبل وبعد وتقييمات الزبائن تساعدك على بناء سمعة مهنية قوية.",
+        benefitsEyebrow: "لماذا FixSha’a؟",
+        benefitsTitle: "امتيازات عملية للمهني",
+        benefitsCopy: "لا نعدك بدخل مضمون، لكننا نعمل على جعل الوصول إلى طلبات مناسبة أوضح وأسهل.",
+        benefit1Title: "مرونة في الوقت",
+        benefit1Copy: "حدّد الأيام والأوقات التي تناسبك دون التزام بدوام ثابت.",
+        benefit2Title: "طلبات حسب المنطقة",
+        benefit2Copy: "نحاول مطابقة الطلبات مع تخصصك والمناطق التي تستطيع الوصول إليها.",
+        benefit3Title: "حرية القبول",
+        benefit3Copy: "شاهد التفاصيل أولًا ثم اقبل أو ارفض حسب ملاءمة العمل لك.",
+        benefit4Title: "توثيق يحميك",
+        benefit4Copy: "صور قبل وبعد تساعد على تقليل الخلافات وتوضيح جودة التنفيذ.",
+        benefit5Title: "ملف مهني وتقييمات",
+        benefit5Copy: "ابنِ سجل أعمال وتقييمات تساعد الزبائن على الثقة بك.",
+        benefit6Title: "دعم وتنسيق",
+        benefit6Copy: "فريق FixSha’a يساعد في التنسيق ومتابعة المشكلات التشغيلية.",
+        requirementsEyebrow: "شروط أساسية",
+        requirementsTitle: "من نبحث عنه؟",
+        requirementsCopy: "العمر وحده لا يحدد الخبرة. الأهم هو الالتزام، المهارة، والقدرة على تقديم خدمة محترمة وآمنة.",
+        req1Title: "18 سنة أو أكثر",
+        req1Copy: "وإمكانية العمل بصورة قانونية حسب الحالة الشخصية.",
+        req2Title: "خبرة عملية",
+        req2Copy: "خبرة حقيقية في تخصص واحد على الأقل، مع صور أو توصيات عند الإمكان.",
+        req3Title: "التزام بالمواعيد",
+        req3Copy: "التواصل الواضح والوصول في الوقت أو التحديث المبكر عند التأخير.",
+        req4Title: "أدوات مناسبة",
+        req4Copy: "امتلاك الأدوات الأساسية اللازمة للأعمال التي تقبلها.",
+        req5Title: "توثيق العمل",
+        req5Copy: "الاستعداد لتصوير الحالة قبل وبعد بما يحفظ حقوق الطرفين.",
+        req6Title: "التحقق والمراجعة",
+        req6Copy: "الموافقة على تقديم المستندات المطلوبة في مرحلة القبول، وليس في الطلب الأولي.",
+        formEyebrow: "طلب الانضمام",
+        formSectionTitle: "عرّفنا عنك وعن خبرتك",
+        formSectionCopy: "التعبئة تستغرق عدة دقائق. تقديم الطلب لا يعني القبول التلقائي، وسيتم التواصل مع المرشحين المناسبين.",
+        formTitle: "استبيان المهنيين",
+        formSubtitle: "أكمل الخطوات الأربع ثم أرسل الطلب للمراجعة.",
+        stepLabel: "الخطوة",
+        personalTitle: "1. معلومات شخصية",
+        personalCopy: "هذه المعلومات تساعدنا على التواصل معك وفهم منطقتك ولغتك المفضلة.",
+        fullName: "الاسم الكامل",
+        fullNamePlaceholder: "مثال: أحمد محمد",
+        phone: "رقم الهاتف",
+        phonePlaceholder: "05X-XXXXXXX",
+        email: "البريد الإلكتروني",
+        emailPlaceholder: "name@example.com",
+        city: "المدينة أو البلدة",
+        cityPlaceholder: "مثال: القدس",
+        preferredLanguage: "لغة التواصل المفضلة",
+        chooseOption: "اختر...",
+        arabic: "العربية",
+        hebrew: "العبرية",
+        english: "الإنجليزية",
+        over18: "هل عمرك 18 سنة أو أكثر؟",
+        yes: "نعم",
+        no: "لا",
+        professionalTitle: "2. خبرتك المهنية",
+        professionalCopy: "اختر تخصصك الأساسي وأضف أي مهارات أو خبرات مهمة.",
+        primaryProfession: "التخصص الرئيسي",
+        plumbing: "سباكة",
+        electricity: "كهرباء",
+        airConditioning: "تكييف",
+        painting: "دهان",
+        tiling: "بلاط",
+        carpentry: "نجارة",
+        gypsum: "جبس",
+        aluminum: "ألمنيوم",
+        generalRenovation: "ترميمات عامة",
+        minorRepairs: "أعمال صغيرة وصيانة",
+        cleaning: "تنظيف بعد ترميم",
+        other: "أخرى",
+        yearsExperience: "سنوات الخبرة",
+        additionalProfessions: "تخصصات إضافية",
+        experienceDescription: "صف خبرتك باختصار",
+        experiencePlaceholder: "ما نوع الأعمال التي تنفذها عادة؟ وما الذي يميز خبرتك؟",
+        workedIndependently: "هل عملت سابقًا بشكل مستقل؟",
+        references: "هل تستطيع توفير توصيات من زبائن سابقين؟",
+        availabilityTitle: "3. المناطق والتوفر",
+        availabilityCopy: "هذه التفاصيل تساعدنا على إرسال الطلبات المناسبة لك فقط.",
+        serviceAreas: "المناطق التي تستطيع العمل بها",
+        jerusalem: "القدس",
+        eastJerusalem: "القدس الشرقية",
+        northJerusalem: "شمال القدس",
+        ramallah: "رام الله",
+        bethlehem: "بيت لحم",
+        otherArea: "منطقة أخرى",
+        selectOneArea: "اختر منطقة واحدة على الأقل.",
+        otherAreaField: "اكتب أي مناطق إضافية",
+        otherAreaPlaceholder: "مثال: أبو ديس، الرام، معاليه أدوميم...",
+        driverLicense: "هل لديك رخصة قيادة؟",
+        vehicle: "هل لديك سيارة؟",
+        tools: "هل تمتلك أدوات العمل الأساسية؟",
+        maxDistance: "أقصى مسافة للسفر (كم)",
+        availableDays: "الأيام المتاحة",
+        sunday: "الأحد",
+        monday: "الاثنين",
+        tuesday: "الثلاثاء",
+        wednesday: "الأربعاء",
+        thursday: "الخميس",
+        friday: "الجمعة",
+        saturday: "السبت",
+        availableTimes: "الأوقات المتاحة",
+        morning: "صباحًا",
+        afternoon: "ظهرًا",
+        evening: "مساءً",
+        emergencyJobs: "هل تقبل أعمالًا طارئة؟",
+        nightJobs: "هل تقبل العمل ليلًا؟",
+        expectedRate: "السعر المتوقع للساعة (₪)",
+        ratePlaceholder: "مثال: 180",
+        rateHint: "هذا للتعرف على توقعات السوق، وليس سعرًا نهائيًا أو وعدًا.",
+        finalTitle: "4. الحالة المهنية والمرفقات",
+        finalCopy: "أضف ما يساعدنا على تقييم الطلب. لا نطلب هوية أو شهادة شرطة في هذه المرحلة.",
+        businessStatus: "الوضع المهني",
+        company: "شركة",
+        employee: "موظف",
+        noTaxFile: "لا يوجد ملف ضريبي حاليًا",
+        invoice: "هل تستطيع إصدار فاتورة أو إيصال؟",
+        portfolioUrl: "رابط صفحة أعمال أو إنستغرام",
+        motivation: "لماذا ترغب في الانضمام إلى FixSha’a؟",
+        motivationPlaceholder: "اكتب باختصار ما الذي تبحث عنه وكيف تحب أن تعمل...",
+        source: "كيف سمعت عنا؟",
+        facebookGroup: "مجموعة فيسبوك",
+        facebookPage: "صفحة فيسبوك",
+        friend: "صديق أو معرفة",
+        portfolioFiles: "صور أعمال سابقة",
+        uploadPortfolioTitle: "ارفع صورًا واضحة لأعمال نفذتها",
+        uploadHint: "JPG, PNG أو WEBP — حد أقصى 10MB لكل ملف",
+        certificateFiles: "شهادات مهنية أو توصيات",
+        uploadCertificateTitle: "اختياري: أرفق شهادة أو توصية",
+        uploadCertHint: "PDF, JPG أو PNG — حد أقصى 10MB لكل ملف",
+        verificationConsent: "أوافق على تقديم المستندات المطلوبة والخضوع لعملية تحقق في حال الانتقال إلى مرحلة القبول.",
+        privacyConsent: "أوافق على تخزين بيانات الطلب واستخدامها لمراجعته والتواصل معي بخصوص الانضمام.",
+        termsConsent: "أفهم أن تقديم الطلب لا يعني القبول التلقائي أو ضمان عدد معين من طلبات العمل.",
+        previous: "السابق",
+        next: "التالي",
+        submitApplication: "إرسال طلب الانضمام",
+        successTitle: "تم استلام طلبك بنجاح",
+        successCopy: "شكرًا لتسجيلك. سيقوم فريق FixSha’a بمراجعة التفاصيل والتواصل معك إذا كان الطلب مناسبًا لمرحلة التحقق.",
+        newApplication: "إرسال طلب آخر",
+        privacyNote: "لا ترفع صورة هوية أو معلومات حساسة في الطلب الأولي. سنطلب المستندات الضرورية فقط بعد مراجعة الطلب والتواصل معك.",
+        rights: "جميع الحقوق محفوظة.",
+        privacyPolicy: "سياسة الخصوصية",
+        contact: "تواصل معنا",
+        requiredMessage: "يرجى تعبئة جميع الحقول المطلوبة في هذه الخطوة.",
+        areaRequiredMessage: "اختر منطقة عمل واحدة على الأقل.",
+        daysRequiredMessage: "اختر يوم عمل واحدًا على الأقل.",
+        timesRequiredMessage: "اختر وقتًا واحدًا على الأقل.",
+        under18Message: "التسجيل متاح حاليًا لمن عمره 18 سنة أو أكثر.",
+        configError: "أضيفي Supabase Anon Key داخل الكود قبل إرسال الطلب.",
+        sending: "جاري إرسال الطلب...",
+        fileTooLarge: "أحد الملفات أكبر من 10MB.",
+        tooManyFiles: "يمكن رفع 8 ملفات كحد أقصى في كل قسم.",
+        submitError: "حدث خطأ أثناء إرسال الطلب. حاولي مرة أخرى.",
+        uploadWarning: "تم حفظ الطلب، لكن تعذر رفع بعض الملفات. يمكن لفريقنا طلبها لاحقًا."
+      },
+      he: {
+        brandTagline: "עבודה לפי שעה · شغل حسب الساعة",
+        navHow: "איך זה עובד?",
+        navBenefits: "היתרונות",
+        navRequirements: "תנאי הצטרפות",
+        joinNow: "הרשמה",
+        heroEyebrow: "הצטרפו לרשת בעלי המקצוע בירושלים והסביבה",
+        heroTitle: 'עובדים במקצוע שלכם, <span class="hero-highlight">בזמן שלכם</span>, ובשקיפות.',
+        heroCopy: "FixSha’a מחברת אתכם לעבודות תיקון ושיפוץ המתאימות למקצוע ולאזור שלכם. אתם רואים קודם את פרטי העבודה ורק אז מחליטים אם היא מתאימה.",
+        startApplication: "התחלת בקשת הצטרפות",
+        learnHow: "איך זה עובד",
+        trust1: "בחירת העבודה המתאימה",
+        trust2: "מידע ברור לפני אישור",
+        trust3: "ללא התחייבות לשעות קבועות",
+        newJobs: "עבודות שמתאימות לכם",
+        availableNow: "זמין עכשיו",
+        job1Title: "תיקון נזילה מתחת לכיור",
+        job1Area: "בית חנינא · היום בערב",
+        hourly: "לפי שעה",
+        withPhotos: "כולל תמונות",
+        distance: "4 ק״מ",
+        estimated: "הערכה: 1–2 שעות",
+        viewRequest: "צפייה בפרטי הבקשה",
+        job2Title: "צביעת חדר שינה",
+        job2Area: "שועפאט · שישי בבוקר",
+        materialsReady: "החומרים מוכנים",
+        distance2: "7 ק״מ",
+        estimated2: "הערכה: 3–4 שעות",
+        howEyebrow: "תהליך העבודה",
+        howTitle: "מקבלת הבקשה ועד סיום העבודה",
+        howCopy: "הפלטפורמה עוזרת להבין את העבודה לפני שמתחייבים ולתעד אותה בצורה שמגינה על שני הצדדים.",
+        step1Title: "בקשה ברורה",
+        step1Copy: "רואים את סוג התקלה, האזור, המועד ותמונות או וידאו כאשר קיימים.",
+        step2Title: "מחליטים אם מתאים",
+        step2Copy: "בוחרים עבודות שמתאימות למקצוע, לזמן ולמרחק הנסיעה שלכם.",
+        step3Title: "ביצוע ותזמון ברור",
+        step3Copy: "תחילת וסיום העבודה מתועדים בצורה ברורה ובהסכמה עם הלקוח.",
+        step4Title: "תיעוד ודירוג",
+        step4Copy: "תמונות לפני ואחרי ודירוגים עוזרים לבנות מוניטין מקצועי.",
+        benefitsEyebrow: "למה FixSha’a?",
+        benefitsTitle: "יתרונות מעשיים לבעלי מקצוע",
+        benefitsCopy: "אנחנו לא מבטיחים הכנסה קבועה, אבל פועלים להפוך את הגישה לעבודות מתאימות לברורה וקלה יותר.",
+        benefit1Title: "גמישות בזמן",
+        benefit1Copy: "קובעים את הימים והשעות שנוחים לכם ללא משמרת קבועה.",
+        benefit2Title: "עבודות לפי אזור",
+        benefit2Copy: "אנחנו מנסים להתאים בקשות למקצוע ולאזורים שאליהם תוכלו להגיע.",
+        benefit3Title: "חופש בחירה",
+        benefit3Copy: "רואים את הפרטים קודם ומחליטים אם לקבל או לדחות.",
+        benefit4Title: "תיעוד שמגן עליכם",
+        benefit4Copy: "תמונות לפני ואחרי מסייעות לצמצם מחלוקות ולהראות איכות ביצוע.",
+        benefit5Title: "פרופיל מקצועי ודירוגים",
+        benefit5Copy: "בונים תיק עבודות ודירוגים שמחזקים את אמון הלקוחות.",
+        benefit6Title: "תמיכה ותיאום",
+        benefit6Copy: "צוות FixSha’a מסייע בתיאום ובטיפול בבעיות תפעוליות.",
+        requirementsEyebrow: "תנאי בסיס",
+        requirementsTitle: "את מי אנחנו מחפשים?",
+        requirementsCopy: "הגיל לבדו לא קובע ניסיון. החשובים הם מחויבות, מיומנות ושירות מכבד ובטוח.",
+        req1Title: "מעל גיל 18",
+        req1Copy: "ואפשרות לעבוד באופן חוקי בהתאם למצב האישי.",
+        req2Title: "ניסיון מעשי",
+        req2Copy: "ניסיון אמיתי במקצוע אחד לפחות, עם תמונות או המלצות כשאפשר.",
+        req3Title: "עמידה בזמנים",
+        req3Copy: "תקשורת ברורה, הגעה בזמן ועדכון מוקדם במקרה של עיכוב.",
+        req4Title: "כלים מתאימים",
+        req4Copy: "החזקה בכלים הבסיסיים הדרושים לעבודות שאתם מקבלים.",
+        req5Title: "תיעוד העבודה",
+        req5Copy: "נכונות לצלם לפני ואחרי כדי לשמור על זכויות שני הצדדים.",
+        req6Title: "בדיקה ואימות",
+        req6Copy: "הסכמה להציג מסמכים בשלב הקבלה ולא בטופס הראשוני.",
+        formEyebrow: "בקשת הצטרפות",
+        formSectionTitle: "ספרו לנו עליכם ועל הניסיון שלכם",
+        formSectionCopy: "המילוי לוקח מספר דקות. שליחת הבקשה אינה מהווה קבלה אוטומטית.",
+        formTitle: "שאלון בעלי מקצוע",
+        formSubtitle: "השלימו ארבעה שלבים ושלחו את הבקשה לבדיקה.",
+        stepLabel: "שלב",
+        personalTitle: "1. פרטים אישיים",
+        personalCopy: "הפרטים יעזרו לנו ליצור קשר ולהבין את האזור והשפה המועדפת.",
+        fullName: "שם מלא",
+        fullNamePlaceholder: "לדוגמה: אחמד מוחמד",
+        phone: "מספר טלפון",
+        phonePlaceholder: "05X-XXXXXXX",
+        email: "דואר אלקטרוני",
+        emailPlaceholder: "name@example.com",
+        city: "עיר או יישוב",
+        cityPlaceholder: "לדוגמה: ירושלים",
+        preferredLanguage: "שפת תקשורת מועדפת",
+        chooseOption: "בחרו...",
+        arabic: "ערבית",
+        hebrew: "עברית",
+        english: "אנגלית",
+        over18: "האם אתם בני 18 ומעלה?",
+        yes: "כן",
+        no: "לא",
+        professionalTitle: "2. ניסיון מקצועי",
+        professionalCopy: "בחרו מקצוע מרכזי והוסיפו מיומנויות או ניסיון חשוב.",
+        primaryProfession: "מקצוע מרכזי",
+        plumbing: "אינסטלציה",
+        electricity: "חשמל",
+        airConditioning: "מיזוג אוויר",
+        painting: "צביעה",
+        tiling: "ריצוף וחיפוי",
+        carpentry: "נגרות",
+        gypsum: "גבס",
+        aluminum: "אלומיניום",
+        generalRenovation: "שיפוצים כלליים",
+        minorRepairs: "תיקונים קטנים ותחזוקה",
+        cleaning: "ניקיון לאחר שיפוץ",
+        other: "אחר",
+        yearsExperience: "שנות ניסיון",
+        additionalProfessions: "מקצועות נוספים",
+        experienceDescription: "תיאור קצר של הניסיון",
+        experiencePlaceholder: "אילו עבודות אתם מבצעים בדרך כלל ומה מייחד את הניסיון שלכם?",
+        workedIndependently: "האם עבדתם בעבר כעצמאים?",
+        references: "האם תוכלו לספק המלצות מלקוחות קודמים?",
+        availabilityTitle: "3. אזורי עבודה וזמינות",
+        availabilityCopy: "הפרטים עוזרים לנו לשלוח רק בקשות שמתאימות לכם.",
+        serviceAreas: "אזורי עבודה",
+        jerusalem: "ירושלים",
+        eastJerusalem: "מזרח ירושלים",
+        northJerusalem: "צפון ירושלים",
+        ramallah: "רמאללה",
+        bethlehem: "בית לחם",
+        otherArea: "אזור אחר",
+        selectOneArea: "יש לבחור לפחות אזור אחד.",
+        otherAreaField: "אזורים נוספים",
+        otherAreaPlaceholder: "לדוגמה: אבו דיס, א-ראם, מעלה אדומים...",
+        driverLicense: "האם יש לכם רישיון נהיגה?",
+        vehicle: "האם יש לכם רכב?",
+        tools: "האם יש לכם כלי עבודה בסיסיים?",
+        maxDistance: "מרחק נסיעה מרבי (ק״מ)",
+        availableDays: "ימים זמינים",
+        sunday: "ראשון",
+        monday: "שני",
+        tuesday: "שלישי",
+        wednesday: "רביעי",
+        thursday: "חמישי",
+        friday: "שישי",
+        saturday: "שבת",
+        availableTimes: "שעות זמינות",
+        morning: "בוקר",
+        afternoon: "צהריים",
+        evening: "ערב",
+        emergencyJobs: "האם תקבלו עבודות חירום?",
+        nightJobs: "האם תוכלו לעבוד בלילה?",
+        expectedRate: "מחיר צפוי לשעה (₪)",
+        ratePlaceholder: "לדוגמה: 180",
+        rateHint: "המידע מיועד ללמידת השוק ואינו מחיר סופי או הבטחה.",
+        finalTitle: "4. סטטוס מקצועי ומסמכים",
+        finalCopy: "הוסיפו מידע שיעזור לנו לבדוק את הבקשה. אין צורך בתעודת זהות או תעודת יושר בשלב זה.",
+        businessStatus: "סטטוס מקצועי",
+        company: "חברה",
+        employee: "שכיר",
+        noTaxFile: "אין תיק מס כרגע",
+        invoice: "האם תוכלו להוציא חשבונית או קבלה?",
+        portfolioUrl: "קישור לתיק עבודות או אינסטגרם",
+        motivation: "למה תרצו להצטרף ל-FixSha’a?",
+        motivationPlaceholder: "כתבו בקצרה מה אתם מחפשים ואיך אתם אוהבים לעבוד...",
+        source: "איך שמעתם עלינו?",
+        facebookGroup: "קבוצת פייסבוק",
+        facebookPage: "עמוד פייסבוק",
+        friend: "חבר או מכר",
+        portfolioFiles: "תמונות של עבודות קודמות",
+        uploadPortfolioTitle: "העלו תמונות ברורות של עבודות שביצעתם",
+        uploadHint: "JPG, PNG או WEBP — עד 10MB לקובץ",
+        certificateFiles: "תעודות מקצועיות או המלצות",
+        uploadCertificateTitle: "רשות: צרפו תעודה או המלצה",
+        uploadCertHint: "PDF, JPG או PNG — עד 10MB לקובץ",
+        verificationConsent: "אני מסכים להציג מסמכים ולעבור תהליך אימות אם אעבור לשלב הקבלה.",
+        privacyConsent: "אני מסכים לשמירת פרטי הבקשה ולשימוש בהם לצורך בדיקה ויצירת קשר.",
+        termsConsent: "אני מבין ששליחת הבקשה אינה קבלה אוטומטית או הבטחה למספר עבודות.",
+        previous: "הקודם",
+        next: "הבא",
+        submitApplication: "שליחת בקשת הצטרפות",
+        successTitle: "הבקשה התקבלה בהצלחה",
+        successCopy: "תודה על ההרשמה. צוות FixSha’a יבדוק את הפרטים ויצור קשר אם הבקשה מתאימה לשלב האימות.",
+        newApplication: "שליחת בקשה נוספת",
+        privacyNote: "אין להעלות תעודת זהות או מידע רגיש בטופס הראשוני. נבקש מסמכים נחוצים רק לאחר בדיקה ויצירת קשר.",
+        rights: "כל הזכויות שמורות.",
+        privacyPolicy: "מדיניות פרטיות",
+        contact: "יצירת קשר",
+        requiredMessage: "נא למלא את כל שדות החובה בשלב זה.",
+        areaRequiredMessage: "יש לבחור לפחות אזור עבודה אחד.",
+        daysRequiredMessage: "יש לבחור לפחות יום עבודה אחד.",
+        timesRequiredMessage: "יש לבחור לפחות זמן אחד.",
+        under18Message: "ההרשמה זמינה כרגע לבני 18 ומעלה.",
+        configError: "יש להוסיף Supabase Anon Key בקוד לפני שליחת הבקשה.",
+        sending: "שולח את הבקשה...",
+        fileTooLarge: "אחד הקבצים גדול מ-10MB.",
+        tooManyFiles: "ניתן להעלות עד 8 קבצים בכל חלק.",
+        submitError: "אירעה שגיאה בשליחת הבקשה. נסו שוב.",
+        uploadWarning: "הבקשה נשמרה, אך חלק מהקבצים לא הועלו. הצוות יוכל לבקש אותם בהמשך."
+      },
+      en: {
+        brandTagline: "Hourly work · شغل حسب الساعة",
+        navHow: "How it works",
+        navBenefits: "Benefits",
+        navRequirements: "Requirements",
+        joinNow: "Apply now",
+        heroEyebrow: "Join our professional network in Jerusalem and nearby areas",
+        heroTitle: 'Work in your trade, <span class="hero-highlight">on your time</span>, with clarity.',
+        heroCopy: "FixSha’a connects you with repair and renovation requests that fit your trade and service area. Review the details first, then decide whether the job works for you.",
+        startApplication: "Start your application",
+        learnHow: "See how it works",
+        trust1: "Choose suitable jobs",
+        trust2: "Clear details before accepting",
+        trust3: "No fixed-hour commitment",
+        newJobs: "Jobs that fit you",
+        availableNow: "Available now",
+        job1Title: "Fix a leak under the sink",
+        job1Area: "Beit Hanina · this evening",
+        hourly: "Hourly",
+        withPhotos: "Photos included",
+        distance: "4 km",
+        estimated: "Estimate: 1–2 hours",
+        viewRequest: "View job details",
+        job2Title: "Paint a bedroom",
+        job2Area: "Shuafat · Friday morning",
+        materialsReady: "Materials ready",
+        distance2: "7 km",
+        estimated2: "Estimate: 3–4 hours",
+        howEyebrow: "Work flow",
+        howTitle: "From request to completed job",
+        howCopy: "The platform helps you understand the request before committing and document the work in a way that protects both sides.",
+        step1Title: "Receive a clear request",
+        step1Copy: "See the issue, location, requested time, and photos or video when available.",
+        step2Title: "Decide if it fits",
+        step2Copy: "Choose work that matches your trade, schedule, and preferred travel distance.",
+        step3Title: "Clear execution and timing",
+        step3Copy: "Job start and finish times are recorded clearly and agreed with the customer.",
+        step4Title: "Document and build trust",
+        step4Copy: "Before-and-after photos and customer ratings help strengthen your professional profile.",
+        benefitsEyebrow: "Why FixSha’a?",
+        benefitsTitle: "Practical benefits for professionals",
+        benefitsCopy: "We do not promise guaranteed income, but we aim to make suitable job opportunities easier and clearer to access.",
+        benefit1Title: "Flexible schedule",
+        benefit1Copy: "Choose the days and times that work for you without a fixed shift.",
+        benefit2Title: "Area-based requests",
+        benefit2Copy: "We aim to match requests with your trade and the areas you can reach.",
+        benefit3Title: "Freedom to choose",
+        benefit3Copy: "Review the details first, then accept or decline based on fit.",
+        benefit4Title: "Documentation that protects you",
+        benefit4Copy: "Before-and-after photos reduce misunderstandings and demonstrate quality.",
+        benefit5Title: "Professional profile and ratings",
+        benefit5Copy: "Build a work history and ratings that increase customer trust.",
+        benefit6Title: "Support and coordination",
+        benefit6Copy: "The FixSha’a team supports coordination and operational issue handling.",
+        requirementsEyebrow: "Basic requirements",
+        requirementsTitle: "Who are we looking for?",
+        requirementsCopy: "Age alone does not define experience. Reliability, skill, and respectful, safe service matter most.",
+        req1Title: "18 or older",
+        req1Copy: "And able to work legally according to your individual status.",
+        req2Title: "Hands-on experience",
+        req2Copy: "Real experience in at least one trade, with photos or references when possible.",
+        req3Title: "Reliable timing",
+        req3Copy: "Clear communication, on-time arrival, or early updates when delayed.",
+        req4Title: "Suitable tools",
+        req4Copy: "Own the basic tools required for the jobs you accept.",
+        req5Title: "Work documentation",
+        req5Copy: "Willingness to take before-and-after photos to protect both sides.",
+        req6Title: "Review and verification",
+        req6Copy: "Agree to provide necessary documents during the acceptance stage, not in the initial form.",
+        formEyebrow: "Join application",
+        formSectionTitle: "Tell us about you and your experience",
+        formSectionCopy: "The form takes a few minutes. Submitting does not mean automatic acceptance, and suitable applicants will be contacted.",
+        formTitle: "Professional application form",
+        formSubtitle: "Complete the four steps and submit your application for review.",
+        stepLabel: "Step",
+        personalTitle: "1. Personal information",
+        personalCopy: "These details help us contact you and understand your area and preferred language.",
+        fullName: "Full name",
+        fullNamePlaceholder: "Example: Ahmad Mohammad",
+        phone: "Phone number",
+        phonePlaceholder: "05X-XXXXXXX",
+        email: "Email address",
+        emailPlaceholder: "name@example.com",
+        city: "City or town",
+        cityPlaceholder: "Example: Jerusalem",
+        preferredLanguage: "Preferred contact language",
+        chooseOption: "Choose...",
+        arabic: "Arabic",
+        hebrew: "Hebrew",
+        english: "English",
+        over18: "Are you 18 years old or older?",
+        yes: "Yes",
+        no: "No",
+        professionalTitle: "2. Professional experience",
+        professionalCopy: "Choose your main trade and add any important skills or experience.",
+        primaryProfession: "Main trade",
+        plumbing: "Plumbing",
+        electricity: "Electrical work",
+        airConditioning: "Air conditioning",
+        painting: "Painting",
+        tiling: "Tiling",
+        carpentry: "Carpentry",
+        gypsum: "Drywall / gypsum",
+        aluminum: "Aluminum work",
+        generalRenovation: "General renovation",
+        minorRepairs: "Minor repairs and maintenance",
+        cleaning: "Post-renovation cleaning",
+        other: "Other",
+        yearsExperience: "Years of experience",
+        additionalProfessions: "Additional trades",
+        experienceDescription: "Briefly describe your experience",
+        experiencePlaceholder: "What work do you usually perform, and what makes your experience stand out?",
+        workedIndependently: "Have you worked independently before?",
+        references: "Can you provide references from previous customers?",
+        availabilityTitle: "3. Service areas and availability",
+        availabilityCopy: "These details help us send only requests that fit you.",
+        serviceAreas: "Areas you can serve",
+        jerusalem: "Jerusalem",
+        eastJerusalem: "East Jerusalem",
+        northJerusalem: "North Jerusalem",
+        ramallah: "Ramallah",
+        bethlehem: "Bethlehem",
+        otherArea: "Other area",
+        selectOneArea: "Select at least one area.",
+        otherAreaField: "Add any other areas",
+        otherAreaPlaceholder: "Example: Abu Dis, Al-Ram, Ma'ale Adumim...",
+        driverLicense: "Do you have a driver's license?",
+        vehicle: "Do you have a vehicle?",
+        tools: "Do you own the basic tools for your work?",
+        maxDistance: "Maximum travel distance (km)",
+        availableDays: "Available days",
+        sunday: "Sunday",
+        monday: "Monday",
+        tuesday: "Tuesday",
+        wednesday: "Wednesday",
+        thursday: "Thursday",
+        friday: "Friday",
+        saturday: "Saturday",
+        availableTimes: "Available times",
+        morning: "Morning",
+        afternoon: "Afternoon",
+        evening: "Evening",
+        emergencyJobs: "Do you accept emergency jobs?",
+        nightJobs: "Do you accept night jobs?",
+        expectedRate: "Expected hourly rate (₪)",
+        ratePlaceholder: "Example: 180",
+        rateHint: "This helps us understand market expectations; it is not a final rate or promise.",
+        finalTitle: "4. Work status and attachments",
+        finalCopy: "Add anything that helps us review the application. Do not upload an ID or police record at this stage.",
+        businessStatus: "Professional status",
+        company: "Company",
+        employee: "Employee",
+        noTaxFile: "No tax file at the moment",
+        invoice: "Can you issue an invoice or receipt?",
+        portfolioUrl: "Portfolio or Instagram link",
+        motivation: "Why would you like to join FixSha’a?",
+        motivationPlaceholder: "Briefly describe what you are looking for and how you prefer to work...",
+        source: "How did you hear about us?",
+        facebookGroup: "Facebook group",
+        facebookPage: "Facebook page",
+        friend: "Friend or acquaintance",
+        portfolioFiles: "Previous work photos",
+        uploadPortfolioTitle: "Upload clear photos of work you completed",
+        uploadHint: "JPG, PNG, or WEBP — maximum 10MB per file",
+        certificateFiles: "Professional certificates or references",
+        uploadCertificateTitle: "Optional: upload a certificate or reference",
+        uploadCertHint: "PDF, JPG, or PNG — maximum 10MB per file",
+        verificationConsent: "I agree to provide required documents and complete a verification process if I move to the acceptance stage.",
+        privacyConsent: "I agree that my application data may be stored and used to review my application and contact me.",
+        termsConsent: "I understand that submitting this form does not mean automatic acceptance or guaranteed job volume.",
+        previous: "Previous",
+        next: "Next",
+        submitApplication: "Submit application",
+        successTitle: "Your application was received",
+        successCopy: "Thank you for applying. The FixSha’a team will review the details and contact you if the application fits the verification stage.",
+        newApplication: "Submit another application",
+        privacyNote: "Do not upload an ID or sensitive personal information in the initial application. Necessary documents will only be requested after review and contact.",
+        rights: "All rights reserved.",
+        privacyPolicy: "Privacy policy",
+        contact: "Contact us",
+        requiredMessage: "Please complete all required fields in this step.",
+        areaRequiredMessage: "Select at least one service area.",
+        daysRequiredMessage: "Select at least one available day.",
+        timesRequiredMessage: "Select at least one available time.",
+        under18Message: "Applications are currently available to people aged 18 or older.",
+        configError: "Add your Supabase Anon Key in the code before submitting the form.",
+        sending: "Submitting application...",
+        fileTooLarge: "One of the files is larger than 10MB.",
+        tooManyFiles: "You can upload up to 8 files in each section.",
+        submitError: "There was an error submitting the application. Please try again.",
+        uploadWarning: "Your application was saved, but some files could not be uploaded. Our team can request them later."
+      }
+    };
+
+    let currentLanguage = "ar";
+    let currentStep = 1;
+
+    const form = document.getElementById("workerApplicationForm");
+    const steps = Array.from(document.querySelectorAll(".form-step"));
+    const nextBtn = document.getElementById("nextBtn");
+    const prevBtn = document.getElementById("prevBtn");
+    const submitBtn = document.getElementById("submitBtn");
+    const progressBar = document.getElementById("progressBar");
+    const currentStepText = document.getElementById("currentStepText");
+    const formAlert = document.getElementById("formAlert");
+    const formContent = document.getElementById("formContent");
+    const successScreen = document.getElementById("successScreen");
+
+    function t(key) {
+      return translations[currentLanguage][key] || key;
+    }
+
+    function applyLanguage(lang) {
+      currentLanguage = lang;
+      const isRtl = lang === "ar" || lang === "he";
+      document.documentElement.lang = lang;
+      document.documentElement.dir = isRtl ? "rtl" : "ltr";
+
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.dataset.i18n;
+        if (translations[lang][key] !== undefined) {
+          element.textContent = translations[lang][key];
+        }
+      });
+
+      document.querySelectorAll("[data-i18n-html]").forEach((element) => {
+        const key = element.dataset.i18nHtml;
+        if (translations[lang][key] !== undefined) {
+          element.innerHTML = translations[lang][key];
+        }
+      });
+
+      document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
+        const key = element.dataset.i18nPlaceholder;
+        if (translations[lang][key] !== undefined) {
+          element.placeholder = translations[lang][key];
+        }
+      });
+
+      document.querySelectorAll(".lang-btn").forEach((button) => {
+        button.classList.toggle("active", button.dataset.lang === lang);
+      });
+
+      localStorage.setItem("fixshaa_worker_lang", lang);
+    }
+
+    document.querySelectorAll(".lang-btn").forEach((button) => {
+      button.addEventListener("click", () => applyLanguage(button.dataset.lang));
+    });
+
+    function updateStepUI() {
+      steps.forEach((step) => {
+        step.classList.toggle("active", Number(step.dataset.step) === currentStep);
+      });
+
+      progressBar.style.width = `${currentStep * 25}%`;
+      currentStepText.textContent = currentStep;
+      prevBtn.style.visibility = currentStep === 1 ? "hidden" : "visible";
+      nextBtn.style.display = currentStep === 4 ? "none" : "inline-flex";
+      submitBtn.style.display = currentStep === 4 ? "inline-flex" : "none";
+      hideAlert();
+    }
+
+    function hideAlert() {
+      formAlert.className = "form-alert";
+      formAlert.textContent = "";
+    }
+
+    function showAlert(message, type = "error") {
+      formAlert.textContent = message;
+      formAlert.className = `form-alert show ${type}`;
+      formAlert.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    function checkedValues(name) {
+      return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map((el) => el.value);
+    }
+
+    function radioBoolean(name, fallback = false) {
+      const selected = document.querySelector(`input[name="${name}"]:checked`);
+      return selected ? selected.value === "true" : fallback;
+    }
+
+    function validateNativeFields(stepElement) {
+      const fields = Array.from(stepElement.querySelectorAll("input, select, textarea"));
+      let firstInvalid = null;
+
+      fields.forEach((field) => {
+        field.classList.remove("invalid");
+
+        if (!field.checkValidity()) {
+          field.classList.add("invalid");
+          if (!firstInvalid && !["radio", "checkbox"].includes(field.type)) {
+            firstInvalid = field;
+          }
+        }
+      });
+
+      if (firstInvalid) {
+        firstInvalid.focus();
+      }
+
+      return !fields.some((field) => !field.checkValidity());
+    }
+
+    function validateCurrentStep() {
+      const stepElement = steps.find((step) => Number(step.dataset.step) === currentStep);
+      const nativeValid = validateNativeFields(stepElement);
+
+      if (!nativeValid) {
+        showAlert(t("requiredMessage"));
+        return false;
+      }
+
+      if (currentStep === 1) {
+        const isOver18 = document.querySelector('input[name="is_over_18"]:checked');
+        if (isOver18 && isOver18.value === "false") {
+          showAlert(t("under18Message"));
+          return false;
+        }
+      }
+
+      if (currentStep === 3) {
+        if (checkedValues("service_areas").length === 0) {
+          showAlert(t("areaRequiredMessage"));
+          return false;
+        }
+
+        if (checkedValues("available_days").length === 0) {
+          showAlert(t("daysRequiredMessage"));
+          return false;
+        }
+
+        if (checkedValues("available_times").length === 0) {
+          showAlert(t("timesRequiredMessage"));
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    nextBtn.addEventListener("click", () => {
+      if (!validateCurrentStep()) return;
+      currentStep = Math.min(4, currentStep + 1);
+      updateStepUI();
+      document.getElementById("application").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    prevBtn.addEventListener("click", () => {
+      currentStep = Math.max(1, currentStep - 1);
+      updateStepUI();
+      document.getElementById("application").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    function safeFileName(fileName) {
+      return fileName
+        .normalize("NFKD")
+        .replace(/[^a-zA-Z0-9._-]/g, "-")
+        .replace(/-+/g, "-")
+        .toLowerCase();
+    }
+
+    function validateFiles(files) {
+      if (files.length > MAX_FILES_PER_INPUT) {
+        throw new Error(t("tooManyFiles"));
+      }
+
+      for (const file of files) {
+        if (file.size > MAX_FILE_SIZE) {
+          throw new Error(t("fileTooLarge"));
+        }
+      }
+    }
+
+    async function uploadFileGroup(applicationId, files, fileType) {
+      const insertedRows = [];
+
+      for (const file of files) {
+        const path = `${applicationId}/${Date.now()}-${crypto.randomUUID()}-${safeFileName(file.name)}`;
+
+        const { error: uploadError } = await supabaseClient.storage
+          .from(STORAGE_BUCKET)
+          .upload(path, file, {
+            cacheControl: "3600",
+            upsert: false,
+            contentType: file.type || undefined
+          });
+
+        if (uploadError) throw uploadError;
+
+        insertedRows.push({
+          worker_application_id: applicationId,
+          file_type: fileType,
+          storage_path: path,
+          original_file_name: file.name,
+          mime_type: file.type || null,
+          file_size: file.size
+        });
+      }
+
+      if (insertedRows.length > 0) {
+        const { error: metadataError } = await supabaseClient
+          .from("worker_application_files")
+          .insert(insertedRows);
+
+        if (metadataError) throw metadataError;
+      }
+    }
+
+    function nullableNumber(value) {
+      return value === "" || value === null ? null : Number(value);
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      hideAlert();
+
+      if (!validateCurrentStep()) return;
+
+      if (document.getElementById("website").value.trim() !== "") {
+        return;
+      }
+
+      if (SUPABASE_ANON_KEY.includes("PASTE_YOUR")) {
+        showAlert(t("configError"));
+        return;
+      }
+
+      const portfolioFiles = Array.from(document.getElementById("portfolio_files").files || []);
+      const certificateFiles = Array.from(document.getElementById("certificate_files").files || []);
+
+      try {
+        validateFiles(portfolioFiles);
+        validateFiles(certificateFiles);
+      } catch (error) {
+        showAlert(error.message);
+        return;
+      }
+
+      submitBtn.disabled = true;
+      const originalSubmitText = submitBtn.textContent;
+      submitBtn.textContent = t("sending");
+
+      const serviceAreas = checkedValues("service_areas");
+      const otherArea = document.getElementById("other_service_area").value.trim();
+      if (otherArea) serviceAreas.push(otherArea);
+
+      const applicationId = crypto.randomUUID();
+
+      const payload = {
+        id: applicationId,
+        full_name: document.getElementById("full_name").value.trim(),
+        phone: document.getElementById("phone").value.trim(),
+        email: document.getElementById("email").value.trim() || null,
+        city: document.getElementById("city").value.trim(),
+        is_over_18: radioBoolean("is_over_18"),
+        preferred_language: document.getElementById("preferred_language").value,
+        primary_profession: document.getElementById("primary_profession").value,
+        additional_professions: checkedValues("additional_professions"),
+        years_of_experience: nullableNumber(document.getElementById("years_of_experience").value),
+        experience_description: document.getElementById("experience_description").value.trim() || null,
+        worked_independently: radioBoolean("worked_independently"),
+        can_provide_references: radioBoolean("can_provide_references"),
+        service_areas: serviceAreas,
+        has_driver_license: radioBoolean("has_driver_license"),
+        has_vehicle: radioBoolean("has_vehicle"),
+        has_tools: radioBoolean("has_tools"),
+        maximum_travel_distance_km: nullableNumber(document.getElementById("maximum_travel_distance_km").value),
+        available_days: checkedValues("available_days"),
+        available_times: checkedValues("available_times"),
+        accepts_emergency_jobs: radioBoolean("accepts_emergency_jobs"),
+        accepts_night_jobs: radioBoolean("accepts_night_jobs"),
+        expected_hourly_rate: nullableNumber(document.getElementById("expected_hourly_rate").value),
+        business_status: document.getElementById("business_status").value || null,
+        can_issue_invoice: radioBoolean("can_issue_invoice"),
+        portfolio_url: document.getElementById("portfolio_url").value.trim() || null,
+        motivation: document.getElementById("motivation").value.trim() || null,
+        source: document.getElementById("source").value || "worker_landing_page",
+        agrees_to_verification: document.getElementById("agrees_to_verification").checked,
+        agrees_to_privacy_policy: document.getElementById("agrees_to_privacy_policy").checked,
+        agrees_to_terms: document.getElementById("agrees_to_terms").checked,
+        status: "new"
+      };
+
+      try {
+        const { error } = await supabaseClient
+          .from("worker_applications")
+          .insert(payload);
+
+        if (error) throw error;
+
+        let uploadWarning = false;
+
+        try {
+          if (portfolioFiles.length) {
+            await uploadFileGroup(applicationId, portfolioFiles, "portfolio_image");
+          }
+
+          if (certificateFiles.length) {
+            await uploadFileGroup(applicationId, certificateFiles, "certificate");
+          }
+        } catch (uploadError) {
+          console.error("File upload error:", uploadError);
+          uploadWarning = true;
+        }
+
+        if (uploadWarning) {
+          formContent.style.display = "none";
+          successScreen.classList.add("show");
+          const successParagraph = successScreen.querySelector("p");
+          successParagraph.textContent = `${t("successCopy")} ${t("uploadWarning")}`;
+        } else {
+          formContent.style.display = "none";
+          successScreen.classList.add("show");
+          successScreen.querySelector("p").textContent = t("successCopy");
+        }
+
+        successScreen.scrollIntoView({ behavior: "smooth", block: "center" });
+      } catch (error) {
+        console.error("Submission error:", error);
+        showAlert(t("submitError"));
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalSubmitText;
+      }
+    });
+
+    document.getElementById("newApplicationBtn").addEventListener("click", () => {
+      form.reset();
+      currentStep = 1;
+      updateStepUI();
+      successScreen.classList.remove("show");
+      formContent.style.display = "block";
+      document.getElementById("application").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    document.querySelectorAll("input, select, textarea").forEach((field) => {
+      field.addEventListener("input", () => field.classList.remove("invalid"));
+      field.addEventListener("change", () => field.classList.remove("invalid"));
+    });
+
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
+    applyLanguage(localStorage.getItem("fixshaa_worker_lang") || "ar");
+    updateStepUI();
+  </script>
+</body>
+</html>
